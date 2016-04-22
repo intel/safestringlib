@@ -194,8 +194,9 @@ parse_format(const char *format, char pformatList[], unsigned int maxFormats)
 				puts("]");
 				break;
 			}
+		} else {
+			index++; // move past this character
 		}
-		index++; // move past this character
 	}
 
 	return numFormats;
