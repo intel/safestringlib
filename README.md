@@ -18,11 +18,67 @@ include additional unit tests.
 
 LIST OF PRIMARY FUNCTIONS:
 -----------------------------
-To be completed
+* memcmp_s()
+* memcpy_s()
+* memmove_s()
+* memset_s()
+* memzero_s()
+
+* stpcpy_s()
+* stpncpy_s()
+* strcat_s()
+* strcpy_s()
+* strcspn_s()
+* strncat_s()
+* strncpy_s()
+* strnlen_s()
+* strpbrk_s()
+* strspn_s()
+* strstr_s()
+* strtok_s()
+
+* wcpcpy_s()
+* wcscat_s()
+* wcscpy_s()
+* wcsncat_s()
+* wcsnlen_s()
+* wmemcmp_s()
+* wmemcpy_s()
+* wmemmove_s()
+* wmemset_s()
+
 
 LIST OF ADDITIONAL STRING ROUTINES:
 ------------------------------------
-To be completed
+* strcasecmp_s()
+* strcasestr_s()
+* strcmp_s()
+* strcmpfld_s()
+* strcpyfld_s()
+* strcpyfldin_s()
+* strcpyfldout_s()
+* strfirstchar_s()
+* strfirstdiff_s()
+* strfirstsmae_s()
+* strisalphanumeric_s()
+* strisascii_s()
+* strisdigit_s()
+* strishes_s()
+* strislowercase_s()
+* strismixedcase_s()
+* strispassword_s()
+* strisuppercase_s()
+* strlastchar_s()
+* strlastdiff_s()
+* strlastsame_s()
+* strljustify_s()
+* strnterminate_s()
+* strprefix_s()
+* stremovews_s()
+* strtolowercase_s()
+* strtouppercase_s()
+* strzero_s()
+
 
 PLANNED ENHANCEMENTS:
 ----------------------
