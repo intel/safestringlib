@@ -17,10 +17,15 @@ static char   str2[LEN];
 int test_strcspn_s (void)
 {
     errno_t rc;
-    uint32_t count;
+    rsize_t count;
     int std_count;
+    unsigned int testno = 0;
+
+
 
 /*--------------------------------------------------*/
+/* 1  Test for NULL destination check                  */
+printf("Test #%d: NULL Scan String Check\n", ++testno);
 
     rc = strcspn_s(NULL, LEN, str2, LEN, &count);
     if (rc != ESNULLP) {
@@ -34,6 +39,8 @@ int test_strcspn_s (void)
     }
 
 /*--------------------------------------------------*/
+/* 2  Test for NULL source check                       */
+    printf("Test #%d: NULL Exclusion String Check: \n", ++testno);
 
     rc = strcspn_s(str1, LEN, NULL, LEN, &count);
     if (rc != ESNULLP) {
@@ -47,6 +54,8 @@ int test_strcspn_s (void)
     }
 
 /*--------------------------------------------------*/
+/* 3  Test for NULL Count ouput check                       */
+    printf("Test #%d: NULL Count parameter Check: \n", ++testno);
 
     rc = strcspn_s(str1, LEN, str2, LEN, NULL);
     if (rc != ESNULLP) {
@@ -55,6 +64,8 @@ int test_strcspn_s (void)
     }
 
 /*--------------------------------------------------*/
+/* 4  Test for zero length destination                 */
+    printf("Test #%d:Zero Length Scan String Check\n", ++testno);
 
     rc = strcspn_s(str1, 0, str2, LEN, &count);
     if (rc != ESZEROL) {
@@ -68,6 +79,8 @@ int test_strcspn_s (void)
     }
 
 /*--------------------------------------------------*/
+/* 5  Test for zero length source                 */
+    printf("Test #%d:Zero Length Exclusion String Check\n", ++testno);
 
     rc = strcspn_s(str1, LEN, str2, 0, &count);
     if (rc != ESZEROL) {
@@ -81,6 +94,8 @@ int test_strcspn_s (void)
     }
 
 /*--------------------------------------------------*/
+/* 6  Test for too large length destination                 */
+    printf("Test #%d:Exceed Max Length Scan String Check\n", ++testno);
 
     rc = strcspn_s(str1, RSIZE_MAX_STR+1, str2, LEN, &count);
     if (rc != ESLEMAX) {
@@ -94,6 +109,8 @@ int test_strcspn_s (void)
     }
 
 /*--------------------------------------------------*/
+/* 7  Test for too large length destination                 */
+    printf("Test #%d:Exceed Max Length Exclusion String Check\n", ++testno);
 
     rc = strcspn_s(str1, RSIZE_MAX_STR, str2, RSIZE_MAX_STR+1, &count);
     if (rc != ESLEMAX) {
@@ -107,6 +124,8 @@ int test_strcspn_s (void)
     }
 
 /*--------------------------------------------------*/
+/* 8  Test for                  */
+    printf("Test #%d:\n", ++testno);
 
     str1[0] = '\0';
     str2[0] = '\0';
@@ -129,6 +148,9 @@ int test_strcspn_s (void)
     }
 
 /*--------------------------------------------------*/
+/* 9  Test for                  */
+    printf("Test #%d:\n", ++testno);
+
 
     strcpy (str1, "keep it simple");
     strcpy (str2, "KEEP");
@@ -145,6 +167,9 @@ int test_strcspn_s (void)
     }
 
 /*--------------------------------------------------*/
+/* 10  Test for                  */
+    printf("Test #%d:\n", ++testno);
+
 
     strcpy (str1, "keep it simple");
     strcpy (str2, "KEEP");
@@ -161,6 +186,9 @@ int test_strcspn_s (void)
     }
 
 /*--------------------------------------------------*/
+/* 11  Test for                  */
+    printf("Test #%d:\n", ++testno);
+
 
     strcpy (str1, "keep it simple");
     strcpy (str2, "KEEP");
@@ -178,6 +206,9 @@ int test_strcspn_s (void)
 
 
 /*--------------------------------------------------*/
+/* 12  Test for                  */
+    printf("Test #%d:\n", ++testno);
+
 
     strcpy (str1, "keep it simple");
     strcpy (str2, "KEEP");
@@ -194,6 +225,9 @@ int test_strcspn_s (void)
     }
 
 /*--------------------------------------------------*/
+/* 13  Test for                  */
+    printf("Test #%d:\n", ++testno);
+
 
     strcpy (str1, "keep it simple");
     strcpy (str2, "ABCDEF");
@@ -210,6 +244,9 @@ int test_strcspn_s (void)
     }
 
 /*--------------------------------------------------*/
+/* 14  Test for                  */
+    printf("Test #%d:\n", ++testno);
+
 
     strcpy (str1, "keep it simple");
     strcpy (str2, "keep");
@@ -227,6 +264,9 @@ int test_strcspn_s (void)
     }
 
 /*--------------------------------------------------*/
+/* 15  Test for                  */
+    printf("Test #%d:\n", ++testno);
+
 
     strcpy (str1, "keep it simple");
     strcpy (str2, "notincluded");
@@ -244,6 +284,9 @@ int test_strcspn_s (void)
     }
 
 /*--------------------------------------------------*/
+/* 16  Test for                  */
+    printf("Test #%d:\n", ++testno);
+
 
     strcpy (str1, "keep it simple");
     strcpy (str2, "1234567890");
