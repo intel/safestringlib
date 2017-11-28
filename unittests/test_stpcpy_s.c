@@ -86,7 +86,7 @@ int test_stpcpy_s (void)
     int32_t  ind;
     unsigned int testno = 0;
 
-    printf("\nTesting stpncpy_s:\n");
+    printf("\nTesting stpcpy_s:\n");
 /*--------------------------------------------------*/
 /* 1 Test for NULL destination check                  */
     printf("Test #%d:\n", ++testno);
