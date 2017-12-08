@@ -11,6 +11,8 @@
 #define LEN   ( 128 )
 #define SHORT_LEN  ( 5 )
 
+extern errno_t strcasestr_s (char *dest, rsize_t dmax, const char *src, rsize_t slen, char **substring);
+
 int test_strcasestr_s()
 {
     errno_t rc;
