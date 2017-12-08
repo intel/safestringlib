@@ -79,7 +79,8 @@ static wchar_t   str1[LEN];
 static wchar_t   str2[LEN];
 
 extern wchar_t *wcpcpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, errno_t *err);
-
+extern errno_t  wcscpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src);
+extern rsize_t  wcsnlen_s (const wchar_t *dest, rsize_t dmax);
 
 int test_wcpcpy_s (void)
 {
@@ -351,7 +352,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
 
-    rc = memcmp_s(str1, LEN, str2, (wcsnlen(str2, LEN))*sizeof(wchar_t), &ind );
+    rc = memcmp_s(str1, LEN, str2, (wcsnlen_s(str2, LEN))*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls- <> -%ls-  (smax=%lu) Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, str2, sz, rc );
