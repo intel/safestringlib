@@ -381,21 +381,22 @@ printf("Test #%d:\n", ++testno);
     if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
     	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
-    }
+    } else {
 
-    /* be sure the results are the same as strcmp */
-    sz = strnlen_s(str1, LEN);
-    ind = strncmp(str1, str2, sz);
-    if (ind != 0 || sz != 3) {
-        printf("%s %u -%s- <> -%s-  (smax=%d) Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  str1, str2, sz, rc );
-    }
-    /* be sure that the slack is correct */
-    for (i=1; i<6; i++) {
-    	if (ret[i] != 'x') {
-    		printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
-    		                     __FUNCTION__, __LINE__,  i, rc );
-    	}
+		/* be sure the results are the same as strcmp */
+		sz = strnlen_s(str1, LEN);
+		ind = strncmp(str1, str2, sz);
+		if (ind != 0 || sz != 3) {
+			printf("%s %u -%s- <> -%s-  (smax=%d) Error rc=%u \n",
+						 __FUNCTION__, __LINE__,  str1, str2, sz, rc );
+		}
+		/* be sure that the slack is correct */
+		for (i=1; i<6; i++) {
+			if (ret[i] != 'x') {
+				printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
+									 __FUNCTION__, __LINE__,  i, rc );
+			}
+		}
     }
 
 /*--------------------------------------------------*/
@@ -414,26 +415,28 @@ printf("Test #%d:\n", ++testno);
 	if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
 		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
-	}
+	} else {
 
-	/* be sure the results are the same as strcmp */
-	ind = strcmp(str1, str2);
-	if (ind != 0) {
-		printf("%s %u -%s-  Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  str1, rc );
-	}
-	/* be sure that the nulls are correct */
-	for (i=0; i<5; i++) {
-		if (ret[i] != '\0') {
-			printf("%s %u Incorrect NULL fill at returned ptr index %d  Error rc=%u \n",
-								 __FUNCTION__, __LINE__,  i, rc );
-		}
-	}
-	/* be sure that the slack is correct */
-	for (; i<15; i++) {
-		if (ret[i] != 'x') {
-			printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
-								 __FUNCTION__, __LINE__,  i, rc );
+		/* be sure the results are the same as strcmp */
+		ind = strcmp(str1, str2);
+		if (ind != 0) {
+			printf("%s %u -%s-  Error rc=%u \n",
+						 __FUNCTION__, __LINE__,  str1, rc );
+		} else {
+			/* be sure that the nulls are correct */
+			for (i=0; i<5; i++) {
+				if (ret[i] != '\0') {
+					printf("%s %u Incorrect NULL fill at returned ptr index %d  Error rc=%u \n",
+										 __FUNCTION__, __LINE__,  i, rc );
+				}
+			}
+			/* be sure that the slack is correct */
+			for (; i<15; i++) {
+				if (ret[i] != 'x') {
+					printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
+										 __FUNCTION__, __LINE__,  i, rc );
+				}
+			}
 		}
 	}
 
@@ -453,19 +456,21 @@ printf("Test #%d:\n", ++testno);
 	if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
 		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
-	}
+	} else {
 
-	/* be sure the results are the same as strcmp */
-	ind = strcmp(str1, str2);
-	if (ind != 0) {
-		printf("%s %u -%s-  Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  str1, rc );
-	}
-	/* be sure that the slack is correct */
-	for (i=1; i<5; i++) {
-		if (ret[i] != 'x') {
-			printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
-								 __FUNCTION__, __LINE__,  i, rc );
+		/* be sure the results are the same as strcmp */
+		ind = strcmp(str1, str2);
+		if (ind != 0) {
+			printf("%s %u -%s-  Error rc=%u \n",
+						 __FUNCTION__, __LINE__,  str1, rc );
+		} else {
+			/* be sure that the slack is correct */
+			for (i=1; i<5; i++) {
+				if (ret[i] != 'x') {
+					printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
+										 __FUNCTION__, __LINE__,  i, rc );
+				}
+			}
 		}
 	}
 
@@ -485,19 +490,21 @@ printf("Test #%d:\n", ++testno);
 	if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
 		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
-	}
+	} else {
 
-	/* be sure the results are the same as strcmp */
-	ind = strcmp(str1, str2);
-	if (ind != 0) {
-		printf("%s %u -%s-  Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  str1, rc );
-	}
-	/* be sure that the slack is correct */
-	for (i=1; i<5; i++) {
-		if (ret[i] != 'x') {
-			printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
-								 __FUNCTION__, __LINE__,  i, rc );
+		/* be sure the results are the same as strcmp */
+		ind = strcmp(str1, str2);
+		if (ind != 0) {
+			printf("%s %u -%s-  Error rc=%u \n",
+						 __FUNCTION__, __LINE__,  str1, rc );
+		} else {
+			/* be sure that the slack is correct */
+			for (i=1; i<5; i++) {
+				if (ret[i] != 'x') {
+					printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
+										 __FUNCTION__, __LINE__,  i, rc );
+				}
+			}
 		}
 	}
 
