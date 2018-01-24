@@ -95,6 +95,10 @@ strcpy_s(char *dest, rsize_t dmax, const char *src);
 extern char *
 stpcpy_s(char *dest, rsize_t dmax, const char *src, errno_t *err);
 
+/* string copy */
+extern char *
+stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err);
+
 /* fixed char array copy */
 extern errno_t
 strcpyfld_s(char *dest, rsize_t dmax, const char *src, rsize_t slen);
@@ -258,6 +262,31 @@ strtouppercase_s(char *str, rsize_t slen);
 /* zero an entire string with nulls */
 extern errno_t
 strzero_s(char *dest, rsize_t dmax);
+
+
+/* wide string copy */
+extern wchar_t *
+wcpcpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, errno_t *err);
+
+/* wide string concatenate */
+extern errno_t
+wcscat_s(wchar_t* dest, rsize_t dmax, const wchar_t* src);
+
+/* fitted wide string concatenate */
+extern errno_t
+wcsncat_s(wchar_t *dest, rsize_t dmax, const wchar_t *src, rsize_t slen);
+
+/* wide string copy */
+errno_t
+wcscpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src);
+
+/* fitted wide string copy */
+extern errno_t
+wcsncpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, rsize_t slen);
+
+/* wide string length */
+extern rsize_t
+wcsnlen_s(const wchar_t *dest, rsize_t dmax);
 
 
 #endif   /* __SAFE_STR_LIB_H__ */
