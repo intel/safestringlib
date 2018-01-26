@@ -44,14 +44,14 @@
  *    wcscat_s(wchar_t* dest, rsize_t dmax, const wchar_t* src)
  *
  * DESCRIPTION
- *    The wcscat_s function appends a copy of the wide characer string pointed
+ *    The wcscat_s function appends a copy of the wide character string pointed
  *    to by src (including the terminating null character) to the
  *    end of the string pointed to by dest. The initial wide character
  *    from src overwrites the null character at the end of dest.
  *
  *    All elements following the terminating null character (if
  *    any) written by strcat_s in the array of dmax characters
- *    pointed to by dest take unspeciﬁed values when strcat_s
+ *    pointed to by dest take unspecified values when strcat_s
  *    returns.
  *
  * SPECIFIED IN

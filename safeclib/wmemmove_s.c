@@ -48,7 +48,7 @@
  * DESCRIPTION
  *    The wmemmove_s function copies smax wide characters from the region pointed
  *    to by src into the region pointed to by dest. This copying takes place
- *    as if the smax wide characters from the region pointed to by src are ﬁrst copied
+ *    as if the smax wide characters from the region pointed to by src are first copied
  *    into a temporary array of smax bytes that does not overlap the region
  *    pointed to by dest or src, and then the smax bytes from the temporary
  *    array are copied into the object region to by dest.
@@ -77,9 +77,9 @@
  *    dmax shall not be greater than RSIZE_MAX_MEM/sizeof(wchar_t).
  *    smax shall not be greater than dmax.
  *    If there is a runtime-constraint violation, the wmemmove_s function
- *      stores zeros in the ﬁrst dmax characters of the region pointed to
- *      by dest if dest is not a null pointer and dmax is not greater
- *      than RSIZE_MAX_MEM/sizeof(wchar_t).
+ *    stores zeros in the first dmax characters of the region pointed to
+ *    by dest if dest is not a null pointer and dmax is not greater
+ *    than RSIZE_MAX_MEM/sizeof(wchar_t).
  *
  * RETURN VALUE
  *    EOK        successful operation

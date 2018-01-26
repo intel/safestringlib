@@ -46,7 +46,9 @@
  *
  * DESCRIPTION
  *    This function copies at most smax bytes from src to dest, up to
- *    dmax.
+ *    dmax. The size values are unsigned values.
+ *
+ *    AR: Dave - verify ISO spec requires unsigned
  *
  * SPECIFIED IN
  *    ISO/IEC JTC1 SC22 WG14 N1172, Programming languages, environments
@@ -72,8 +74,8 @@
  *    smax shall not be greater than dmax.
  *    Copying shall not take place between regions that overlap.
  *    If there is a runtime-constraint violation, the memcpy_s function
- *        stores zeros in the ﬁrst dmax bytes of the region pointed to
- *        by dest if dest is not a null pointer and smax is valid.
+ *    stores zeros in the first dmax bytes of the region pointed to
+ *    by dest if dest is not a null pointer and smax is valid.
  *
  * RETURN VALUE
  *    EOK        successful operation
@@ -114,6 +116,10 @@ memcpy_s (void *dest, rsize_t dmax, const void *src, rsize_t smax)
         return RCNEGATE(ESLEMAX);
     }
 
+    // AR: This is not a requirement according to the ISO spec - Change?
+    // AR: documentation needed on use of the error handlers -
+    // AR: default err handler should output to stderr on DEBUG
+    // AR: update docs to define return RCNEGATE of the error number
     if (smax == 0) {
         mem_prim_set(dp, dmax, 0);
         invoke_safe_mem_constraint_handler("memcpy_s: smax is 0",

@@ -55,7 +55,7 @@
  *    dmax points to an object whose value is the number of elements
  *    in the character array pointed to by the first argument. The
  *    first call stores an initial value in the object pointed to by
- *    ptr and updates the value pointed to by dmax to reﬂect the
+ *    ptr and updates the value pointed to by dmax to reflect the
  *    number of elements that remain in relation to ptr. Subsequent
  *    calls in the sequence have a null first argument and the objects
  *    pointed to by dmax and ptr are required to have the values
@@ -79,9 +79,9 @@
  *    overwritten by a null character, which terminates the
  *    current token.
  *
- *    In all cases, the strtok_s function stores sufﬁcient information
+ *    In all cases, the strtok_s function stores sufficient information
  *    in the pointer pointed to by ptr so that subsequent calls,
- *    with a null pointer for dest and the unmodiﬁed pointer value
+ *    with a null pointer for dest and the unmodified pointer value
  *    for ptr, shall start searching just past the element overwritten
  *    by a null character (if any).
  *
