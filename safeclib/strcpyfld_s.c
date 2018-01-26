@@ -197,3 +197,4 @@ strcpyfld_s (char *dest, rsize_t dmax, const char *src, rsize_t slen)
     while (dmax) { *dest = '\0'; dmax--; dest++; }
     return (EOK);
 }
+EXPORT_SYMBOL(strcpyfld_s)

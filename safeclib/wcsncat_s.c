@@ -266,4 +266,4 @@ wcsncat_s (wchar_t *dest, rsize_t dmax, const wchar_t *src, rsize_t slen)
                  ESNOSPC);
     return RCNEGATE(ESNOSPC);
 }
-EXPORT_SYMBOL(wcsncat_s);
+EXPORT_SYMBOL(wcsncat_s)

@@ -140,3 +140,4 @@
 
     return (ESNODIFF);
 }
+EXPORT_SYMBOL(strfirstdiff_s)

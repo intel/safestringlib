@@ -166,4 +166,4 @@ wmemcmp_s (const wchar_t *dest, rsize_t dmax,
 
     return (RCNEGATE(EOK));
 }
-EXPORT_SYMBOL(wmemcmp_s);
+EXPORT_SYMBOL(wmemcmp_s)

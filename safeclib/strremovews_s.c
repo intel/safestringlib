@@ -161,3 +161,4 @@ strremovews_s (char *dest, rsize_t dmax)
 
     return (EOK);
 }
+EXPORT_SYMBOL(strremovews_s)

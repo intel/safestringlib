@@ -149,3 +149,4 @@ strlastdiff_s(const char *dest, rsize_t dmax,
         return (ESNODIFF);
     }
 }
+EXPORT_SYMBOL(strlastdiff_s)

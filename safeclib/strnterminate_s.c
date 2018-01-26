@@ -110,3 +110,4 @@ strnterminate_s (char *dest, rsize_t dmax)
 
     return (count);
 }
+EXPORT_SYMBOL(strnterminate_s)

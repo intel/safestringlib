@@ -177,3 +177,4 @@ strcasestr_s (char *dest, rsize_t dmax,
     *substring = NULL;
     return (ESNOTFND);
 }
+EXPORT_SYMBOL(strcasestr_s)

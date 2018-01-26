@@ -140,3 +140,4 @@ strcmpfld_s (const char *dest, rsize_t dmax,
     *indicator = *dest - *src;
     return (EOK);
 }
+EXPORT_SYMBOL(strcmpfld_s)

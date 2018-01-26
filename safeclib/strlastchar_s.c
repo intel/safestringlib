@@ -129,3 +129,4 @@ strlastchar_s(char *dest, rsize_t dmax, char c, char **last)
         return (EOK);
     }
 }
+EXPORT_SYMBOL(strlastchar_s)

@@ -155,4 +155,4 @@ wmemcpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, rsize_t smax)
 
     return RCNEGATE(EOK);
 }
-EXPORT_SYMBOL(wmemcpy_s);
+EXPORT_SYMBOL(wmemcpy_s)

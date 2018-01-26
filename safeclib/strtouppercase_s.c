@@ -112,3 +112,4 @@ strtouppercase_s (char *dest, rsize_t dmax)
 
     return (EOK);
 }
+EXPORT_SYMBOL(strtouppercase_s)

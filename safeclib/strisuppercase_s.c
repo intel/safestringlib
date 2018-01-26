@@ -115,3 +115,4 @@ strisuppercase_s (const char *dest, rsize_t dmax)
 
     return (true);
 }
+EXPORT_SYMBOL(strisuppercase_s)

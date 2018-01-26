@@ -117,3 +117,4 @@ strisalphanumeric_s (const char *dest, rsize_t dmax)
 
     return (true);
 }
+EXPORT_SYMBOL(strisalphanumeric_s)

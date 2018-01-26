@@ -94,7 +94,10 @@
  *    dmax shall not be greater than RSIZE_MAX_STR.
  *    dmax shall not equal zero.
  *    dmax must be at least smax+1 to allow filling dest with smax characters plus NULL.
- *    If src and dest overlap, copying shall be stopped; destruction of src may have occurred.
+ *    If src and dest overlap, copying is prevented.
+ *    If src and dest are equal (start at same address, and smax < dmax)
+ *       the string is returned, after possibly being truncated after smax characters
+ *       See SPECIAL CASE in code below
  *    If there is a runtime-constraint violation, then:
  *       if dest is not a null pointer and dmax is greater than zero and
  *       not greater than RSIZE_MAX_STR, then stpncpy_s shall fill dest with nulls,
@@ -113,19 +116,12 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
 {
     rsize_t orig_dmax;
     char *orig_dest;
+    const char *overlap_bumper;
 
     if (dest == NULL) {
         invoke_safe_str_constraint_handler("stpncpy_s: dest is null",
                    NULL, ESNULLP);
         *err = RCNEGATE(ESNULLP);
-        return NULL;
-    }
-
-    if (src == NULL) {
-        invoke_safe_str_constraint_handler("stpncpy_s: src is null",
-                   NULL, ESNULLP);
-        *err = RCNEGATE(ESNULLP);
-        dest[0] = '\0';
         return NULL;
     }
 
@@ -140,6 +136,20 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
         invoke_safe_str_constraint_handler("stpncpy_s: dmax exceeds max",
                    NULL, ESLEMAX);
         *err = RCNEGATE(ESLEMAX);
+        return NULL;
+    }
+
+    if (src == NULL) {
+#ifdef SAFECLIB_STR_NULL_SLACK
+            /* null string to clear data */
+        while (dmax) {  *dest = '\0'; dmax--; dest++; }
+#else
+        *dest = '\0';
+#endif
+        invoke_safe_str_constraint_handler("stpncpy_s: src is null",
+                   NULL, ESNULLP);
+        *err = RCNEGATE(ESNULLP);
+        dest[0] = '\0';
         return NULL;
     }
 
@@ -159,25 +169,6 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
     }
 
     /* dmwheel1: Add check to prevent destruction of overlap into destination */
-    if ((src < dest) && ((src+smax) >= dest)) {
-        invoke_safe_str_constraint_handler("stpncpy_s: src+smax overlaps into dest",
-                   NULL, ESOVRLP);
-        *err = RCNEGATE(ESOVRLP);
-        dest[0] = '\0';
-        return NULL;
-    }
-
-    /* dmwheel1: Add check to prevent destruction of overlap into source */
-    if ((dest < src) && ((dest+smax) >= src)) {
-        invoke_safe_str_constraint_handler("stpncpy_s: dest+smax overlaps into src",
-                   NULL, ESOVRLP);
-        *err = RCNEGATE(ESOVRLP);
-        dest[0] = '\0';
-        return NULL;
-    }
-
-#ifdef SAFECLIB_STR_NULL_SLACK
-    /* dmwheel1: Add check to prevent destruction of overlap into destination */
     if ((src < dest) && ((src+dmax) >= dest)) {
         invoke_safe_str_constraint_handler("stpncpy_s: src+dmax overlaps into dest",
                    NULL, ESOVRLP);
@@ -192,22 +183,17 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
         *err = RCNEGATE(ESOVRLP);
         return NULL;
     }
-#endif
 
 
-    if (src == NULL) {
-#ifdef SAFECLIB_STR_NULL_SLACK
-        /* null string to clear data */
-        while (dmax) {  *dest = '\0'; dmax--; dest++; }
-#else
-        *dest = '\0';
-#endif
-        invoke_safe_str_constraint_handler("stpncpy_s: src is null",
-                   NULL, ESNULLP);
-        *err = RCNEGATE(ESNULLP);
-        return NULL;
-    }
-
+    /* SPECIAL CASE
+     * When Source and destination EXACTLY overlap, no copying actually takes place
+     * As long as SMAX is less than DMAX we can just fill the slack with zero's if necessary
+     *
+     * CHECKS:
+     * src and dest start at the same memory location (line 198)
+     * dmax is at least as big as smax+1 (line 160)
+     *
+     */
     /* hold base of dest in case src was not copied */
     orig_dmax = dmax;
     orig_dest = dest;
@@ -218,10 +204,10 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
     		if (*dest == '\0') {
     			/* add nulls to complete smax */
     			char *filler = dest; /* don't change dest, because we need to return it */
-    			while (smax) { *filler = '\0'; dmax--; smax--; filler++; }
+    			while (smax>0) { *filler = '\0'; dmax--; smax--; filler++; }
 #ifdef SAFECLIB_STR_NULL_SLACK
                 /* null dmax slack to clear any data */
-    		    while (dmax) { *filler = '\0'; dmax--; filler++; }
+    		    while (dmax>0) { *filler = '\0'; dmax--; filler++; }
 #endif
     		    *err = RCNEGATE(EOK);
     		    return dest;
@@ -233,11 +219,11 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
     			*dest = '\0';
     		}
     	}
-    	/* null terminator not found in src before end of dmax */
-    	handle_error(orig_dest, orig_dmax, "stpncpy_s: not enough space for src",
-    	                 ESNOSPC);
-    	*err = RCNEGATE(ESNOSPC);
-    	return NULL;
+    	/* We can never get to here, since the code at line 216 will add a NULL terminator when smax is reached */
+    	//handle_error(orig_dest, orig_dmax, "stpncpy_s: not enough space for src",
+    	//                 ESNOSPC);
+    	//*err = RCNEGATE(ESNOSPC);
+    	//return NULL;
     }
 
 
@@ -257,10 +243,10 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
 			/* add nulls to complete smax, if fewer than smax characters
 			 * were in src when the NULL was encountered */
 			char *filler = dest; /* don't change dest, because we need to return it */
-			while (smax) { *filler = '\0'; dmax--; smax--; filler++; }
+			while (smax>0) { *filler = '\0'; dmax--; smax--; filler++; }
 #ifdef SAFECLIB_STR_NULL_SLACK
 			/* null dmax slack to clear any data */
-			while (dmax) { *filler = '\0'; dmax--; filler++; }
+			while (dmax>0) { *filler = '\0'; dmax--; filler++; }
 #endif
 			*err = RCNEGATE(EOK);
 			return dest;
@@ -273,10 +259,11 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
 	}
     /*
      * Ran out of space in dest, and did not find the null terminator in src
+     * -- this cannot happen since the check on line 163 verified dmax was large enough
      */
     handle_error(orig_dest, orig_dmax, "stpncpy_s: not enough space for src",
                  ESNOSPC);
     *err = RCNEGATE(ESNOSPC);
     return NULL;
 }
-EXPORT_SYMBOL(stpncpy_s);
+EXPORT_SYMBOL(stpncpy_s)

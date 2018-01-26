@@ -223,4 +223,4 @@ wcscat_s(wchar_t* dest, rsize_t dmax, const wchar_t* src)
 
     return RCNEGATE(ESNOSPC);
 }
-EXPORT_SYMBOL(wcscat_s);
+EXPORT_SYMBOL(wcscat_s)

@@ -166,3 +166,4 @@ strispassword_s (const char *dest, rsize_t dmax)
         return (false);
     }
 }
+EXPORT_SYMBOL(strispassword_s)

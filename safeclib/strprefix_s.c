@@ -125,3 +125,4 @@ strprefix_s (const char *dest, rsize_t dmax, const char *src)
 
     return (EOK);
 }
+EXPORT_SYMBOL(strprefix_s)
