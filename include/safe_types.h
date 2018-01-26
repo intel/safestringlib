@@ -51,6 +51,7 @@ typedef int errno_t;
 /* some armcc environments don't have a sys/types.h in the environment */
 #ifdef _USE_STDLIB
 #include <stdlib.h>
+#include <ctype.h>
 #else
 #include <sys/types.h>
 #endif
