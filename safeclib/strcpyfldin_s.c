@@ -200,3 +200,4 @@ strcpyfldin_s (char *dest, rsize_t dmax, const char *src, rsize_t slen)
 
     return (EOK);
 }
+EXPORT_SYMBOL(strcpyfldin_s)

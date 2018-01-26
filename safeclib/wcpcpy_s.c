@@ -216,4 +216,4 @@ wcpcpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, errno_t *err)
     *err = RCNEGATE(ESNOSPC);
     return NULL;
 }
-EXPORT_SYMBOL(wcpcpy_s);
+EXPORT_SYMBOL(wcpcpy_s)

@@ -143,3 +143,4 @@ strfirstsame_s (const char *dest, rsize_t dmax,
 
     return (ESNOTFND);
 }
+EXPORT_SYMBOL(strfirstsame_s)

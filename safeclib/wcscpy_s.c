@@ -204,4 +204,4 @@ wcscpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src)
                  ESNOSPC);
     return RCNEGATE(ESNOSPC);
 }
-EXPORT_SYMBOL(wcscpy_s);
+EXPORT_SYMBOL(wcscpy_s)

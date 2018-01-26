@@ -100,3 +100,4 @@ strzero_s (char *dest, rsize_t dmax)
 
     return (EOK);
 }
+EXPORT_SYMBOL(strzero_s)

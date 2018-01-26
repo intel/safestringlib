@@ -102,4 +102,4 @@ wmemset_s (wchar_t *dest, wchar_t value, rsize_t len)
 
     return (RCNEGATE(EOK));
 }
-EXPORT_SYMBOL(wmemset_s);
+EXPORT_SYMBOL(wmemset_s)

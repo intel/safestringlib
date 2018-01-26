@@ -69,4 +69,4 @@ void ignore_handler_s(const char *msg, void *ptr, errno_t error)
 		       (msg) ? msg : "Null message");
 	return;
 }
-EXPORT_SYMBOL(ignore_handler_s);
+EXPORT_SYMBOL(ignore_handler_s)

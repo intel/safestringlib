@@ -112,3 +112,4 @@ strtolowercase_s (char *dest, rsize_t dmax)
 
     return (EOK);
 }
+EXPORT_SYMBOL(strtolowercase_s)

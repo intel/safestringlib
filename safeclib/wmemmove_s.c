@@ -147,4 +147,4 @@ wmemmove_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, size_t smax)
 
     return (RCNEGATE(EOK));
 }
-EXPORT_SYMBOL(wmemmove_s);
+EXPORT_SYMBOL(wmemmove_s)

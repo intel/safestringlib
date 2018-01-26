@@ -102,4 +102,4 @@ memset32_s (uint32_t *dest, rsize_t len, uint32_t value)
 
     return (RCNEGATE(EOK));
 }
-EXPORT_SYMBOL(memset32_s);
+EXPORT_SYMBOL(memset32_s)

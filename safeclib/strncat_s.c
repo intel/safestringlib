@@ -262,4 +262,4 @@ strncat_s (char *dest, rsize_t dmax, const char *src, rsize_t slen)
                  ESNOSPC);
     return RCNEGATE(ESNOSPC);
 }
-EXPORT_SYMBOL(strncat_s);
+EXPORT_SYMBOL(strncat_s)

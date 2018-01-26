@@ -231,4 +231,4 @@ stpcpy_s(char *dest, rsize_t dmax, const char *src, errno_t *err)
     *err = RCNEGATE(ESNOSPC);
     return NULL;
 }
-EXPORT_SYMBOL(stpcpy_s);
+EXPORT_SYMBOL(stpcpy_s)

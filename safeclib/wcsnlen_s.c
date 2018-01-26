@@ -110,4 +110,4 @@ wcsnlen_s (const wchar_t *dest, rsize_t dmax)
 
     return RCNEGATE(count);
 }
-EXPORT_SYMBOL(wcsnlen_s);
+EXPORT_SYMBOL(wcsnlen_s)

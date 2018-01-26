@@ -125,3 +125,4 @@ strfirstchar_s (char *dest, rsize_t dmax, char c, char **first)
 
     return (ESNOTFND);
 }
+EXPORT_SYMBOL(strfirstchar_s)

@@ -71,4 +71,4 @@ void abort_handler_s(const char *msg, void *ptr, errno_t error)
 		 (msg) ? msg : "Null message");
 	slabort();
 }
-EXPORT_SYMBOL(abort_handler_s);
+EXPORT_SYMBOL(abort_handler_s)

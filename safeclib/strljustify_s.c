@@ -157,3 +157,4 @@ strljustify_s (char *dest, rsize_t dmax)
 
     return (EOK);
 }
+EXPORT_SYMBOL(strljustify_s)
