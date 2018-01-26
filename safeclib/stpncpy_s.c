@@ -116,7 +116,6 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
 {
     rsize_t orig_dmax;
     char *orig_dest;
-    const char *overlap_bumper;
 
     if (dest == NULL) {
         invoke_safe_str_constraint_handler("stpncpy_s: dest is null",
@@ -266,4 +265,4 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
     *err = RCNEGATE(ESNOSPC);
     return NULL;
 }
-EXPORT_SYMBOL(stpncpy_s)
+EXPORT_SYMBOL(stpncpy_s);
