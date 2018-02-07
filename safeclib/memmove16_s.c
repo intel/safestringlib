@@ -49,7 +49,7 @@
  *    The memmove16_s function copies smax uint16_t from the region
  *    pointed to by src into the region pointed to by dest. This
  *    copying takes place as if the smax uint16_t from the region
- *    pointed to by src are ﬁrst copied into a temporary array of
+ *    pointed to by src are first copied into a temporary array of
  *    smax uint16_t that does not overlap the regions pointed to
  *    by dest or src, and then the smax uint16_t from the temporary
  *    array are copied into the region pointed to by dest.
@@ -78,9 +78,9 @@
  *    dmax shall not be greater than RSIZE_MAX_MEM.
  *    smax shall not be greater than dmax.
  *    If there is a runtime-constraint violation, the memmove_s function
- *      stores zeros in the ﬁrst dmax characters of the regionpointed to
- *      by dest if dest is not a null pointer and dmax is not greater
- *      than RSIZE_MAX_MEM.
+ *    stores zeros in the first dmax characters of the regionpointed to
+ *    by dest if dest is not a null pointer and dmax is not greater
+ *    than RSIZE_MAX_MEM.
  *
  * RETURN VALUE
  *    EOK        successful operation

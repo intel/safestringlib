@@ -55,7 +55,7 @@
  *
  *    All elements following the terminating null character (if
  *    any) written by strncat_s in the array of dmax characters
- *    pointed to by dest take unspeciﬁed values when strncat_s returns.
+ *    pointed to by dest take unspecified values when strncat_s returns.
  *
  * SPECIFIED IN
  *    ISO/IEC TR 24731, Programming languages, environments
