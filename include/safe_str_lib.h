@@ -33,6 +33,7 @@
 #define __SAFE_STR_LIB_H__
 
 #include "safe_lib.h"
+#include <wchar.h>
 
 /*
  * The shortest string is a null string!!
