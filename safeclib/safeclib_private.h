@@ -51,6 +51,9 @@
 
 #if HAVE_CONFIG_H
 #include "config.h"
+#else
+#include <ctype.h>
+#include <stdlib.h>
 #endif
 
 #include <stdio.h>
