@@ -43,6 +43,7 @@
 
 #else
 
+#define _GNU_SOURCE 1 /* needed to define strcasestr */
 #include <stdio.h>
 #include <string.h>
 

@@ -13,7 +13,7 @@
 
 extern errno_t strcasestr_s (char *dest, rsize_t dmax, const char *src, rsize_t slen, char **substring);
 
-int test_strcasestr_s()
+int test_strcasestr_s(void)
 {
     int errs = 0;
     errno_t rc;
@@ -146,7 +146,7 @@ int test_strcasestr_s()
 
     /* compare to legacy */
     std_sub = strcasestr(str1, str2);
-    if ((int)sub != (int)std_sub) { // comparison to handle 32-bit library return and 64-bit library return
+    if (sub != std_sub) {
         printf("%s %u  Error strcasestr_s() does not have same return as strcasestr() when str1 & str2 are zero length strings. rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
         printf("str1:[%s]\n", str1);
@@ -176,7 +176,7 @@ int test_strcasestr_s()
 
     /* compare to legacy */
     std_sub = strcasestr(str1, str2);
-    if ((int)sub != (int)std_sub) { // comparison to handle 32-bit library return and 64-bit library return
+    if (sub != std_sub) {
         printf("%s %u  Error strcasestr_s() does not have same return value as strcasestr() when str2 is zero length string. rc=%u \n",
                              __FUNCTION__, __LINE__, rc);
         printf("str1:[%s]\n", str1);
@@ -207,7 +207,7 @@ int test_strcasestr_s()
 
     /* compare to legacy */
     std_sub = strcasestr(str1, str2);
-    if ((int)sub != (int)std_sub) { // comparison to handle 32-bit library return and 64-bit library return
+    if (sub != std_sub) {
         printf("%s %u  Error strcasestr_s() does not have same return value as strcasestr() when str2 is zero length string. rc=%u \n",
                                      __FUNCTION__, __LINE__, rc);
         printf("str1:[%s]\n", str1);
@@ -298,7 +298,7 @@ int test_strcasestr_s()
 
     /* compare to legacy */
     std_sub = strcasestr(str1, str2);
-    if ((int)sub != (int)std_sub) { // comparison to handle 32-bit library return and 64-bit library return
+    if (sub != std_sub) {
         printf("%s %u  Error strcasestr_s() does not have same return value as strcasestr() when str2 is substring of the end of str1. rc=%u \n",
                                      __FUNCTION__, __LINE__, rc);
         printf("str1:[%s]\n", str1);
@@ -332,7 +332,7 @@ int test_strcasestr_s()
 
     /* compare to legacy */
     std_sub = strcasestr(str1, str2);
-    if ((int)sub != (int)std_sub) { // comparison to handle 32-bit library return and 64-bit library return
+    if (sub != std_sub) {
         printf("%s %u  Error strcasestr_s() does not have same return value as strcasestr() when str2 is substring of middle of str1. rc=%u \n",
                                      __FUNCTION__, __LINE__, rc);
         printf("str1:[%s]\n", str1);
@@ -472,7 +472,7 @@ int test_strcasestr_s()
 
     /* compare to legacy */
     std_sub = strcasestr(str1, str2);
-    if ((int)sub != (int)std_sub) { // comparison to handle 32-bit library return and 64-bit library return
+    if (sub != std_sub) {
         printf("%s %u  Error rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
         ++errs;
