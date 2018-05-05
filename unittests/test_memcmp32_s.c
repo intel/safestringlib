@@ -15,7 +15,7 @@ int test_memcmp32_s(void)
     int errs = 0;
     uint32_t len;
     int32_t  ind;
-    int32_t  std_ind;
+    int      std_ind;
     uint32_t i;
 
     uint32_t  mem1[LEN];
@@ -104,9 +104,9 @@ int test_memcmp32_s(void)
     }
 
     std_ind = memcmp(mem1, mem2, len*4);
-    if (ind != 0) {
+    if (std_ind != 0) {
         printf("%s %u  Ind=%d  rc=%u \n",
-               __FUNCTION__, __LINE__,  ind, rc);
+               __FUNCTION__, __LINE__,  std_ind, rc);
         ++errs;
     }
 
@@ -130,9 +130,9 @@ int test_memcmp32_s(void)
     }
 
     std_ind = memcmp(mem1, mem2, len*4);
-    if (ind != 0) {
+    if (std_ind != 0) {
         printf("%s %u  Ind=%d  rc=%u \n",
-               __FUNCTION__, __LINE__,  ind, rc);
+               __FUNCTION__, __LINE__,  std_ind, rc);
         ++errs;
     }
 
