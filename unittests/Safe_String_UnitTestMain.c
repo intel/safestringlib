@@ -12,72 +12,7 @@
 #include <stdlib.h>
 #include <safe_lib.h>
 #include <snprintf_s.h>
-
-extern int test_memcmp_s();
-extern int test_memcmp16_s();
-extern int test_memcmp32_s();
-extern int test_memcpy_s();
-extern int test_memcpy16_s();
-extern int test_memcpy32_s();
-extern int test_memmove_s();
-extern int test_memmove16_s();
-extern int test_memmove32_s();
-extern int test_memset_s();
-extern int test_memset16_s();
-extern int test_memset32_s();
-extern int test_memzero_s();
-extern int test_memzero16_s();
-extern int test_memzero32_s();
-extern int test_strcasecmp_s();
-extern int test_strcasestr_s();
-extern int test_strcat_s();
-extern int test_strcmp_s();
-extern int test_strcmpfld_s();
-extern int test_strcpy_s();
-extern int test_strcpyfld_s();
-extern int test_strcpyfldin_s();
-extern int test_strcpyfldout_s();
-extern int test_strcspn_s ();
-extern int test_strfirstchar_s();
-extern int test_strfirstdiff_s();
-extern int test_strfirstsame_s();
-extern int test_strisalphanumeric_s();
-extern int test_strisascii_s();
-extern int test_strisdigit_s();
-extern int test_strishex_s();
-extern int test_strislowercase_s();
-extern int test_strismixed_s();
-extern int test_strispassword_s();
-extern int test_strisuppercase_s();
-extern int test_strlastchar_s();
-extern int test_strlastdiff_s();
-extern int test_strlastsame_s();
-extern int test_strljustify_s();
-extern int test_strncat_s ();
-extern int test_strncpy_s ();
-extern int test_strnlen_s ();
-extern int test_strnterminate_s();
-extern int test_strpbrk_s ();
-extern int test_strprefix_s();
-extern int test_strremovews_s();
-extern int test_strspn_s ();
-extern int test_strstr_s ();
-extern int test_strtok_s();
-extern int test_strtolowercase_s();
-extern int test_strtouppercase_s();
-extern int test_strzero_s();
-extern int test_stpncpy_s();
-extern int test_stpcpy_s();
-extern int test_wcpcpy_s();
-extern int test_wcscat_s();
-extern int test_wcscpy_s();
-extern int test_wcsncat_s();
-extern int test_wcsncpy_s (void);
-extern int test_wcsnlen_s (void);
-extern int test_wmemcpy_s(void);
-extern int test_wmemmove_s(void);
-extern int test_wmemset_s(void);
-extern int test_wmemcmp_s(void);
+#include "test_private.h"
 
 #define TEST_FUNC(f) { #f, f }
 
