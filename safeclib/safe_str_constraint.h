@@ -54,6 +54,7 @@ static inline void handle_error(char *orig_dest, rsize_t orig_dmax,
     /* null string to eliminate partial copy */
     while (orig_dmax) { *orig_dest = '\0'; orig_dmax--; orig_dest++; }
 #else
+    orig_dmax = orig_dmax;
     *orig_dest = '\0';
 #endif
 
@@ -68,6 +69,7 @@ static inline void handle_wc_error(wchar_t *orig_dest, rsize_t orig_dmax,
     /* null string to eliminate partial copy */
     while (orig_dmax) { *orig_dest = L'\0'; orig_dmax--; orig_dest++; }
 #else
+    orig_dmax = orig_dmax;
     *orig_dest = L'\0';
 #endif
 

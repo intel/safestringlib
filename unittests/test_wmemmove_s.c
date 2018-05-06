@@ -340,14 +340,14 @@ int test_wmemmove_s (void)
 
 		/* verify mem1 was copied properly */
 		for (i=0; i<10; i++) {
-			if (mem1[i] != i) {
+			if ((uint32_t)mem1[i] != i) {
 				printf("%d - %d m1=%d  m2=%d  \n",
 					 __LINE__, i, mem1[i], mem2[i]);
 				++errs;
 			}
 		}
 		for (i=10; i<LEN; i++) {
-			if (mem1[i] != i-10) {
+			if ((uint32_t)mem1[i] != i-10) {
 				printf("%d - %d m1=%d  should=%d  \n",
 					 __LINE__, i, mem1[i], i-10);
 				++errs;

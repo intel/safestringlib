@@ -32,6 +32,12 @@
 #ifndef __SAFECLIB_PRIVATE_H__
 #define __SAFECLIB_PRIVATE_H__
 
+#ifdef __GNUC__
+#define _UNUSED __attribute__((__unused__))
+#else
+#define _UNUSED
+#endif /* __GNUC__ */
+
 #ifdef __KERNEL__
 /* linux kernel environment */
 

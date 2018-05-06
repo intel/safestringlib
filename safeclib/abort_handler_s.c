@@ -65,7 +65,7 @@
  *
  */
 
-void abort_handler_s(const char *msg, void *ptr, errno_t error)
+void abort_handler_s(const char *msg, _UNUSED void *ptr, errno_t error)
 {
 	slprintf("ABORT CONSTRAINT HANDLER: (%u) %s\n", error,
 		 (msg) ? msg : "Null message");

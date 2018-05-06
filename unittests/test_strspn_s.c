@@ -206,7 +206,7 @@ int test_strspn_s (void)
     }
 
     std_count = strspn(str1, str2);
-    if (count != std_count) {
+    if (count != (rsize_t)std_count) {
         printf("%s %u  count=%zu  std_count=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  count, std_count, rc);
         ++errs;
@@ -225,7 +225,7 @@ int test_strspn_s (void)
     }
 
     std_count = strspn(str1, str2);
-    if (count != std_count) {
+    if (count != (rsize_t)std_count) {
         printf("%s %u  count=%zu  std_count=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  count, std_count, rc);
         ++errs;
@@ -245,7 +245,7 @@ int test_strspn_s (void)
     }
 
     std_count = strspn(str1, str2);
-    if (count != std_count) {
+    if (count != (rsize_t)std_count) {
         printf("%s %u  count=%zu  std_count=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  count, std_count, rc);
         ++errs;
@@ -264,7 +264,7 @@ int test_strspn_s (void)
     }
 
     std_count = strspn(str1, str2);
-    if (count != std_count) {
+    if (count != (rsize_t)std_count) {
         printf("%s %u  count=%zu  std_count=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  count, std_count, rc);
         ++errs;
@@ -283,7 +283,7 @@ int test_strspn_s (void)
     }
 
     std_count = strspn(str1, str2);
-    if (count != std_count) {
+    if (count != (rsize_t)std_count) {
         printf("%s %u  count=%zu  std_count=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  count, std_count, rc);
         ++errs;
@@ -302,7 +302,7 @@ int test_strspn_s (void)
     }
 
     std_count = strspn(str1, str2);
-    if (count != std_count) {
+    if (count != (rsize_t)std_count) {
         printf("%s %u  count=%zu  std_count=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  count, std_count, rc);
         ++errs;
