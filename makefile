@@ -1,7 +1,7 @@
 IDIR = include
 MKDIR_P = mkdir -p
 CC=gcc
-CFLAGS := -I${IDIR} -fstack-protector-strong -fPIE -fPIC -O2
+CFLAGS := -I${IDIR} -fstack-protector-strong -fPIE -fPIC -O2 -MMD
 CFLAGS += -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security
 LDFLAGS=-z noexecstack -z now
 
@@ -10,17 +10,7 @@ OTDIR=objtest
 SRCDIR=safeclib
 TESTDIR=unittests
 
-_DEPS := safe_lib_errno.h safe_lib.h safe_str_lib.h safe_types.h.in
-_DEPS += safe_lib_errno.h.in safe_mem_lib.h safe_types.h
-
-_ODEPS := mem_primitives_lib.h safeclib_private.h safe_mem_constraint.h
-_ODEPS += safe_str_constraint.h
-
 all: directories libsafestring.a safestringtest
-
-
-DEPS = $(addprefix $(IDIR)/,$(_DEPS))
-ODEPS = $(addprefix $(SRCDIR)/,$(_ODEPS))
 
 _CLIB := abort_handler_s.c stpcpy_s.c strlastsame_s.c ignore_handler_s.c
 _CLIB += stpncpy_s.c strljustify_s.c memcmp16_s.c strcasecmp_s.c strncat_s.c
@@ -45,8 +35,7 @@ OBJ = $(patsubst %.c,%.o,$(_TLIST))
 CLIB =$(addprefix $(SRCDIR)/,$(_CLIB))
 
 
-
-$(ODIR)/%.o: $(SRCDIR)/%.c $(DEPS) $(ODEPS)
+${ODIR}/%.o: ${SRCDIR}/%.c
 	$(CC) $(LDFLAGS) -c -o $@ $< $(CFLAGS)
 
 libsafestring.a: $(OBJ)
@@ -101,6 +90,9 @@ ${OTDIR}:
 .PHONY: clean
 
 clean:
-	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ $(OTDIR)/*.o
+	rm -f ${ODIR}/* *~ core ${INCDIR}/*~ ${OTDIR}/*
 	rm -f libsafestring.a
 	rm -f safestringtest
+
+-include $(wildcard ${ODIR}/*.d)
+-include $(wildcard ${OTDIR}/*.d)
