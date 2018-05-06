@@ -3,6 +3,7 @@ MKDIR_P = mkdir -p
 CC=gcc
 CFLAGS := -I${IDIR} -fstack-protector-strong -fPIE -fPIC -O2 -MMD
 CFLAGS += -D_FORTIFY_SOURCE=2 -Wall -Wextra -Wformat -Wformat-security
+CFLAGS += -Wmissing-prototypes -Wstrict-prototypes
 LDFLAGS=-z noexecstack -z now
 
 ODIR=obj
