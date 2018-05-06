@@ -2,7 +2,7 @@ IDIR = include
 MKDIR_P = mkdir -p
 CC=gcc
 CFLAGS := -I${IDIR} -fstack-protector-strong -fPIE -fPIC -O2 -MMD
-CFLAGS += -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security
+CFLAGS += -D_FORTIFY_SOURCE=2 -Wall -Wformat -Wformat-security
 LDFLAGS=-z noexecstack -z now
 
 ODIR=obj

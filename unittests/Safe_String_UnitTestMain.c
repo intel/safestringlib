@@ -178,7 +178,7 @@ int main(void) {
 	int    indicator = -1;
 
 	strcpy_s(dest, dmax, str);
-    char *ret = stpcpy_s(&dest[20], 108, str2, &err);
+    stpcpy_s(&dest[20], 108, str2, &err);
     if (err != EOK) {
 		puts("stpcpy_s returned failure");
 		++errs;
