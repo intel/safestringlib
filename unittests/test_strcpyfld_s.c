@@ -25,6 +25,7 @@ int test_strcpyfld_s(void)
 
 /*--------------------------------------------------*/
 
+    slen = sizeof(str2);
     rc = strcpyfld_s(NULL, LEN, str2, slen);
     if (rc != ESNULLP) {
         printf("%s %u   Error rc=%u \n",
