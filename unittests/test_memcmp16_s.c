@@ -9,10 +9,10 @@
 
 #define LEN   ( 128 )
 
-int test_memcmp16_s()
+int test_memcmp16_s(void)
 {
     errno_t rc;
-
+    int errs = 0;
     uint32_t len;
     int32_t  ind;
     int32_t  std_ind;
@@ -25,56 +25,63 @@ int test_memcmp16_s()
 
     rc = memcmp16_s(NULL, LEN, mem2, LEN, &ind);
     if (rc != ESNULLP) {
-        debug_printf("%s %u  Ind=%d  Error rc=%u \n",
-                     __FUNCTION__, __LINE__, ind, rc );
+        printf("%s %u  Ind=%d  Error rc=%u \n",
+               __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
     rc = memcmp16_s(mem1, LEN, NULL, LEN, &ind);
     if (rc != ESNULLP) {
-        debug_printf("%s %u  Ind=%d  Error rc=%u \n",
-                     __FUNCTION__, __LINE__, ind, rc );
+        printf("%s %u  Ind=%d  Error rc=%u \n",
+               __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
     rc = memcmp16_s(mem1, LEN, mem2, LEN, NULL);
     if (rc != ESNULLP) {
-        debug_printf("%s %u  Ind=%d  Error rc=%u \n",
-                     __FUNCTION__, __LINE__, ind, rc );
+        printf("%s %u  Ind=%d  Error rc=%u \n",
+               __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
     rc = memcmp16_s(mem1, 0, mem2, LEN, &ind);
     if (rc != ESZEROL) {
-        debug_printf("%s %u  Ind=%d  Error rc=%u \n",
-                     __FUNCTION__, __LINE__, ind, rc );
+        printf("%s %u  Ind=%d  Error rc=%u \n",
+               __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
     rc = memcmp16_s(mem1, LEN, mem2, 0, &ind);
     if (rc != ESZEROL) {
-        debug_printf("%s %u  Ind=%d  Error rc=%u \n",
-                     __FUNCTION__, __LINE__, ind, rc );
+        printf("%s %u  Ind=%d  Error rc=%u \n",
+               __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
     rc = memcmp16_s(mem1, RSIZE_MAX_MEM+1, mem2, LEN, &ind);
     if (rc != ESLEMAX) {
-        debug_printf("%s %u  Ind=%d  Error rc=%u \n",
-                     __FUNCTION__, __LINE__, ind, rc );
+        printf("%s %u  Ind=%d  Error rc=%u \n",
+               __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
     rc = memcmp16_s(mem1, LEN, mem2, RSIZE_MAX_MEM+1, &ind);
     if (rc != ESLEMAX) {
-        debug_printf("%s %u  Ind=%d  Error rc=%u \n",
-                     __FUNCTION__, __LINE__, ind, rc );
+        printf("%s %u  Ind=%d  Error rc=%u \n",
+               __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -85,19 +92,22 @@ int test_memcmp16_s()
     len = 1;
     rc = memcmp16_s(mem1, len, mem2, len, &ind);
     if (rc != EOK) {
-        debug_printf("%s %u  Ind=%d  Error rc=%u \n",
-                     __FUNCTION__, __LINE__, ind, rc );
+        printf("%s %u  Ind=%d  Error rc=%u \n",
+               __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
     if (ind != 0) {
-        debug_printf("%s %u  Ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__,  ind, rc );
+        printf("%s %u  Ind=%d  rc=%u \n",
+               __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     std_ind = memcmp(mem1, mem2, len*2);
     if (ind != std_ind) {
-        debug_printf("%s %u  Ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__,  ind, rc );
+        printf("%s %u  Ind=%d  rc=%u \n",
+               __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -108,19 +118,22 @@ int test_memcmp16_s()
     len = 2;
     rc = memcmp16_s(mem1, len, mem2, len, &ind);
     if (rc != EOK) {
-        debug_printf("%s %u  Ind=%d  Error rc=%u \n",
-                     __FUNCTION__, __LINE__, ind, rc );
+        printf("%s %u  Ind=%d  Error rc=%u \n",
+               __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
     if (ind != 0) {
-        debug_printf("%s %u  Ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__,  ind, rc );
+        printf("%s %u  Ind=%d  rc=%u \n",
+               __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     std_ind = memcmp(mem1, mem2, len*2);
     if (ind != std_ind) {
-        debug_printf("%s %u  Ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__,  ind, rc );
+        printf("%s %u  Ind=%d  rc=%u \n",
+               __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -130,19 +143,22 @@ int test_memcmp16_s()
 
     rc = memcmp16_s(mem1, LEN, mem2, LEN, &ind);
     if (rc != EOK) {
-        debug_printf("%s %u  Ind=%d  Error rc=%u \n",
-                     __FUNCTION__, __LINE__, ind, rc );
+        printf("%s %u  Ind=%d  Error rc=%u \n",
+               __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
     if (ind != 0) {
-        debug_printf("%s %u  Ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__,  ind, rc );
+        printf("%s %u  Ind=%d  rc=%u \n",
+               __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     std_ind = memcmp(mem1, mem2, LEN*2);
     if (ind != std_ind) {
-        debug_printf("%s %u  Ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__,  ind, rc );
+        printf("%s %u  Ind=%d  rc=%u \n",
+               __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -154,23 +170,26 @@ int test_memcmp16_s()
 
     rc = memcmp16_s(mem1, LEN, mem2, LEN, &ind);
     if (rc != EOK) {
-        debug_printf("%s %u  Ind=%d  Error rc=%u \n",
-                     __FUNCTION__, __LINE__, ind, rc );
+        printf("%s %u  Ind=%d  Error rc=%u \n",
+               __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
     if (ind == 0) {
-        debug_printf("%s %u  Ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__,  ind, rc );
+        printf("%s %u  Ind=%d  rc=%u \n",
+               __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     std_ind = memcmp(mem1, mem2, LEN*2);
     if (ind != std_ind) {
-        debug_printf("%s %u  Ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__,  ind, rc );
+        printf("%s %u  Ind=%d  rc=%u \n",
+               __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }

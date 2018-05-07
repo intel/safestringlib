@@ -44,6 +44,7 @@ extern errno_t wcscat_s(wchar_t* dest, rsize_t dmax, const wchar_t* src);
 int test_wcscat_s (void)
 {
     errno_t rc;
+    int errs = 0;
     int32_t  ind;
     int32_t  len1;
     int32_t  len2;
@@ -60,6 +61,7 @@ int test_wcscat_s (void)
     if (rc != ESNULLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -70,6 +72,7 @@ int test_wcscat_s (void)
     if (rc != ESNULLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -80,6 +83,7 @@ int test_wcscat_s (void)
     if (rc != ESZEROL) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -90,6 +94,7 @@ int test_wcscat_s (void)
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -103,11 +108,13 @@ int test_wcscat_s (void)
 	if (rc != ESOVRLP) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc);
+		++errs;
 	}
 
 	if (str1[0] != L'\0') {
 		printf("%s %u  Expected null  \n",
 					 __FUNCTION__, __LINE__);
+		++errs;
 	}
 
 /*--------------------------------------------------*/
@@ -121,11 +128,13 @@ int test_wcscat_s (void)
     if (rc != ESUNTERM) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
     if (str1[0] != L'\0') {
         printf("%s %u  Expected null  \n",
                      __FUNCTION__, __LINE__);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -139,11 +148,13 @@ int test_wcscat_s (void)
     if (rc != ESUNTERM) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
     if (str1[0] != L'\0') {
         printf("%s %u  Expected null  \n",
                      __FUNCTION__, __LINE__);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -157,11 +168,13 @@ int test_wcscat_s (void)
 	if (rc != ESOVRLP) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc);
+		++errs;
 	}
 
 	if (str1[0] != L'\0') {
 		printf("%s %u  Expected null  \n",
 					 __FUNCTION__, __LINE__);
+		++errs;
 	}
 
 /*--------------------------------------------------*/
@@ -178,12 +191,14 @@ int test_wcscat_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
     len3 = wcsnlen_s(str1, LEN);
     if (len3 != (len1+len2)) {
         printf("%s %u lengths wrong: %u  %u  %u \n",
                      __FUNCTION__, __LINE__, len1, len2, len3);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -198,11 +213,13 @@ int test_wcscat_s (void)
     if (rc != ESNOSPC) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
     if (str1[0] != L'\0') {
         printf("%s %u  Expected null  \n",
                      __FUNCTION__, __LINE__);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -216,11 +233,13 @@ int test_wcscat_s (void)
     if (rc != ESNOSPC) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
     if (str1[0] != L'\0') {
         printf("%s %u  Expected null  \n",
                      __FUNCTION__, __LINE__);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -234,12 +253,14 @@ int test_wcscat_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
     rc = memcmp_s(str1, LEN, str2, wcsnlen_s(str2, LEN)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u   Error -%ls- \n",
                      __FUNCTION__, __LINE__,  str1);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -254,11 +275,13 @@ int test_wcscat_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
     if (str1[0] != L'\0') {
         printf("%s %u  Expected null  \n",
                      __FUNCTION__, __LINE__);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -272,12 +295,14 @@ int test_wcscat_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
     rc = memcmp_s(str2, LEN, L"keep it simple", (15)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u   Error -%ls- \n",
                      __FUNCTION__, __LINE__,  str1);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -291,12 +316,14 @@ int test_wcscat_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
     rc = memcmp_s(str1, LEN, L"qqweqqkeep it simple", (20)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u   Error -%ls- \n",
                      __FUNCTION__, __LINE__,  str1);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -310,6 +337,7 @@ int test_wcscat_s (void)
     if (rc != ESNOSPC) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -323,12 +351,14 @@ int test_wcscat_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
     rc = memcmp_s(str2, LEN, L"keep it simple1234", (19)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u   Error -%ls- \n",
                      __FUNCTION__, __LINE__,  str1);
+        ++errs;
     }
 
 
@@ -343,11 +373,13 @@ int test_wcscat_s (void)
     if (rc != ESOVRLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
     if (str1[13] != L'\0') {
         printf("%s %u  Expected null  \n",
                      __FUNCTION__, __LINE__);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -361,12 +393,14 @@ int test_wcscat_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
     rc = memcmp_s(str2, LEN, L"123keep it simple", (17)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u   Error -%ls- \n",
                      __FUNCTION__, __LINE__,  str1);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -380,6 +414,7 @@ int test_wcscat_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
     rc = memcmp_s(str2, LEN, L"123456789", (9)*sizeof(wchar_t), &ind );
@@ -387,6 +422,7 @@ int test_wcscat_s (void)
     if (ind != 0) {
         printf("%s %u   Error -%ls- \n",
                      __FUNCTION__, __LINE__,  str1);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -400,17 +436,19 @@ int test_wcscat_s (void)
 	if (rc != ESNOSPC) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc);
+		++errs;
 	}
 
     if (str2[0] != L'\0') {
         printf("%s %u  Expected null  \n",
                      __FUNCTION__, __LINE__);
+        ++errs;
     }
 
 
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }
 
 

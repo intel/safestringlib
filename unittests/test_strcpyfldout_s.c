@@ -11,9 +11,10 @@
 #define MAX   ( 128 )
 #define LEN   ( 128 )
 
-int test_strcpyfldout_s()
+int test_strcpyfldout_s(void)
 {
     errno_t rc;
+    int errs = 0;
     uint32_t i;
     rsize_t len;
     rsize_t slen;
@@ -26,8 +27,9 @@ int test_strcpyfldout_s()
 
     rc = strcpyfldout_s(NULL, LEN, str2, slen);
     if (rc != ESNULLP) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -35,14 +37,16 @@ int test_strcpyfldout_s()
     len = 5;
     rc = strcpyfldout_s(str1, len, NULL, len);
     if (rc != ESNULLP) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<len; i++) {
         if (str1[i] != '\0') {
-            debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+            printf("%s %u   Error rc=%u \n",
+                   __FUNCTION__, __LINE__,  rc );
+            ++errs;
         }
     }
 
@@ -50,16 +54,18 @@ int test_strcpyfldout_s()
 
     rc = strcpyfldout_s(str1, 0, str2, LEN);
     if (rc != ESZEROL) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
     rc = strcpyfldout_s(str1, (RSIZE_MAX_STR+1), str2, LEN);
     if (rc != ESLEMAX) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -68,8 +74,9 @@ int test_strcpyfldout_s()
     slen = 0;
     rc = strcpyfldout_s(str1, len, str2, slen);
     if (rc != ESZEROL) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -78,8 +85,9 @@ int test_strcpyfldout_s()
     slen = 6;
     rc = strcpyfldout_s(str1, len, str2, slen);
     if (rc != ESLEMAX) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -92,15 +100,17 @@ int test_strcpyfldout_s()
     slen = 1;
     rc = strcpyfldout_s(str1, len, str2, slen);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     /* str1 becomes null */
     for (i=0; i<len; i++) {
         if (str1[i] != '\0') {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
                    __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            ++errs;
         }
     }
 
@@ -113,14 +123,16 @@ int test_strcpyfldout_s()
     slen = 2;
     rc = strcpyfldout_s(str1, len, str2, slen);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<len-1; i++) {
         if (str1[i] != str2[i]) {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
+                   __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            ++errs;
         }
     }
 
@@ -133,14 +145,16 @@ int test_strcpyfldout_s()
     slen = 3;
     rc = strcpyfldout_s(str1, len, str2, slen);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<len-1; i++) {
         if (str1[i] != str2[i]) {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
+                   __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            ++errs;
         }
     }
 
@@ -153,14 +167,16 @@ int test_strcpyfldout_s()
     len = LEN;
     rc = strcpyfldout_s(str1, len, str1, len);
     if (rc != ESOVRLP) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<len; i++) {
         if (str1[i] != '\0') {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
+                   __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            ++errs;
         }
     }
 
@@ -172,14 +188,16 @@ int test_strcpyfldout_s()
     /* overlap */
     rc = strcpyfldout_s(&str1[0], len, &str1[5], len);
     if (rc != ESOVRLP) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<len; i++) {
         if (str1[i] != '\0') {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
+                   __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            ++errs;
         }
     }
 
@@ -191,14 +209,16 @@ int test_strcpyfldout_s()
     /* overlap */
     rc = strcpyfldout_s(&str1[10], len, &str1[0], len);
     if (rc != ESOVRLP) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=10; i<len; i++) {
         if (str1[i] != '\0') {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
+                   __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            ++errs;
         }
     }
 
@@ -212,14 +232,16 @@ int test_strcpyfldout_s()
 
     rc = strcpyfldout_s(str1, len, str2, slen);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<len-1; i++) {
         if (str1[i] != str2[i]) {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
+                   __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            ++errs;
         }
     }
 
@@ -233,18 +255,20 @@ int test_strcpyfldout_s()
 
     rc = strcpyfldout_s(str1, len, str2, slen);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<slen; i++) {
         if (str1[i] != str2[i]) {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  rc=%u \n",
+                   __FUNCTION__, __LINE__, i, str1[i], i, str2[i], rc);
+            ++errs;
         }
     }
 
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }

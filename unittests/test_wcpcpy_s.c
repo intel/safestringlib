@@ -86,6 +86,7 @@ int test_wcpcpy_s (void)
 {
     wchar_t *ret;
     errno_t rc;
+    int errs = 0;
 #ifdef SAFE_LIB_STR_NULL_SLACK
     uint32_t i;
 #endif /*SAFE_LIB_STR_NULL_SLACK*/
@@ -103,11 +104,13 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESNULLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (ret != NULL) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -118,10 +121,12 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESZEROL) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
     if (ret != NULL) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 
@@ -133,10 +138,12 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
     if (ret != NULL) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -149,11 +156,13 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESNULLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (ret != NULL) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 #ifdef SAFE_LIB_STR_NULL_SLACK
@@ -161,12 +170,14 @@ printf("Test #%d:\n", ++testno);
         if (str1[i] != L'\0') {
             printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+            ++errs;
         }
     }
 #else
     if (str1[0] != L'\0') {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 #endif
 
@@ -181,11 +192,13 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (ret != NULL) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 
@@ -199,11 +212,13 @@ printf("Test #%d:\n", ++testno);
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (ret == NULL || ret[0] != L'\0' || ret != str1+wcsnlen_s(str1, LEN) ) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -220,10 +235,12 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESOVRLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
     if (ret != NULL) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 #ifdef SAFE_LIB_STR_NULL_SLACK
@@ -231,12 +248,14 @@ printf("Test #%d:\n", ++testno);
         if (str1[i] != L'\0') {
             printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+	    ++errs;
         }
     }
 #else
     if (str1[0] != L'\0') {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 #endif
 
@@ -254,10 +273,12 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESOVRLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
     if (ret != NULL) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 #ifdef SAFE_LIB_STR_NULL_SLACK
@@ -265,12 +286,14 @@ printf("Test #%d:\n", ++testno);
         if (str1[i] != L'\0') {
             printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+            ++errs;
         }
     }
 #else
     if (str1[5] != L'\0') {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 #endif
 
@@ -293,10 +316,12 @@ printf("Test #%d:\n", ++testno);
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
     if (ret == NULL || ret[0] != L'\0' || ret != str1) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 #ifdef SAFE_LIB_STR_NULL_SLACK
@@ -304,12 +329,14 @@ printf("Test #%d:\n", ++testno);
         if (str1[i] != L'\0') {
             printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+            ++errs;
         }
     }
 #else
     if (str1[0] != L'\0') {
         printf("%s %u   Error - string should be NULL rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 #endif
 
@@ -326,16 +353,19 @@ printf("Test #%d:\n", ++testno);
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
     if (ret == NULL || ret[0] != L'\0' || ret != str2+wcsnlen_s(str2,LEN)) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     rc = memcmp_s(str2, LEN, L"keep it simple", (15)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u   Error -%ls- \n",
                      __FUNCTION__, __LINE__,  str1);
+        ++errs;
     }
 
 
@@ -352,17 +382,20 @@ printf("Test #%d:\n", ++testno);
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     rc = memcmp_s(str1, LEN, str2, (wcsnlen_s(str2, LEN))*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls- <> -%ls-  (smax=%lu) Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, str2, sz, rc );
+        ++errs;
     }
 
     if (ret == NULL || ret[0] != L'\0' || ret != str1+wcsnlen_s(str1, LEN) ) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -376,22 +409,26 @@ printf("Test #%d:\n", ++testno);
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (ret == NULL || ret[0] != L'\0' || ret != str1+wcsnlen_s(str1, LEN) ) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     sz = wcsnlen_s(str1, LEN);
     if (sz != 5) {
             printf("%s %u (sz=%lu <> 5) Error rc=%u \n",
                          __FUNCTION__, __LINE__,  sz, rc );
+            ++errs;
     }
     rc = memcmp_s(str1, LEN, str2, (6)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls- <> -%ls-  (size=%lu) Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, str2, sz, rc );
+        ++errs;
     }
 
 
@@ -407,15 +444,18 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESNOSPC) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
     if (ret != NULL) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (*str1 != L'\0') {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -430,15 +470,18 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESNOSPC) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
     if (ret != NULL) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (*str2 != L'\0') {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -452,16 +495,19 @@ printf("Test #%d:\n", ++testno);
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     rc = memcmp_s(str1, LEN, str2, (3)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );
+        ++errs;
     }
     if (ret == NULL || ret[0] != L'\0' || ret != str2+wcsnlen_s(str2, LEN) ) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -475,16 +521,19 @@ printf("Test #%d:\n", ++testno);
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
     if (ret == NULL || ret[0] != L'\0' || ret != str1+wcsnlen_s(str1, LEN) ) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     rc = memcmp_s(str1, LEN, str2, (3)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );
+        ++errs;
     }
 
 
@@ -500,19 +549,22 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESNOSPC) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (ret != NULL) {
         printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (*str2 != L'\0') {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );
+        ++errs;
     }
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }
 

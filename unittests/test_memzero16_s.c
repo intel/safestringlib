@@ -11,9 +11,10 @@
 
 #define LEN   ( 512 )
 
-int test_memzero16_s()
+int test_memzero16_s(void)
 {
     errno_t rc;
+    int errs = 0;
     uint32_t i;
     uint32_t len;
 
@@ -23,24 +24,27 @@ int test_memzero16_s()
 
     rc = memzero16_s(NULL, LEN);
     if (rc != ESNULLP) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__, rc);
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
     rc = memzero16_s(mem1, 0);
     if (rc != ESZEROL) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__, rc);
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
     rc = memzero16_s(mem1, RSIZE_MAX_MEM16+1);
     if (rc != ESLEMAX) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__, rc);
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -50,8 +54,9 @@ int test_memzero16_s()
     len = 1;
     rc = memzero16_s(mem1, len);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__, rc);
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     /* verify mem1 was zeroed */
@@ -59,6 +64,7 @@ int test_memzero16_s()
         if (mem1[i] != 0) {
             printf("%d - %d m1=%d \n",
                  __LINE__, i, mem1[i]);
+            ++errs;
         }
     }
 
@@ -69,8 +75,9 @@ int test_memzero16_s()
     len = 2;
     rc = memzero16_s(mem1, len);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__, rc);
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     /* verify mem1 was zeroed */
@@ -78,6 +85,7 @@ int test_memzero16_s()
         if (mem1[i] != 0) {
             printf("%d - %d m1=%d \n",
                  __LINE__, i, mem1[i]);
+            ++errs;
         }
     }
 
@@ -88,8 +96,9 @@ int test_memzero16_s()
     len = 3;
     rc = memzero16_s(mem1, len);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__, rc);
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     /* verify mem1 was zeroed */
@@ -97,6 +106,7 @@ int test_memzero16_s()
         if (mem1[i] != 0) {
             printf("%d - %d m1=%d \n",
                  __LINE__, i, mem1[i]);
+            ++errs;
         }
     }
 
@@ -107,8 +117,9 @@ int test_memzero16_s()
     len = LEN;
     rc = memzero16_s(mem1, len);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__, rc);
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     /* verify mem1 was zeroed */
@@ -116,11 +127,12 @@ int test_memzero16_s()
         if (mem1[i] != 0) {
             printf("%d - %d m1=%d \n",
                  __LINE__, i, mem1[i]);
+            ++errs;
         }
     }
 
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }

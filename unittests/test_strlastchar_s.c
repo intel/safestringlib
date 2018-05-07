@@ -12,9 +12,10 @@
 #define SHORT_LEN  ( 5 )
 
 
-int test_strlastchar_s()
+int test_strlastchar_s(void)
 {
     errno_t rc;
+    int errs = 0;
 
     char *last;
     char  str1[LEN];
@@ -25,11 +26,13 @@ int test_strlastchar_s()
     if (rc != ESNULLP) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
     if (last) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -38,6 +41,7 @@ int test_strlastchar_s()
     if (rc != ESNULLP) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -46,11 +50,13 @@ int test_strlastchar_s()
     if (rc != ESZEROL) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
     if (last) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -59,11 +65,13 @@ int test_strlastchar_s()
     if (rc != ESLEMAX) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
     if (last) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -74,11 +82,13 @@ int test_strlastchar_s()
     if (rc != ESNOTFND) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
     if (last) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -89,11 +99,13 @@ int test_strlastchar_s()
     if (rc != ESNOTFND) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
     if (last) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -104,11 +116,13 @@ int test_strlastchar_s()
     if (rc != EOK) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
     if (last != &str1[15]) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -119,11 +133,13 @@ int test_strlastchar_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (last != &str1[0]) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -134,11 +150,13 @@ int test_strlastchar_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (last != &str1[2]) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -149,15 +167,17 @@ int test_strlastchar_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (last != &str1[8]) {
         printf("%s %u  Error  str1=%p  last=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, last, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }

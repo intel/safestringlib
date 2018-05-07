@@ -12,9 +12,10 @@
 #define SHORT_LEN  ( 5 )
 
 
-int test_strlastsame_s()
+int test_strlastsame_s(void)
 {
     errno_t rc;
+    int errs = 0;
     rsize_t ind;
 
     char   str1[LEN];
@@ -26,11 +27,13 @@ int test_strlastsame_s()
     if (rc != ESNULLP) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -39,11 +42,13 @@ int test_strlastsame_s()
     if (rc != ESNULLP) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -52,6 +57,7 @@ int test_strlastsame_s()
     if (rc != ESNULLP) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -60,11 +66,13 @@ int test_strlastsame_s()
     if (rc != ESZEROL) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -73,11 +81,13 @@ int test_strlastsame_s()
     if (rc != ESLEMAX) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -89,11 +99,13 @@ int test_strlastsame_s()
     if (rc != ESNOTFND) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -105,11 +117,13 @@ int test_strlastsame_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 3) {
         printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -121,11 +135,13 @@ int test_strlastsame_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -137,11 +153,13 @@ int test_strlastsame_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 1) {
         printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -153,11 +171,13 @@ int test_strlastsame_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 13) {
         printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -169,11 +189,13 @@ int test_strlastsame_s()
     if (rc != EOK) {
         printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     if (ind != 13) {
         printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -185,11 +207,13 @@ int test_strlastsame_s()
     if (rc != ESNOTFND) {
         printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -201,11 +225,13 @@ int test_strlastsame_s()
     if (rc != EOK) {
         printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -217,11 +243,13 @@ int test_strlastsame_s()
     if (rc != ESNOTFND) {
         printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -233,14 +261,16 @@ int test_strlastsame_s()
     if (rc != ESNOTFND) {
         printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }
