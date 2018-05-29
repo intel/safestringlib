@@ -47,10 +47,14 @@
  *    The wcpcpy_s function copies the wide character string pointed
  *    to by src (including the terminating null character) into the
  *    array pointed to by dest, and returns a pointer to the end of
+#ifdef SAFECLIB_STR_NULL_SLACK
  *    the wide character string. All elements following the terminating
  *    null character (if any) written by wcpcpy_s in the array of
  *    dmax characters pointed to by dest are nulled when
  *    wcpcpy_s returns.
+#else
+ *    the wide character string.
+#endif // SAFECLIB_STR_NULL_SLACK
  *
  * SPECIFIED IN
  *    ISO/IEC TR 24731, Programming languages, environments
@@ -86,7 +90,12 @@
  *    Copying shall not take place between objects that overlap.
  *    If there is a runtime-constraint violation, then if dest
  *       is not a null pointer and destmax is greater than zero and
+#ifdef SAFECLIB_STR_NULL_SLACK
  *       not greater than RSIZE_MAX_STR, then strcpy_s nulls dest.
+#else
+ *       not greater than RSIZE_MAX_STR, then strcpy_s stores a
+ *       terminator at dest.
+#endif // SAFECLIB_STR_NULL_SLACK
  *
  * RETURN VALUE
  *   a wchar_t pointer to the terminating null at the end of dest

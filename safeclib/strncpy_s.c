@@ -48,10 +48,12 @@
  *    (characters that follow a null character are not copied) from the
  *    array pointed to by src to the array pointed to by dest. If no null
  *    character was copied from src, then dest[n] is set to a null character.
+#ifdef SAFECLIB_STR_NULL_SLACK
  *
  *    All elements following the terminating null character (if any)
  *    written by strncpy_s in the array of dmax characters pointed to
  *    by dest take on the null value when strncpy_s returns.
+#endif // SAFECLIB_STR_NULL_SLACK
  *
  * Specicified in:
  *    ISO/IEC TR 24731-1, Programming languages, environments
@@ -82,7 +84,11 @@
  *    Copying shall not take place between objects that overlap.
  *    If there is a runtime-constraint violation, then if dest
  *       is not a null pointer and dmax greater than RSIZE_MAX_STR,
+#ifdef SAFECLIB_STR_NULL_SLACK
  *       then strncpy_s nulls dest.
+#else
+ *       the strncpy_s writes a terminator to dest.
+#endif // SAFECLIB_STR_NULL_SLACK
  *
  * RETURN VALUE
  *    EOK        successful operation, the characters in src were copied
