@@ -11,7 +11,8 @@ OTDIR=objtest
 SRCDIR=safeclib
 TESTDIR=unittests
 
-all: directories libsafestring.a safestringtest
+.PHONY: all
+all: libsafestring.a safestringtest
 
 _CLIB := abort_handler_s.c stpcpy_s.c strlastsame_s.c ignore_handler_s.c
 _CLIB += stpncpy_s.c strljustify_s.c memcmp16_s.c strcasecmp_s.c strncat_s.c
@@ -36,7 +37,7 @@ OBJ = $(patsubst %.c,%.o,$(_TLIST))
 CLIB =$(addprefix $(SRCDIR)/,$(_CLIB))
 
 
-${ODIR}/%.o: ${SRCDIR}/%.c
+${ODIR}/%.o: ${SRCDIR}/%.c | ${ODIR}
 	$(CC) $(LDFLAGS) -c -o $@ $< $(CFLAGS)
 
 libsafestring.a: $(OBJ)
@@ -70,17 +71,12 @@ TOBJ = $(patsubst %.c,%.o,$(_TLIST2))
 TCLIB =$(addprefix $(TESTDIR)/,$(_TESTFUNCS))
 
 
-$(OTDIR)/%.o: $(TESTDIR)/%.c $(TESTDIR)/test_private.h
+${OTDIR}/%.o: ${TESTDIR}/%.c ${TESTDIR}/test_private.h | ${OTDIR}
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 
-safestringtest: directories libsafestring.a $(TOBJ)
+safestringtest: libsafestring.a $(TOBJ) | ${OTDIR}
 	$(CC) $(LDFLAGS) -o $@ $(TOBJ) libsafestring.a
-
-
-.PHONY: directories
-
-directories: ${ODIR} ${OTDIR}
 
 ${ODIR}:
 	${MKDIR_P} ${ODIR}
@@ -91,7 +87,8 @@ ${OTDIR}:
 .PHONY: clean
 
 clean:
-	rm -f ${ODIR}/* *~ core ${INCDIR}/*~ ${OTDIR}/*
+	rm -f *~ core ${INCDIR}/*~
+	rm -rf ${ODIR} ${OTDIR}
 	rm -f libsafestring.a
 	rm -f safestringtest
 
