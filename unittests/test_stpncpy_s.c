@@ -428,7 +428,12 @@ printf("Test #%d:\n", ++testno);
         }
         /* be sure that the slack is correct */
         for (i=1; i<6; i++) {
-            if (ret[i] != 'x') {
+#ifdef SAFECLIB_STR_NULL_SLACK
+            const char slack = '\0';
+#else
+            const char slack = 'x';
+#endif // SAFECLIB_STR_NULL_SLACK
+            if (ret[i] != slack) {
                 printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
                                      __FUNCTION__, __LINE__,  i, rc );
                 ++errs;
@@ -473,7 +478,12 @@ printf("Test #%d:\n", ++testno);
             }
             /* be sure that the slack is correct */
             for (; i<15; i++) {
-                if (ret[i] != 'x') {
+#ifdef SAFECLIB_STR_NULL_SLACK
+                const char slack = '\0';
+#else
+                const char slack = 'x';
+#endif // SAFECLIB_STR_NULL_SLACK
+                if (ret[i] != slack) {
                     printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
                                          __FUNCTION__, __LINE__,  i, rc );
                     ++errs;
@@ -511,7 +521,12 @@ printf("Test #%d:\n", ++testno);
         } else {
             /* be sure that the slack is correct */
             for (i=1; i<5; i++) {
-                if (ret[i] != 'x') {
+#ifdef SAFECLIB_STR_NULL_SLACK
+                const char slack = '\0';
+#else
+                const char slack = 'x';
+#endif // SAFECLIB_STR_NULL_SLACK
+                if (ret[i] != slack) {
                     printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
                                          __FUNCTION__, __LINE__,  i, rc );
                     ++errs;
@@ -549,7 +564,12 @@ printf("Test #%d:\n", ++testno);
         } else {
             /* be sure that the slack is correct */
             for (i=1; i<5; i++) {
-                if (ret[i] != 'x') {
+#ifdef SAFECLIB_STR_NULL_SLACK
+                const char slack = '\0';
+#else
+                const char slack = 'x';
+#endif // SAFECLIB_STR_NULL_SLACK
+                if (ret[i] != slack) {
                     printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
                                          __FUNCTION__, __LINE__,  i, rc );
                     ++errs;

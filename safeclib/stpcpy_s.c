@@ -157,7 +157,9 @@ stpcpy_s(char *dest, rsize_t dmax, const char *src, errno_t *err)
     		if (*dest == '\0') {
 #ifdef SAFECLIB_STR_NULL_SLACK
                 /* null slack to clear any data */
-    		    while (dmax) { *dest = '\0'; dmax--; dest++; }
+		    char *filler = dest;
+
+    		    while (dmax) { *filler = '\0'; dmax--; filler++; }
 #endif
     		    *err = RCNEGATE(EOK);
     		    return dest;
@@ -191,7 +193,9 @@ stpcpy_s(char *dest, rsize_t dmax, const char *src, errno_t *err)
             if (*dest == '\0') {
 #ifdef SAFECLIB_STR_NULL_SLACK
                 /* null slack to clear any data */
-                while (dmax) { *dest = '\0'; dmax--; dest++; }
+                char *filler = dest;
+
+                while (dmax) { *filler = '\0'; dmax--; filler++; }
 #endif
                 *err = RCNEGATE(EOK);
                 return dest;
@@ -219,7 +223,9 @@ stpcpy_s(char *dest, rsize_t dmax, const char *src, errno_t *err)
             if (*dest == '\0') {
 #ifdef SAFECLIB_STR_NULL_SLACK
                 /* null slack to clear any data */
-                while (dmax) { *dest = '\0'; dmax--; dest++; }
+                char *filler = dest;
+
+                while (dmax) { *filler = '\0'; dmax--; filler++; }
 #endif
                 *err = RCNEGATE(EOK);
                 return dest;

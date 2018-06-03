@@ -185,7 +185,7 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
 
 #ifdef SAFECLIB_STR_NULL_SLACK
     /* dmwheel1: Add check to prevent destruction of overlap into destination */
-    if ((src < dest) && ((src+dmax) >= dest)) {
+    if ((src < dest) && ((src + smax) > dest)) {
         invoke_safe_str_constraint_handler("stpncpy_s: src+dmax overlaps into dest",
                    NULL, ESOVRLP);
         *err = RCNEGATE(ESOVRLP);
@@ -193,7 +193,7 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
     }
 
     /* dmwheel1: Add check to prevent destruction of overlap into source */
-    if ((dest < src) && ((dest+dmax) >= src)) {
+    if ((dest < src) && ((dest + dmax) > src)) {
         invoke_safe_str_constraint_handler("stpncpy_s: dest+dmax overlaps into src",
                    NULL, ESOVRLP);
         *err = RCNEGATE(ESOVRLP);

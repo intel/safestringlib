@@ -178,7 +178,9 @@ wcpcpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, errno_t *err)
             if (*dest == L'\0') {
 #ifdef SAFECLIB_STR_NULL_SLACK
                 /* null slack to clear any data */
-                while (dmax) { *dest = L'\0'; dmax--; dest++; }
+                wchar_t *filler = dest;
+
+                while (dmax) { *filler = L'\0'; dmax--; filler++; }
 #endif
                 *err = RCNEGATE(EOK);
                 return dest; /* successful return */
@@ -204,7 +206,9 @@ wcpcpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, errno_t *err)
             if (*dest == L'\0') {
 #ifdef SAFECLIB_STR_NULL_SLACK
                 /* null slack to clear any data */
-                while (dmax) { *dest = L'\0'; dmax--; dest++; }
+                wchar_t *filler = dest;
+
+                while (dmax) { *filler = L'\0'; dmax--; filler++; }
 #endif
                 *err = RCNEGATE(EOK);
                 return dest; /* successful return */
