@@ -25,7 +25,7 @@ int test_strnterminate_s()
     max_len = 3;
     len = strnterminate_s(NULL, max_len);
     if (len != 0) {
-        printf("%s %u   Len=%u \n",
+        printf("%s %u   Len=%zu \n",
                      __FUNCTION__, __LINE__,  len);
     }
 
@@ -35,7 +35,7 @@ int test_strnterminate_s()
     max_len = 0;
     len = strnterminate_s(dest, max_len);
     if (len != 0) {
-        printf("%s %u   Len=%u \n",
+        printf("%s %u   Len=%zu \n",
                      __FUNCTION__, __LINE__,  len);
     }
 
@@ -45,7 +45,7 @@ int test_strnterminate_s()
     max_len = RSIZE_MAX_STR+1;
     len = strnterminate_s(dest, max_len);
     if (len != 0) {
-        printf("%s %u   Len=%u \n",
+        printf("%s %u   Len=%zu \n",
                      __FUNCTION__, __LINE__,  len);
     }
 
@@ -58,7 +58,7 @@ int test_strnterminate_s()
     len = strnterminate_s (dest, max_len);
 
     if (std_len != len) {
-        printf("%s %u   std_len=%u  len=%u  \n",
+        printf("%s %u   std_len=%zu  len=%zu  \n",
                      __FUNCTION__, __LINE__,  std_len, len);
     }
 
@@ -68,7 +68,7 @@ int test_strnterminate_s()
     len = strnterminate_s (dest, 1);
 
     if (len != 0 ) {
-        printf("%s %u   std_len=%u  len=%u  \n",
+        printf("%s %u   std_len=%zu  len=%zu  \n",
                      __FUNCTION__, __LINE__,  std_len, len);
     }
 
@@ -79,7 +79,7 @@ int test_strnterminate_s()
     len = strnterminate_s (dest, max_len);
 
     if (len != 1 ) {
-        printf("%s %u   std_len=%u  len=%u  \n",
+        printf("%s %u   std_len=%zu  len=%zu  \n",
                      __FUNCTION__, __LINE__,  std_len, len);
     }
 
@@ -90,7 +90,7 @@ int test_strnterminate_s()
     len = strnterminate_s (dest, max_len);
 
     if (len != 1 ) {
-        printf("%s %u   std_len=%u  len=%u  \n",
+        printf("%s %u   std_len=%zu  len=%zu  \n",
                      __FUNCTION__, __LINE__,  std_len, len);
     }
 
@@ -101,7 +101,7 @@ int test_strnterminate_s()
     len = strnterminate_s (dest, max_len);
 
     if (len != 2) {
-        printf("%s %u   std_len=%u  len=%u  \n",
+        printf("%s %u   std_len=%zu  len=%zu  \n",
                      __FUNCTION__, __LINE__,  std_len, len);
     }
 
@@ -112,7 +112,7 @@ int test_strnterminate_s()
     len = strnterminate_s (dest, max_len);
 
     if (len != 4) {
-        printf("%s %u   std_len=%u  len=%u  \n",
+        printf("%s %u   std_len=%zu  len=%zu  \n",
                      __FUNCTION__, __LINE__,  std_len, len);
     }
 
@@ -123,7 +123,7 @@ int test_strnterminate_s()
     len = strnterminate_s (dest, max_len);
 
     if (len != 0) {
-        printf("%s %u   len=%u  \n",
+        printf("%s %u   len=%zu  \n",
                      __FUNCTION__, __LINE__, len);
     }
 
@@ -134,7 +134,7 @@ int test_strnterminate_s()
     len = strnterminate_s (dest, max_len);
 
     if (len != max_len-1) {
-        printf("%s %u   len=%u  \n",
+        printf("%s %u   len=%zu  \n",
                      __FUNCTION__, __LINE__, len);
     }
 
@@ -145,7 +145,7 @@ int test_strnterminate_s()
     len = strnterminate_s (dest, max_len);
 
     if (len != max_len-1) {
-        printf("%s %u   len=%u  \n",
+        printf("%s %u   len=%zu  \n",
                      __FUNCTION__, __LINE__, len);
     }
 
@@ -156,7 +156,7 @@ int test_strnterminate_s()
     len = strnterminate_s (dest, max_len);
 
     if (len != strlen(dest)) {
-        printf("%s %u   len=%u  \n",
+        printf("%s %u   len=%zu  \n",
                      __FUNCTION__, __LINE__, len);
     }
 
@@ -169,7 +169,7 @@ int test_strnterminate_s()
         //printf(" strnterminate_s()  len=%u \n", len);
         len = strnterminate_s (dest, len);
         if (len != strlen(dest)) {
-            printf("%s %u   len=%u  \n",
+            printf("%s %u   len=%zu  \n",
                      __FUNCTION__, __LINE__, len);
         }
     }

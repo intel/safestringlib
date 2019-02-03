@@ -135,8 +135,8 @@ int test_strcasestr_s()
                      __FUNCTION__, __LINE__, rc);
         printf("str1:[%s]\n", str1);
         printf("str2:[%s]\n", str2);
-        printf("strcasestr_s returns:[%x]\n", sub);
-        printf("strcasestr   returns:[%x]\n\n", std_sub);
+        printf("strcasestr_s returns:[%p]\n", sub);
+        printf("strcasestr   returns:[%p]\n\n", std_sub);
     }
 
 /*--------------------------------------------------*/
@@ -162,8 +162,8 @@ int test_strcasestr_s()
                              __FUNCTION__, __LINE__, rc);
         printf("str1:[%s]\n", str1);
         printf("str2:[%s]\n", str2);
-        printf("strcasestr_s returns:[%x]\n", sub);
-        printf("strcasestr   returns:[%x]\n\n", std_sub);
+        printf("strcasestr_s returns:[%p]\n", sub);
+        printf("strcasestr   returns:[%p]\n\n", std_sub);
     }
 
 /*--------------------------------------------------*/

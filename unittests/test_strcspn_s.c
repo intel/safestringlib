@@ -34,7 +34,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
     }
 
     if (count != 0) {
-        printf("%s %u  Error  count=%d rc=%d \n",
+        printf("%s %u  Error  count=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, count, rc);
     }
 
@@ -49,7 +49,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
     }
 
     if (count != 0) {
-        printf("%s %u  Error  count=%d rc=%d \n",
+        printf("%s %u  Error  count=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, count, rc);
     }
 
@@ -74,7 +74,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
     }
 
     if (count != 0) {
-        printf("%s %u  Error  count=%d rc=%d \n",
+        printf("%s %u  Error  count=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, count, rc);
     }
 
@@ -89,7 +89,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
     }
 
     if (count != 0) {
-        printf("%s %u  Error  count=%d rc=%d \n",
+        printf("%s %u  Error  count=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, count, rc);
     }
 
@@ -104,7 +104,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
     }
 
     if (count != 0) {
-        printf("%s %u  Error  count=%d rc=%d \n",
+        printf("%s %u  Error  count=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, count, rc);
     }
 
@@ -119,7 +119,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
     }
 
     if (count != 0) {
-        printf("%s %u  Error  count=%d rc=%d \n",
+        printf("%s %u  Error  count=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, count, rc);
     }
 
@@ -137,13 +137,13 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
     }
 
     if (count != 0) {
-        printf("%s %u  Error  count=%d rc=%d \n",
+        printf("%s %u  Error  count=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, count, rc);
     }
 
     std_count = strcspn(str1, str2);
     if (count != std_count) {
-        printf("%s %u  count=%d  std_count=%d  rc=%d \n",
+        printf("%s %u  count=%zu  std_count=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  count, std_count, rc);
     }
 
@@ -162,7 +162,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
     }
 
     if (count != 1) {
-        printf("%s %u  Error  count=%d rc=%d \n",
+        printf("%s %u  Error  count=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, count, rc);
     }
 
@@ -181,7 +181,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
     }
 
     if (count != 2) {
-        printf("%s %u  Error  count=%d rc=%d \n",
+        printf("%s %u  Error  count=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, count, rc);
     }
 
@@ -200,7 +200,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
     }
 
     if (count != 3) {
-        printf("%s %u  Error  count=%d rc=%d \n",
+        printf("%s %u  Error  count=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, count, rc);
     }
 
@@ -220,7 +220,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
     }
 
     if (count != 6) {
-        printf("%s %u  Error  count=%d rc=%d \n",
+        printf("%s %u  Error  count=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, count, rc);
     }
 
@@ -239,7 +239,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
     }
 
     if (count != 6) {
-        printf("%s %u  count=%d  std_count=%d  rc=%d \n",
+        printf("%s %u  count=%zu  std_count=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  count, std_count, rc);
     }
 
@@ -259,7 +259,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
 
     std_count = strcspn(str1, str2);
     if (count != std_count) {
-        printf("%s %u  count=%d  std_count=%d  rc=%d \n",
+        printf("%s %u  count=%zu  std_count=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  count, std_count, rc);
     }
 
@@ -279,7 +279,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
 
     std_count = strcspn(str1, str2);
     if (count != std_count) {
-        printf("%s %u  count=%d  std_count=%d  rc=%d \n",
+        printf("%s %u  count=%zu  std_count=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  count, std_count, rc);
     }
 
@@ -299,7 +299,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
 
     std_count = strcspn(str1, str2);
     if (count != std_count) {
-        printf("%s %u  count=%d  std_count=%d  rc=%d \n",
+        printf("%s %u  count=%zu  std_count=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  count, std_count, rc);
     }
 

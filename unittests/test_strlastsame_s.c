@@ -29,7 +29,7 @@ int test_strlastsame_s()
     }
 
     if (ind != 0) {
-        printf("%s %u  Error  ind=%d rc=%d \n",
+        printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
     }
 
@@ -42,7 +42,7 @@ int test_strlastsame_s()
     }
 
     if (ind != 0) {
-        printf("%s %u  Error  ind=%d rc=%d \n",
+        printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
     }
 
@@ -63,7 +63,7 @@ int test_strlastsame_s()
     }
 
     if (ind != 0) {
-        printf("%s %u  Error  ind=%d rc=%d \n",
+        printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
     }
 
@@ -76,7 +76,7 @@ int test_strlastsame_s()
     }
 
     if (ind != 0) {
-        printf("%s %u  Error  ind=%d rc=%d \n",
+        printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
     }
 
@@ -92,7 +92,7 @@ int test_strlastsame_s()
     }
 
     if (ind != 0) {
-        printf("%s %u  Error  ind=%d rc=%d \n",
+        printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
     }
 
@@ -108,7 +108,7 @@ int test_strlastsame_s()
     }
 
     if (ind != 3) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
@@ -124,7 +124,7 @@ int test_strlastsame_s()
     }
 
     if (ind != 0) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
@@ -140,7 +140,7 @@ int test_strlastsame_s()
     }
 
     if (ind != 1) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
@@ -156,7 +156,7 @@ int test_strlastsame_s()
     }
 
     if (ind != 13) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
@@ -167,12 +167,12 @@ int test_strlastsame_s()
     /* same string for src and dest */
     rc = strlastsame_s(str1, LEN, str1, &ind);
     if (rc != EOK) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
     if (ind != 13) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
@@ -183,12 +183,12 @@ int test_strlastsame_s()
 
     rc = strlastsame_s(str1, 1, str2, &ind);
     if (rc != ESNOTFND) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
     if (ind != 0) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
@@ -199,12 +199,12 @@ int test_strlastsame_s()
 
     rc = strlastsame_s(str1, 1, str2, &ind);
     if (rc != EOK) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
     if (ind != 0) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
@@ -215,12 +215,12 @@ int test_strlastsame_s()
 
     rc = strlastsame_s(str1, 5, str2, &ind);
     if (rc != ESNOTFND) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
     if (ind != 0) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
@@ -231,12 +231,12 @@ int test_strlastsame_s()
 
     rc = strlastsame_s(str1, LEN, str2, &ind);
     if (rc != ESNOTFND) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
     if (ind != 0) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 

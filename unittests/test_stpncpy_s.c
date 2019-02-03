@@ -356,7 +356,7 @@ printf("Test #%d:\n", ++testno);
     /* be sure the results are the same as strcmp */
     ind = strcmp(str1, str2);
     if (ind != 0) {
-        printf("%s %u -%s- <> -%s-  (smax=%d) Error rc=%u \n",
+        printf("%s %u -%s- <> -%s-  (smax=%zu) Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, str2, sz, rc );
     }
 
@@ -387,7 +387,7 @@ printf("Test #%d:\n", ++testno);
         sz = strnlen_s(str1, LEN);
         ind = strncmp(str1, str2, sz);
         if (ind != 0 || sz != 3) {
-            printf("%s %u -%s- <> -%s-  (smax=%d) Error rc=%u \n",
+            printf("%s %u -%s- <> -%s-  (smax=%zu) Error rc=%u \n",
                          __FUNCTION__, __LINE__,  str1, str2, sz, rc );
         }
         /* be sure that the slack is correct */
