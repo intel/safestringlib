@@ -86,7 +86,9 @@ int test_wcpcpy_s (void)
 {
     wchar_t *ret;
     errno_t rc;
+#ifdef SAFE_LIB_STR_NULL_SLACK
     uint32_t i;
+#endif /*SAFE_LIB_STR_NULL_SLACK*/
     int32_t  ind;
     rsize_t sz;
     unsigned int testno = 0;

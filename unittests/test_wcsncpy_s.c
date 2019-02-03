@@ -83,9 +83,10 @@ extern errno_t wmemset_s (wchar_t *dest, wchar_t value, rsize_t len);
 
 int test_wcsncpy_s (void)
 {
-	wchar_t *ret;
     errno_t rc;
+#ifdef SAFE_LIB_STR_NULL_SLACK
     uint32_t i;
+#endif /*SAFE_LIB_STR_NULL_SLACK*/
     int32_t  ind;
     rsize_t sz;
     rsize_t sz_orig;
