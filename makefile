@@ -1,7 +1,7 @@
 IDIR = include
 MKDIR_P = mkdir -p
-CC=gcc
-CFLAGS=-I$(IDIR) -fstack-protector-strong -fPIE -fPIC -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security
+#CC=gcc
+CFLAGS+=-I$(IDIR) -fstack-protector-strong -fPIE -fPIC -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security
 LDFLAGS=-z noexecstack -z relo -z now
 
 ODIR=obj

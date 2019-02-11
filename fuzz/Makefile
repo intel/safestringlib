@@ -27,28 +27,19 @@ CXXFLAGS += -std=c++11
 clean:
 	rm -fv *.a *.o *unittest *_fuzzer *_seed_corpus.zip crash-* *.zip
 
-all: do_stuff_unittest do_stuff_fuzzer
-
 # Continuos integration system should run "make clean && make check"
 check: all
 	./do_stuff_unittest
 	./do_stuff_fuzzer do_stuff_test_data/*
 
-# Unit tests
-do_stuff_unittest: do_stuff_unittest.cpp my_api.a
-	${CXX} ${CXXFLAGS} $< my_api.a -o $@
 
-# Fuzz target, links against $LIB_FUZZING_ENGINE, so that
-# you may choose which fuzzing engine to use.
-do_stuff_fuzzer: do_stuff_fuzzer.cpp my_api.a standalone_fuzz_target_runner.o
-	${CXX} ${CXXFLAGS} $< my_api.a ${LIB_FUZZING_ENGINE} -o $@
-	zip -q -r do_stuff_fuzzer_seed_corpus.zip do_stuff_test_data
+all: fuzz_strisascii_s
 
+fuzz_strisascii_s: fuzz_strisascii_s.cpp libsafestring.a standalone_fuzz_target_runner.o
+	$(CXX) $(CXXFLAGS) ${LDFLAGS} ${COVERAGE_FLAGS_coverage=} -v -O2 ${SANITIZER_FLAGS_address} -I../include -o $@ $< ${LIB_FUZZING_ENGINE} -lsafestring
 
-# The library itself.
-my_api.a: my_api.cpp my_api.h
-	${CXX} ${CXXFLAGS} $< -c
-	ar ruv my_api.a my_api.o
+libsafestring.a:
+	cp ../libsafestring.a .
 
 # The standalone fuzz target runner.
 standalone_fuzz_target_runner.o: standalone_fuzz_target_runner.cpp
