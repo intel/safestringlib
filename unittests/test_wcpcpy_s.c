@@ -84,9 +84,11 @@ extern rsize_t  wcsnlen_s (const wchar_t *dest, rsize_t dmax);
 
 int test_wcpcpy_s (void)
 {
-	wchar_t *ret;
+    wchar_t *ret;
     errno_t rc;
+#ifdef SAFE_LIB_STR_NULL_SLACK
     uint32_t i;
+#endif /*SAFE_LIB_STR_NULL_SLACK*/
     int32_t  ind;
     rsize_t sz;
     unsigned int testno = 0;
@@ -104,7 +106,7 @@ printf("Test #%d:\n", ++testno);
     }
 
     if (ret != NULL) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -112,34 +114,34 @@ printf("Test #%d:\n", ++testno);
 /* 2  Test for zero length destination                 */
     printf("Test #%d:\n", ++testno);
 
-	ret = wcpcpy_s(str1, 0, str2, &rc);
-	if (rc != ESZEROL) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
-	if (ret != NULL) {
-		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    ret = wcpcpy_s(str1, 0, str2, &rc);
+    if (rc != ESZEROL) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
+    if (ret != NULL) {
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
 
 /*--------------------------------------------------*/
 /* 3  Test for too large destination size              */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	ret = wcpcpy_s(str1, (RSIZE_MAX_STR+1), str2, &rc);
-	if (rc != ESLEMAX) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
-	if (ret != NULL) {
-		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    ret = wcpcpy_s(str1, (RSIZE_MAX_STR+1), str2, &rc);
+    if (rc != ESLEMAX) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
+    if (ret != NULL) {
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
 /*--------------------------------------------------*/
 /* 4  Test for NULL source check                       */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
    wcscpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
@@ -150,7 +152,7 @@ printf("Test #%d:\n", ++testno);
     }
 
     if (ret != NULL) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -182,7 +184,7 @@ printf("Test #%d:\n", ++testno);
     }
 
     if (ret != NULL) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -191,51 +193,51 @@ printf("Test #%d:\n", ++testno);
 /* 6  Test copy the same string onto itself            */
     printf("Test #%d:\n", ++testno);
 
-	wcscpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    wcscpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
-	ret = wcpcpy_s(str1, LEN, str1, &rc);
-	if (rc != EOK) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    ret = wcpcpy_s(str1, LEN, str1, &rc);
+    if (rc != EOK) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
-	if (ret == NULL || ret[0] != L'\0' || ret != str1+wcsnlen_s(str1, LEN) ) {
-		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    if (ret == NULL || ret[0] != L'\0' || ret != str1+wcsnlen_s(str1, LEN) ) {
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 /* 7  Test for string overlap, destination < src, and
  * dest overlaps onto the src string, so a copy would
  * change the src string                            */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	wcscpy_s(&str1[0], LEN, L"keep it simple");
-	sz = wcsnlen_s(str1, LEN);
+    wcscpy_s(&str1[0], LEN, L"keep it simple");
+    sz = wcsnlen_s(str1, LEN);
 
-	ret = wcpcpy_s(&str1[0], LEN, &str1[5], &rc);
-	if (rc != ESOVRLP) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
-	if (ret != NULL) {
-		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    ret = wcpcpy_s(&str1[0], LEN, &str1[5], &rc);
+    if (rc != ESOVRLP) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
+    if (ret != NULL) {
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
 #ifdef SAFE_LIB_STR_NULL_SLACK
-	for (i=0; i<LEN; i++) {
-		if (str1[i] != L'\0') {
-			printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-		}
-	}
+    for (i=0; i<LEN; i++) {
+        if (str1[i] != L'\0') {
+            printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+        }
+    }
 #else
-	if (str1[0] != L'\0') {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    if (str1[0] != L'\0') {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 #endif
 
 
@@ -243,33 +245,33 @@ printf("Test #%d:\n", ++testno);
 /* 8  Test for string overlap, src < dest, and
  * src overlaps onto the dest string, so a copy would
  * result in an infinite copy operation              */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	wcscpy_s(&str1[0], LEN, L"keep it simple");
-	sz = wcsnlen_s(str1, LEN);
+    wcscpy_s(&str1[0], LEN, L"keep it simple");
+    sz = wcsnlen_s(str1, LEN);
 
-	ret = wcpcpy_s(&str1[5], LEN, &str1[0], &rc);
-	if (rc != ESOVRLP) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
-	if (ret != NULL) {
-		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    ret = wcpcpy_s(&str1[5], LEN, &str1[0], &rc);
+    if (rc != ESOVRLP) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
+    if (ret != NULL) {
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
 #ifdef SAFE_LIB_STR_NULL_SLACK
-	for (i=0; i<LEN; i++) {
-		if (str1[i] != L'\0') {
-			printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-		}
-	}
+    for (i=0; i<LEN; i++) {
+        if (str1[i] != L'\0') {
+            printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+        }
+    }
 #else
-	if (str1[5] != L'\0') {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    if (str1[5] != L'\0') {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 #endif
 
 
@@ -282,7 +284,7 @@ printf("Test #%d:\n", ++testno);
 /* 9  Test copying the null string (zero length string)
  * into another existing string, and overwriting
  * it's contents                                    */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
     wcscpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     str2[0] = L'\0';
@@ -293,7 +295,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
     if (ret == NULL || ret[0] != L'\0' || ret != str1) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -326,7 +328,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
     if (ret == NULL || ret[0] != L'\0' || ret != str2+wcsnlen_s(str2,LEN)) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -359,7 +361,7 @@ printf("Test #%d:\n", ++testno);
     }
 
     if (ret == NULL || ret[0] != L'\0' || ret != str1+wcsnlen_s(str1, LEN) ) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -377,7 +379,7 @@ printf("Test #%d:\n", ++testno);
     }
 
     if (ret == NULL || ret[0] != L'\0' || ret != str1+wcsnlen_s(str1, LEN) ) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -395,7 +397,7 @@ printf("Test #%d:\n", ++testno);
 
 /*--------------------------------------------------*/
 /* 13 Test for not enough space in destination  (dest < src)  */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
     wcscpy_s(str1, LEN, L"qqweqeqeqeq");
     wcscpy_s(str2, LEN, L"keep it simple");
@@ -407,7 +409,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
     if (ret != NULL) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -430,7 +432,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
     if (ret != NULL) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -458,7 +460,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  str1, rc );
     }
     if (ret == NULL || ret[0] != L'\0' || ret != str2+wcsnlen_s(str2, LEN) ) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -475,7 +477,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
     if (ret == NULL || ret[0] != L'\0' || ret != str1+wcsnlen_s(str1, LEN) ) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -488,20 +490,20 @@ printf("Test #%d:\n", ++testno);
 
 /*--------------------------------------------------*/
 /* 17 Test for not enough space in destination for final NULL */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	wcscpy_s(str2, LEN, L"qqweqeqeqeq");
-	wcscpy_s(str1, LEN, L"it");
-	sz = wcsnlen_s(str2, LEN);
+    wcscpy_s(str2, LEN, L"qqweqeqeqeq");
+    wcscpy_s(str1, LEN, L"it");
+    sz = wcsnlen_s(str2, LEN);
 
-	ret = wcpcpy_s(str2, 2, str1, &rc);
-	if (rc != ESNOSPC) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    ret = wcpcpy_s(str2, 2, str1, &rc);
+    if (rc != ESNOSPC) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
     if (ret != NULL) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 

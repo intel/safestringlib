@@ -82,7 +82,9 @@ int test_stpcpy_s (void)
 {
 	char *ret;
     errno_t rc;
+#ifdef SAFE_LIB_STR_NULL_SLACK
     uint32_t i;
+#endif /*SAFE_LIB_STR_NULL_SLACK*/
     int32_t  ind;
     unsigned int testno = 0;
 

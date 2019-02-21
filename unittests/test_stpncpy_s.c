@@ -88,7 +88,7 @@ extern char *stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, 
 
 int test_stpncpy_s (void)
 {
-	char *ret;
+    char *ret;
     errno_t rc;
     uint32_t i;
     int32_t  ind;
@@ -108,42 +108,42 @@ printf("Test #%d:\n", ++testno);
     }
 
     if (ret != NULL) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
     }
 
 /*--------------------------------------------------*/
 /* 2  Test for zero length destination                 */
     printf("Test #%d:\n", ++testno);
 
-	ret = stpncpy_s(str1, 0, str2, LEN, &rc);
-	if (rc != ESZEROL) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
-	if (ret != NULL) {
-		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    ret = stpncpy_s(str1, 0, str2, LEN, &rc);
+    if (rc != ESZEROL) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
+    if (ret != NULL) {
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
 
 /*--------------------------------------------------*/
 /* 3  Test for too large destination size              */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	ret = stpncpy_s(str1, (RSIZE_MAX_STR+1), str2, LEN, &rc);
-	if (rc != ESLEMAX) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
-	if (ret != NULL) {
-		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    ret = stpncpy_s(str1, (RSIZE_MAX_STR+1), str2, LEN, &rc);
+    if (rc != ESLEMAX) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
+    if (ret != NULL) {
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
 /*--------------------------------------------------*/
 /* 4  Test for NULL source check                       */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
    strcpy(str1, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
@@ -154,7 +154,7 @@ printf("Test #%d:\n", ++testno);
     }
 
     if (ret != NULL) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -188,7 +188,7 @@ printf("Test #%d:\n", ++testno);
 
 
     if (ret != NULL) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -197,50 +197,50 @@ printf("Test #%d:\n", ++testno);
 /* 6  Test copy the same string onto itself            */
     printf("Test #%d:\n", ++testno);
 
-	strcpy(str1, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    strcpy(str1, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
-	sz = strnlen_s(str1, LEN);
-	ret = stpncpy_s(str1, LEN, str1, sz, &rc);
-	if (rc != EOK) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    sz = strnlen_s(str1, LEN);
+    ret = stpncpy_s(str1, LEN, str1, sz, &rc);
+    if (rc != EOK) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
-	if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
-		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
 /*--------------------------------------------------*/
 /* 7  Test for string overlap, destination < src, and
  * dest overlaps onto the src string, so a copy would
  * change the src string                            */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	strcpy(&str1[0], "keep it simple");
-	sz = strnlen_s(str1, LEN);
-	ret = stpncpy_s(&str1[0], LEN, &str1[5], sz, &rc);
-	if (rc != ESOVRLP) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
-	if (ret != NULL) {
-		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    strcpy(&str1[0], "keep it simple");
+    sz = strnlen_s(str1, LEN);
+    ret = stpncpy_s(&str1[0], LEN, &str1[5], sz, &rc);
+    if (rc != ESOVRLP) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
+    if (ret != NULL) {
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
 #ifdef SAFE_LIB_STR_NULL_SLACK
-	for (i=0; i<LEN; i++) {
-		if (str1[i] != '\0') {
-			printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-		}
-	}
+    for (i=0; i<LEN; i++) {
+        if (str1[i] != '\0') {
+            printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+        }
+    }
 #else
-	if (str1[0] != '\0') {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    if (str1[0] != '\0') {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 #endif
 
 
@@ -248,32 +248,32 @@ printf("Test #%d:\n", ++testno);
 /* 8  Test for string overlap, destination > src, and
  * src overlaps onto the dest string, so a copy would
  * result in an infinite copy operation              */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	strcpy(&str1[0], "keep it simple");
-	sz = strnlen_s(str1, LEN);
-	ret = stpncpy_s(&str1[5], LEN, &str1[0], sz, &rc);
-	if (rc != ESOVRLP) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
-	if (ret != NULL) {
-		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    strcpy(&str1[0], "keep it simple");
+    sz = strnlen_s(str1, LEN);
+    ret = stpncpy_s(&str1[5], LEN, &str1[0], sz, &rc);
+    if (rc != ESOVRLP) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
+    if (ret != NULL) {
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
 #ifdef SAFE_LIB_STR_NULL_SLACK
-	for (i=0; i<LEN; i++) {
-		if (str1[i] != '\0') {
-			printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-		}
-	}
+    for (i=0; i<LEN; i++) {
+        if (str1[i] != '\0') {
+            printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+        }
+    }
 #else
-	if (str1[5] != '\0') {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    if (str1[5] != '\0') {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 #endif
 
 
@@ -286,7 +286,7 @@ printf("Test #%d:\n", ++testno);
 /* 9  Test copying the null string (zero length string)
  * into another existing string, and overwriting
  * it's contents                                    */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
     strcpy(str1, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     str2[0] = '\0';
@@ -297,7 +297,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
     if (ret == NULL || ret[0] != '\0' || ret != str1) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -329,7 +329,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
     if (ret == NULL || ret[0] != '\0' || ret != str2) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -356,12 +356,12 @@ printf("Test #%d:\n", ++testno);
     /* be sure the results are the same as strcmp */
     ind = strcmp(str1, str2);
     if (ind != 0) {
-        printf("%s %u -%s- <> -%s-  (smax=%d) Error rc=%u \n",
+        printf("%s %u -%s- <> -%s-  (smax=%zu) Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, str2, sz, rc );
     }
 
     if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -379,138 +379,138 @@ printf("Test #%d:\n", ++testno);
     }
 
     if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     } else {
 
-		/* be sure the results are the same as strcmp */
-		sz = strnlen_s(str1, LEN);
-		ind = strncmp(str1, str2, sz);
-		if (ind != 0 || sz != 3) {
-			printf("%s %u -%s- <> -%s-  (smax=%d) Error rc=%u \n",
-						 __FUNCTION__, __LINE__,  str1, str2, sz, rc );
-		}
-		/* be sure that the slack is correct */
-		for (i=1; i<6; i++) {
-			if (ret[i] != 'x') {
-				printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
-									 __FUNCTION__, __LINE__,  i, rc );
-			}
-		}
+        /* be sure the results are the same as strcmp */
+        sz = strnlen_s(str1, LEN);
+        ind = strncmp(str1, str2, sz);
+        if (ind != 0 || sz != 3) {
+            printf("%s %u -%s- <> -%s-  (smax=%zu) Error rc=%u \n",
+                         __FUNCTION__, __LINE__,  str1, str2, sz, rc );
+        }
+        /* be sure that the slack is correct */
+        for (i=1; i<6; i++) {
+            if (ret[i] != 'x') {
+                printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
+                                     __FUNCTION__, __LINE__,  i, rc );
+            }
+        }
     }
 
 /*--------------------------------------------------*/
 /* 13 Test for accurate String copy with extra nulls over existing string */
     printf("Test #%d:\n", ++testno);
 
-	strcpy(str1, "xxxxxxxxxxxxxxxxxxxx");
-	strcpy(str2, "abcde");
+    strcpy(str1, "xxxxxxxxxxxxxxxxxxxx");
+    strcpy(str2, "abcde");
 
-	ret = stpncpy_s(str1, LEN, str2, 10, &rc);
-	if (rc != EOK) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    ret = stpncpy_s(str1, LEN, str2, 10, &rc);
+    if (rc != EOK) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
-	if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
-		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	} else {
+    if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    } else {
 
-		/* be sure the results are the same as strcmp */
-		ind = strcmp(str1, str2);
-		if (ind != 0) {
-			printf("%s %u -%s-  Error rc=%u \n",
-						 __FUNCTION__, __LINE__,  str1, rc );
-		} else {
-			/* be sure that the nulls are correct */
-			for (i=0; i<5; i++) {
-				if (ret[i] != '\0') {
-					printf("%s %u Incorrect NULL fill at returned ptr index %d  Error rc=%u \n",
-										 __FUNCTION__, __LINE__,  i, rc );
-				}
-			}
-			/* be sure that the slack is correct */
-			for (; i<15; i++) {
-				if (ret[i] != 'x') {
-					printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
-										 __FUNCTION__, __LINE__,  i, rc );
-				}
-			}
-		}
-	}
+        /* be sure the results are the same as strcmp */
+        ind = strcmp(str1, str2);
+        if (ind != 0) {
+            printf("%s %u -%s-  Error rc=%u \n",
+                         __FUNCTION__, __LINE__,  str1, rc );
+        } else {
+            /* be sure that the nulls are correct */
+            for (i=0; i<5; i++) {
+                if (ret[i] != '\0') {
+                    printf("%s %u Incorrect NULL fill at returned ptr index %d  Error rc=%u \n",
+                                         __FUNCTION__, __LINE__,  i, rc );
+                }
+            }
+            /* be sure that the slack is correct */
+            for (; i<15; i++) {
+                if (ret[i] != 'x') {
+                    printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
+                                         __FUNCTION__, __LINE__,  i, rc );
+                }
+            }
+        }
+    }
 
 /*--------------------------------------------------*/
 /* 14 Test for accurate String copy and added null over existing string */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	strcpy(str1, "xxxxxxxxxx");
-	strcpy(str2, "abcde");
+    strcpy(str1, "xxxxxxxxxx");
+    strcpy(str2, "abcde");
 
-	ret = stpncpy_s(str1, LEN, str2, 5, &rc);
-	if (rc != EOK) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    ret = stpncpy_s(str1, LEN, str2, 5, &rc);
+    if (rc != EOK) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
-	if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
-		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	} else {
+    if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    } else {
 
-		/* be sure the results are the same as strcmp */
-		ind = strcmp(str1, str2);
-		if (ind != 0) {
-			printf("%s %u -%s-  Error rc=%u \n",
-						 __FUNCTION__, __LINE__,  str1, rc );
-		} else {
-			/* be sure that the slack is correct */
-			for (i=1; i<5; i++) {
-				if (ret[i] != 'x') {
-					printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
-										 __FUNCTION__, __LINE__,  i, rc );
-				}
-			}
-		}
-	}
+        /* be sure the results are the same as strcmp */
+        ind = strcmp(str1, str2);
+        if (ind != 0) {
+            printf("%s %u -%s-  Error rc=%u \n",
+                         __FUNCTION__, __LINE__,  str1, rc );
+        } else {
+            /* be sure that the slack is correct */
+            for (i=1; i<5; i++) {
+                if (ret[i] != 'x') {
+                    printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
+                                         __FUNCTION__, __LINE__,  i, rc );
+                }
+            }
+        }
+    }
 
 /*--------------------------------------------------*/
 /* 15 Test for accurate String copy and added null over existing string */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	strcpy(str1, "xxxxxxxxxx");
-	strcpy(str2, "abcde");
+    strcpy(str1, "xxxxxxxxxx");
+    strcpy(str2, "abcde");
 
-	ret = stpncpy_s(str1, LEN, str2, 6, &rc);
-	if (rc != EOK) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    ret = stpncpy_s(str1, LEN, str2, 6, &rc);
+    if (rc != EOK) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
-	if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
-		printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	} else {
+    if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    } else {
 
-		/* be sure the results are the same as strcmp */
-		ind = strcmp(str1, str2);
-		if (ind != 0) {
-			printf("%s %u -%s-  Error rc=%u \n",
-						 __FUNCTION__, __LINE__,  str1, rc );
-		} else {
-			/* be sure that the slack is correct */
-			for (i=1; i<5; i++) {
-				if (ret[i] != 'x') {
-					printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
-										 __FUNCTION__, __LINE__,  i, rc );
-				}
-			}
-		}
-	}
+        /* be sure the results are the same as strcmp */
+        ind = strcmp(str1, str2);
+        if (ind != 0) {
+            printf("%s %u -%s-  Error rc=%u \n",
+                         __FUNCTION__, __LINE__,  str1, rc );
+        } else {
+            /* be sure that the slack is correct */
+            for (i=1; i<5; i++) {
+                if (ret[i] != 'x') {
+                    printf("%s %u Incorrect Slack at returned ptr index %d  Error rc=%u \n",
+                                         __FUNCTION__, __LINE__,  i, rc );
+                }
+            }
+        }
+    }
 
 /*--------------------------------------------------*/
 /* 16 Test for not enough space in destination         */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
     strcpy(str1, "qqweqeqeqeq");
     strcpy(str2, "keep it simple");
@@ -522,7 +522,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
     if (ret != NULL) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -545,7 +545,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
     if (ret != NULL) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -575,7 +575,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  str1, rc );
     }
     if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
@@ -592,7 +592,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
     if (ret == NULL || ret[0] != '\0' || ret != str1+strnlen_s(str1, LEN) ) {
-    	printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
+        printf("Returned pointer incorrect: %s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
     }
 
