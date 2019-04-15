@@ -1,9 +1,13 @@
 #include "safe_lib.h"
 
-extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
+int FuzzerInitialize(int *argc, char ***argv)
+{
+    return 1;
+}
 
-	const char *input = reinterpret_cast<const char *>(data);
-	strisascii_s(input, (rsize_t)size); //ignore return for now.
+int FuzzerTestOneInput(const uint8_t *buf, size_t len) {
+	const char *input = reinterpret_cast<const char *>(buf);
+	strisascii_s(input, (rsize_t)len); //ignore return for now.
 	return 0;
 }
 
