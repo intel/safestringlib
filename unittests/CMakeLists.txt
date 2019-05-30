@@ -1,0 +1,79 @@
+cmake_minimum_required(VERSION 3.1)
+project(safestring_test)
+
+set(SOURCES
+  Safe_String_UnitTestMain.c
+  $<$<BOOL:${BUILD_MEMCMP}>:test_memcmp16_s.c>
+  $<$<BOOL:${BUILD_MEMCMP}>:test_memcmp32_s.c>
+  $<$<BOOL:${BUILD_MEMCMP}>:test_memcmp_s.c>
+  $<$<BOOL:${BUILD_MEMCPY}>:test_memcpy16_s.c>
+  $<$<BOOL:${BUILD_MEMCPY}>:test_memcpy32_s.c>
+  $<$<BOOL:${BUILD_MEMCPY}>:test_memcpy_s.c>
+  $<$<BOOL:${BUILD_MEMMOVE}>:test_memmove16_s.c>
+  $<$<BOOL:${BUILD_MEMMOVE}>:test_memmove32_s.c>
+  $<$<BOOL:${BUILD_MEMMOVE}>:test_memmove_s.c>
+  $<$<BOOL:${BUILD_MEMSET}>:test_memset16_s.c>
+  $<$<BOOL:${BUILD_MEMSET}>:test_memset32_s.c>
+  $<$<BOOL:${BUILD_MEMSET}>:test_memset_s.c>
+  $<$<BOOL:${BUILD_MEMZERO}>:test_memzero16_s.c>
+  $<$<BOOL:${BUILD_MEMZERO}>:test_memzero32_s.c>
+  $<$<BOOL:${BUILD_MEMZERO}>:test_memzero_s.c>
+  $<$<BOOL:${BUILD_STPCPY}>:test_stpcpy_s.c>
+  $<$<BOOL:${BUILD_STPNCPY}>:test_stpncpy_s.c>
+  $<$<BOOL:${BUILD_STRCASECMP}>:test_strcasecmp_s.c>
+  $<$<BOOL:${BUILD_STRCASESTR}>:test_strcasestr_s.c>
+  $<$<BOOL:${BUILD_STRCAT}>:test_strcat_s.c>
+  $<$<BOOL:${BUILD_STRCMPFLD}>:test_strcmpfld_s.c>
+  $<$<BOOL:${BUILD_STRCMP}>:test_strcmp_s.c>
+  $<$<BOOL:${BUILD_STRCPYFLDIN}>:test_strcpyfldin_s.c>
+  $<$<BOOL:${BUILD_STRCPYFLDOUT}>:test_strcpyfldout_s.c>
+  $<$<BOOL:${BUILD_STRCPYFLD}>:test_strcpyfld_s.c>
+  $<$<BOOL:${BUILD_STRCPY}>:test_strcpy_s.c>
+  $<$<BOOL:${BUILD_STRCSPN}>:test_strcspn_s.c>
+  $<$<BOOL:${BUILD_STRFIRSTCHAR}>:test_strfirstchar_s.c>
+  $<$<BOOL:${BUILD_STRFIRSTDIFF}>:test_strfirstdiff_s.c>
+  $<$<BOOL:${BUILD_STRFIRSTSAME}>:test_strfirstsame_s.c>
+  $<$<BOOL:${BUILD_STRISALPHANUMERIC}>:test_strisalphanumeric_s.c>
+  $<$<BOOL:${BUILD_STRISASCII}>:test_strisascii_s.c>
+  $<$<BOOL:${BUILD_STRISDIGIT}>:test_strisdigit_s.c>
+  $<$<BOOL:${BUILD_STRISHEX}>:test_strishex_s.c>
+  $<$<BOOL:${BUILD_STRISLOWERCASE}>:test_strislowercase_s.c>
+  $<$<BOOL:${BUILD_STRISMIXEDCASE}>:test_strismixed_s.c>
+  $<$<BOOL:${BUILD_STRISPASSWORD}>:test_strispassword_s.c>
+  $<$<BOOL:${BUILD_STRISUPPERCASE}>:test_strisuppercase_s.c>
+  $<$<BOOL:${BUILD_STRLASTCHAR}>:test_strlastchar_s.c>
+  $<$<BOOL:${BUILD_STRLASTDIFF}>:test_strlastdiff_s.c>
+  $<$<BOOL:${BUILD_STRLASTSAME}>:test_strlastsame_s.c>
+  $<$<BOOL:${BUILD_STRLJUSTIFY}>:test_strljustify_s.c>
+  $<$<BOOL:${BUILD_STRNCAT}>:test_strncat_s.c>
+  $<$<BOOL:${BUILD_STRNCPY}>:test_strncpy_s.c>
+  $<$<BOOL:${BUILD_STRNLEN}>:test_strnlen_s.c>
+  $<$<BOOL:${BUILD_STRNTERMINATE}>:test_strnterminate_s.c>
+  $<$<BOOL:${BUILD_STRPBRK}>:test_strpbrk_s.c>
+  $<$<BOOL:${BUILD_STRPREFIX}>:test_strprefix_s.c>
+  $<$<BOOL:${BUILD_STRREMOVEWS}>:test_strremovews_s.c>
+  $<$<BOOL:${BUILD_STRSPN}>:test_strspn_s.c>
+  $<$<BOOL:${BUILD_STRSTR}>:test_strstr_s.c>
+  $<$<BOOL:${BUILD_STRTOK}>:test_strtok_s.c>
+  $<$<BOOL:${BUILD_STRTOLOWERCASE}>:test_strtolowercase_s.c>
+  $<$<BOOL:${BUILD_STRTOUPPERCASE}>:test_strtouppercase_s.c>
+  $<$<BOOL:${BUILD_STRZERO}>:test_strzero_s.c>
+  $<$<BOOL:${BUILD_WCPCPY}>:test_wcpcpy_s.c>
+  $<$<BOOL:${BUILD_WCSCAT}>:test_wcscat_s.c>
+  $<$<BOOL:${BUILD_WCSCPY}>:test_wcscpy_s.c>
+  $<$<BOOL:${BUILD_WCSNCAT}>:test_wcsncat_s.c>
+  $<$<BOOL:${BUILD_WCSNCPY}>:test_wcsncpy_s.c>
+  $<$<BOOL:${BUILD_WCSNLEN}>:test_wcsnlen_s.c>
+  $<$<BOOL:${BUILD_WMEMCMP}>:test_wmemcmp_s.c>
+  $<$<BOOL:${BUILD_WMEMCPY}>:test_wmemcpy_s.c>
+  $<$<BOOL:${BUILD_WMEMMOVE}>:test_wmemmove_s.c>
+  $<$<BOOL:${BUILD_WMEMSET}>:test_wmemset_s.c>
+)
+
+add_executable(${PROJECT_NAME}
+  ${SOURCES}
+)
+
+target_link_libraries(${PROJECT_NAME}
+  safestring_static
+)
