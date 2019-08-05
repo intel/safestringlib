@@ -9,6 +9,7 @@
 #include "safe_mem_lib.h"
 
 #define LEN   ( 1024 )
+#define MAX_LEN ( 2048 )
 
 static uint8_t  mem1[LEN+2];
 static uint8_t  mem2[LEN+2];
