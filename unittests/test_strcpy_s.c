@@ -17,7 +17,9 @@ static char   str2[LEN];
 int test_strcpy_s (void)
 {
     errno_t rc;
+#ifdef SAFE_LIB_STR_NULL_SLACK
     uint32_t i;
+#endif /*SAFE_LIB_STR_NULL_SLACK*/
     int32_t  ind;
 
 /*--------------------------------------------------*/

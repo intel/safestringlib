@@ -30,7 +30,7 @@ int test_strlastdiff_s()
     }
 
     if (ind != 0) {
-        printf("%s %u  Error  ind=%d rc=%d \n",
+        printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
     }
 
@@ -43,7 +43,7 @@ int test_strlastdiff_s()
     }
 
     if (ind != 0) {
-        printf("%s %u  Error  ind=%d rc=%d \n",
+        printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
     }
 
@@ -64,7 +64,7 @@ int test_strlastdiff_s()
     }
 
     if (ind != 0) {
-        printf("%s %u  Error  ind=%d rc=%d \n",
+        printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
     }
 
@@ -77,7 +77,7 @@ int test_strlastdiff_s()
     }
 
     if (ind != 0) {
-        printf("%s %u  Error  ind=%d rc=%d \n",
+        printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
     }
 
@@ -93,7 +93,7 @@ int test_strlastdiff_s()
     }
 
     if (ind != 0) {
-        printf("%s %u  Error  ind=%d rc=%d \n",
+        printf("%s %u  Error  ind=%zu rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
     }
 
@@ -109,7 +109,7 @@ int test_strlastdiff_s()
     }
 
     if (ind != 6) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
@@ -125,7 +125,7 @@ int test_strlastdiff_s()
     }
 
     if (ind != 1) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
@@ -141,7 +141,7 @@ int test_strlastdiff_s()
     }
 
     if (ind != 10) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
@@ -156,7 +156,7 @@ int test_strlastdiff_s()
     }
 
     if (ind != 0) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
@@ -172,7 +172,7 @@ int test_strlastdiff_s()
     }
 
     if (ind != 0) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
@@ -188,7 +188,7 @@ int test_strlastdiff_s()
     }
 
     if (ind != 13) {
-        printf("%s %u  Error ind=%d  rc=%d \n",
+        printf("%s %u  Error ind=%zu  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
     }
 
