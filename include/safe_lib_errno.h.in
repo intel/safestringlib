@@ -83,6 +83,14 @@
 #define ESNOTFND        ( 409 )       /* not found                   */
 #endif
 
+/* Additional for safe snprintf_s interfaces                         */
+#ifndef ESBADFMT
+#define ESBADFMT        ( 410 )       /* bad format string           */
+#endif
+
+#ifndef ESFMTTYP
+#define ESFMTTYP        ( 411 )       /* bad format type             */
+#endif
 /* EOK may or may not be defined in errno.h */
 #ifndef EOK
 #define EOK             ( 0 )

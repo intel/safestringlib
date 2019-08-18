@@ -46,16 +46,7 @@ typedef int errno_t;
 #else
 
 #include <stdio.h>
-
-/* For systems without sys/types.h, prefer to get size_t from stdlib.h */
-/* some armcc environments don't have a sys/types.h in the environment */
-#ifdef _USE_STDLIB
-#include <stdlib.h>
-#include <ctype.h>
-#else
 #include <sys/types.h>
-#endif
-
 #include <inttypes.h>
 #include <stdint.h>
 #include <errno.h>

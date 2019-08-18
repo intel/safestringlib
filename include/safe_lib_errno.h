@@ -91,7 +91,6 @@
 #ifndef ESFMTTYP
 #define ESFMTTYP        ( 411 )       /* bad format type             */
 #endif
-
 /* EOK may or may not be defined in errno.h */
 #ifndef EOK
 #define EOK             ( 0 )
