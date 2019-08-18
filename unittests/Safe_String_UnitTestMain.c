@@ -172,6 +172,7 @@ int main(void) {
     if (err != EOK) {
 		puts("stpcpy_s returned failure");
 	}
+    (void) ret; // to suppress unused variable warning
 
     int val = 55;
     if ( (err = snprintf_s_si(src, 128, "Test sprintf_s_si() with simple format string [%s] and %d", dest, val)) < 0 ) {

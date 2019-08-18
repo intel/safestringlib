@@ -94,7 +94,7 @@ int test_memcmp32_s()
     }
 
     std_ind = memcmp(mem1, mem2, len*4);
-    if (ind != 0) {
+    if (std_ind != 0) {
         debug_printf("%s %u  Ind=%d  rc=%u \n",
                      __FUNCTION__, __LINE__,  ind, rc );
     }
@@ -117,7 +117,7 @@ int test_memcmp32_s()
     }
 
     std_ind = memcmp(mem1, mem2, len*4);
-    if (ind != 0) {
+    if (std_ind != 0) {
         debug_printf("%s %u  Ind=%d  rc=%u \n",
                      __FUNCTION__, __LINE__,  ind, rc );
     }

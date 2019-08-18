@@ -18,7 +18,7 @@ int test_strcspn_s (void)
 {
     errno_t rc;
     rsize_t count;
-    int std_count;
+    size_t std_count;
     unsigned int testno = 0;
 
 
@@ -54,7 +54,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
     }
 
 /*--------------------------------------------------*/
-/* 3  Test for NULL Count ouput check                       */
+/* 3  Test for NULL Count output check                       */
     printf("Test #%d: NULL Count parameter Check: \n", ++testno);
 
     rc = strcspn_s(str1, LEN, str2, LEN, NULL);
@@ -143,7 +143,7 @@ printf("Test #%d: NULL Scan String Check\n", ++testno);
 
     std_count = strcspn(str1, str2);
     if (count != std_count) {
-        printf("%s %u  count=%zu  std_count=%d  rc=%d \n",
+        printf("%s %u  count=%zu  std_count=%ld  rc=%d \n",
                      __FUNCTION__, __LINE__,  count, std_count, rc);
     }
 

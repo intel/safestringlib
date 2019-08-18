@@ -16,7 +16,7 @@ int test_strcpyfld_s()
     errno_t rc;
     uint32_t i;
     rsize_t len;
-    rsize_t slen;
+    rsize_t slen = 1;
 
     char   str1[LEN];
     char   str2[LEN];
