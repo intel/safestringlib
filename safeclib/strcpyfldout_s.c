@@ -48,7 +48,7 @@
  *    The strcpyfldout_s function copies slen characters from
  *    the character array pointed to by src into the string
  *    pointed to by dest. A null is included to properly
- *    termiante the dest string. The copy operation does not
+ *    terminate the dest string. The copy operation does not
  *    stop on the null character as function copies dmax
  *    characters.
  *

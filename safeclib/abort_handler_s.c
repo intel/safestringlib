@@ -69,6 +69,7 @@ void abort_handler_s(const char *msg, void *ptr, errno_t error)
 {
 	slprintf("ABORT CONSTRAINT HANDLER: (%u) %s\n", error,
 		 (msg) ? msg : "Null message");
+	(void) ptr; // to suppress unused variable warning
 	slabort();
 }
 EXPORT_SYMBOL(abort_handler_s)

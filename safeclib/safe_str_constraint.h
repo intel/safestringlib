@@ -55,6 +55,7 @@ static inline void handle_error(char *orig_dest, rsize_t orig_dmax,
     while (orig_dmax) { *orig_dest = '\0'; orig_dmax--; orig_dest++; }
 #else
     *orig_dest = '\0';
+    (void) orig_dmax; // to suppress unused variable warning
 #endif
 
     invoke_safe_str_constraint_handler(err_msg, NULL, err_code);
@@ -69,6 +70,7 @@ static inline void handle_wc_error(wchar_t *orig_dest, rsize_t orig_dmax,
     while (orig_dmax) { *orig_dest = L'\0'; orig_dmax--; orig_dest++; }
 #else
     *orig_dest = L'\0';
+    (void) orig_dmax; // to suppress unused variable warning
 #endif
 
     invoke_safe_str_constraint_handler(err_msg, NULL, err_code);

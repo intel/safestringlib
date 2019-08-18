@@ -45,7 +45,7 @@
  *              char *src,  rsize_t slen, char **first)
  *
  * DESCRIPTION
- *    Returns a pointer, first, to the first ocurrence of any character
+ *    Returns a pointer to the first occurrence of any character
  *    in src which is contained in dest.
  *
  * EXTENSION TO
@@ -62,7 +62,7 @@
  *
  *    slen     restricted length of string src
  *
- *    first    returned pointer to first occurence
+ *    first    returned pointer to first occurrence
  *
  * OUTPUT PARAMETERS
  *    none

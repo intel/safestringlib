@@ -77,6 +77,7 @@
 #define RCNEGATE(x)  (x)
 
 #define slprintf(...) fprintf(stderr, __VA_ARGS__)
+/* This abort() is intended to be void abort(void) from stdlib.h -- abort (3) man page */
 #define slabort()     abort()
 #ifdef DEBUG
 #define sldebug_printf(...) printf(__VA_ARGS__)
