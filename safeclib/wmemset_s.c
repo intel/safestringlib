@@ -98,7 +98,7 @@ wmemset_s (wchar_t *dest, wchar_t value, rsize_t len)
         return (RCNEGATE(ESLEMAX));
     }
 
-    mem_prim_set32(dest, len, value);
+    mem_prim_set32((uint32_t *)dest, len, value);
 
     return (RCNEGATE(EOK));
 }
