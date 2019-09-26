@@ -58,7 +58,9 @@ typedef int errno_t;
 
 #include <inttypes.h>
 #include <stdint.h>
+#ifndef __LOCAL_ERRNO__
 #include <errno.h>
+#endif
 
 typedef int errno_t;
 
