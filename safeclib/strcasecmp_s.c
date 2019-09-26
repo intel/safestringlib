@@ -32,7 +32,7 @@
 #include "safeclib_private.h"
 #include "safe_str_constraint.h"
 #include "safe_str_lib.h"
-
+#include <ctype.h>
 
 /**
  * NAME
