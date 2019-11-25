@@ -114,7 +114,7 @@ int test_strtok_s()
     p2tok = strtok_s(str1, &len, str2, &p2str);
     if (p2tok == NULL) {
         printf("%s %u token -%s-  remaining -%s-  \n",
-                     __FUNCTION__, __LINE__,  p2tok, p2str);
+                     __FUNCTION__, __LINE__,  "", p2str);
     }
 
 /*--------------------------------------------------*/
@@ -129,7 +129,7 @@ int test_strtok_s()
     p2tok = strtok_s(str1, &len, str2, &p2str);
     if (p2tok == NULL) {
         printf("%s %u token -%s-  remaining -%s-  \n",
-                     __FUNCTION__, __LINE__,  p2tok, p2str);
+                     __FUNCTION__, __LINE__,  "", p2str);
     }
 
     if (strcmp(p2tok, "mnopqrst")) {
