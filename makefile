@@ -2,7 +2,7 @@ IDIR = include
 MKDIR_P = mkdir -p
 CC=gcc
 CFLAGS=-I$(IDIR) -fstack-protector-strong -fPIE -fPIC -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security
-LDFLAGS=-z noexecstack -z relo -z now
+LDFLAGS=-z noexecstack -z now
 
 ODIR=obj
 OTDIR=objtest
@@ -48,7 +48,7 @@ $(OTDIR)/%.o: $(TESTDIR)/%.c $(TESTDIR)/test_private.h
 
 
 safestringtest: directories libsafestring.a $(TOBJ)
-	$(CC) $(LDFLAGS) -static -o $@ $(TOBJ) libsafestring.a
+	$(CC) $(LDFLAGS) -o $@ $(TOBJ) libsafestring.a
 
 
 .PHONY: directories
