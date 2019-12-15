@@ -32,6 +32,10 @@
 #ifndef __SAFE_STR_LIB_H__
 #define __SAFE_STR_LIB_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "safe_lib.h"
 #include <wchar.h>
 
@@ -289,5 +293,8 @@ wcsncpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, rsize_t slen);
 extern rsize_t
 wcsnlen_s(const wchar_t *dest, rsize_t dmax);
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif   /* __SAFE_STR_LIB_H__ */
