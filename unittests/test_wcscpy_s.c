@@ -279,7 +279,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
 
-    rc = memcmp_s(str2, LEN, str1, (sz+1)*sizeof(wchar_t), &ind );
+    rc = memcmp_s(str2, MAX, str1, (sz+1)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u   Error -%ls- <> -%ls-\n",
                      __FUNCTION__, __LINE__,  str2, str1);
@@ -300,7 +300,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
 
-    rc = memcmp_s(str1, LEN, str2, (sz)*sizeof(wchar_t), &ind );
+    rc = memcmp_s(str1, MAX, str2, (sz)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls- <> -%ls-  (smax=%lu) Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, str2, sz, rc );
@@ -325,7 +325,7 @@ printf("Test #%d:\n", ++testno);
             printf("%s %u (sz=%lu <> 5) Error rc=%u \n",
                          __FUNCTION__, __LINE__,  sz, rc );
     }
-    rc = memcmp_s(str1, LEN, str2, (sz)*sizeof(wchar_t), &ind );
+    rc = memcmp_s(str1, MAX, str2, (sz)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls- <> -%ls-  (size=%lu) Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, str2, sz, rc );
@@ -383,7 +383,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
 
-    rc = memcmp_s(str1, LEN, str2, (3)*sizeof(wchar_t), &ind );
+    rc = memcmp_s(str1, MAX, str2, (3)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );
@@ -404,7 +404,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
 
-    rc = memcmp_s(str1, LEN, str2, (3)*sizeof(wchar_t), &ind );
+    rc = memcmp_s(str1, MAX, str2, (3)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );
