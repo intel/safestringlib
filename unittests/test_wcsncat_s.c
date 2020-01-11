@@ -119,7 +119,7 @@ int test_wcsncat_s (void)
 /* 3  Test  Exceed Maximum possible size of source     */
 	printf("Test #%d:\n", ++testno);
 
-	rc = wcsncat_s(str1, LEN, str2, (RSIZE_MAX_STR+1));
+	rc = wcsncat_s(str1, LEN, str2, (RSIZE_MAX_STR/sizeof(wchar_t))+1);
 	if (rc != ESLEMAX) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc);
@@ -138,7 +138,7 @@ int test_wcsncat_s (void)
 /* 5  Test  Exceed Maximum size of destination     */
     printf("Test #%d:\n", ++testno);
 
-    rc = wcsncat_s(str1, (RSIZE_MAX_STR+1), str2, LEN);
+    rc = wcsncat_s(str1, (RSIZE_MAX_STR/sizeof(wchar_t))+1, str2, LEN);
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);

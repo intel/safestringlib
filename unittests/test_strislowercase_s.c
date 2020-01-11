@@ -14,7 +14,7 @@
 int test_strislowercase_s()
 {
     bool rc;
-    uint32_t len;
+    rsize_t len;
     char   str[LEN];
 
 /*--------------------------------------------------*/
@@ -28,7 +28,7 @@ int test_strislowercase_s()
 
 /*--------------------------------------------------*/
 
-    len = 99999;
+    len = RSIZE_MAX_STR+1;
     rc = strislowercase_s("test", len);
     if (rc != false) {
         printf("%s %u   Error rc=%u \n",

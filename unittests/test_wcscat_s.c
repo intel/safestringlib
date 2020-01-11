@@ -86,7 +86,7 @@ int test_wcscat_s (void)
 /* 4  Test  Exceed Maximum size of destination     */
     printf("Test #%d:\n", ++testno);
 
-    rc = wcscat_s(str1, (RSIZE_MAX_STR+1), str2);
+    rc = wcscat_s(str1, (RSIZE_MAX_STR/sizeof(wchar_t))+1, str2);
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);

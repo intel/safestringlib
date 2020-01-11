@@ -14,7 +14,7 @@ int test_strisdigit_s()
 {
     bool rc;
 
-    uint32_t len;
+    rsize_t len;
     char   str[LEN];
 
 /*--------------------------------------------------*/
@@ -37,7 +37,7 @@ int test_strisdigit_s()
 
 /*--------------------------------------------------*/
 
-    len = 99999;
+    len = RSIZE_MAX_STR+1;
     rc = strisdigit_s("1234", len);
     if (rc != false) {
         printf("%s %u   Error rc=%u \n",

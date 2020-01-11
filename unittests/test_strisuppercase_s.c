@@ -14,7 +14,7 @@
 int test_strisuppercase_s()
 {
     bool rc;
-    uint32_t len;
+    rsize_t len;
     char   str[LEN];
 
 /*--------------------------------------------------*/
@@ -28,7 +28,7 @@ int test_strisuppercase_s()
 
 /*--------------------------------------------------*/
 
-    len = 99999;
+    len = RSIZE_MAX_STR+1;
     rc = strisuppercase_s("test", len);
     if (rc != false) {
         printf("%s %u   Error rc=%u \n",

@@ -59,7 +59,7 @@
 #include "test_private.h"
 #include "safe_mem_lib.h"
 
-#define LEN   ( 256*4 )
+#define LEN   256
 
 static wchar_t  mem1[LEN+2];
 static wchar_t  mem2[LEN+2];
@@ -150,7 +150,7 @@ int test_wmemcpy_s (void)
 /* 8 Test for source overlaps into dest buffer */
 	printf("Test #%d:\n", ++testno);
 
-	rc = wmemcpy_s(&mem1[25], LEN, mem1, 26);
+	rc = wmemcpy_s(&mem1[25], LEN-25, mem1, 26);
 	if (rc != ESOVRLP) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc);

@@ -67,7 +67,7 @@
 #include "test_private.h"
 #include "safe_mem_lib.h"
 
-#define LEN   ( 256*4 )
+#define LEN   256
 
 static wchar_t  mem1[LEN+2];
 static wchar_t  mem2[LEN+2];
@@ -109,7 +109,7 @@ int test_wmemmove_s (void)
 /* 3  Test for too large destination size              */
     printf("Test #%d:\n", ++testno);
 
-    rc = wmemmove_s(mem1, RSIZE_MAX_MEM+1, mem2, LEN);
+    rc = wmemmove_s(mem1, (RSIZE_MAX_MEM/sizeof(wchar_t))+1, mem2, LEN);
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
@@ -404,7 +404,7 @@ int test_wmemmove_s (void)
 	for (i=0; i<LEN; i++) { mem1[i] = 35; }
 	for (i=0; i<LEN; i++) { mem2[i] = 55; }
 
-	rc = wmemmove_s((wchar_t)(((char *)mem1)+1), LEN, mem2, 10);
+	rc = wmemmove_s((wchar_t*)(((char *)mem1)+1), LEN, mem2, 10);
 	if (rc != EOK) {
 		printf("%s %u  Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc);
@@ -430,7 +430,7 @@ int test_wmemmove_s (void)
 	for (i=0; i<LEN; i++) { mem1[i] = 35; }
 	for (i=0; i<LEN; i++) { mem2[i] = 55; }
 
-	rc = wmemmove_s((wchar_t)(((char *)mem1)+2), LEN, mem2, 10);
+	rc = wmemmove_s((wchar_t*)(((char *)mem1)+2), LEN, mem2, 10);
 	if (rc != EOK) {
 		printf("%s %u  Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc);

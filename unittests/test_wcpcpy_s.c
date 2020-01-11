@@ -129,7 +129,7 @@ printf("Test #%d:\n", ++testno);
 /* 3  Test for too large destination size              */
     printf("Test #%d:\n", ++testno);
 
-    ret = wcpcpy_s(str1, (RSIZE_MAX_STR+1), str2, &rc);
+    ret = wcpcpy_s(str1, (RSIZE_MAX_STR/sizeof(wchar_t))+1, str2, &rc);
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
