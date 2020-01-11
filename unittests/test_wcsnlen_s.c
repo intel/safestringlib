@@ -92,7 +92,7 @@ printf("Test #%d:\n", ++testno);
 /* 3  Test for length is equal to maximum */
     printf("Test #%d:\n", ++testno);
 
-    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 41);
 
     rc = wcsnlen_s(str1, 41);
     if (rc != 40) {
@@ -104,7 +104,7 @@ printf("Test #%d:\n", ++testno);
 /* 4  Test for return length is equal to dmax */
 	printf("Test #%d:\n", ++testno);
 
-	wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+	wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 41);
 
 	rc = wcsnlen_s(str1, 20);
 	if (rc != 20) {

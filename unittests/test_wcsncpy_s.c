@@ -200,7 +200,7 @@ printf("Test #%d:\n", ++testno);
 /* 7  Test for Src is same as dest, overlapping buffers not allowed */
     printf("Test #%d:\n", ++testno);
 
-    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 41);
 
     rc = wcsncpy_s(str1, 5, str1, LEN);
     if (rc != ESOVRLP) {
@@ -225,7 +225,7 @@ printf("Test #%d:\n", ++testno);
 /* 8  Test overlapping buffers fails            */
     printf("Test #%d:\n", ++testno);
 
-    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 41);
 
 	rc = wcsncpy_s(str1, LEN, &str1[5], 30);
     if (rc != ESOVRLP) {
@@ -329,7 +329,7 @@ printf("Test #%d:\n", ++testno);
 /* 12  Test overlapping buffers fails (dest > src )   */
 	printf("Test #%d:\n", ++testno);
 
-	wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+	wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 41);
 
 	rc = wcsncpy_s(&str1[5], LEN, str1, 30);
 	if (rc != ESOVRLP) {
