@@ -15,7 +15,7 @@ int test_strljustify_s()
 {
     errno_t rc;
     int ind;
-    uint32_t len;
+    rsize_t len;
     char   str[LEN];
 
 /*--------------------------------------------------*/
@@ -38,7 +38,7 @@ int test_strljustify_s()
 
 /*--------------------------------------------------*/
 
-    len = 99999;
+    len = RSIZE_MAX_STR+1;
     rc = strljustify_s("test", len);
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",

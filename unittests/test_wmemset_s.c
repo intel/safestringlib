@@ -101,7 +101,7 @@ int test_wmemset_s (void)
 
     value = 34;
 
-    rc = wmemset_s(mem1, value, (RSIZE_MAX_MEM+1));
+    rc = wmemset_s(mem1, value, (RSIZE_MAX_MEM/sizeof(wchar_t))+1);
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__, rc);

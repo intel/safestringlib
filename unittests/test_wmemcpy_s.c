@@ -59,7 +59,7 @@
 #include "test_private.h"
 #include "safe_mem_lib.h"
 
-#define LEN   ( 256*4 )
+#define LEN   256
 
 static wchar_t  mem1[LEN+2];
 static wchar_t  mem2[LEN+2];

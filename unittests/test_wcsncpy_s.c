@@ -70,8 +70,8 @@
 #include "test_private.h"
 #include "safe_str_lib.h"
 
+#define LEN   128
 #define MAX   ( 128*4 )
-#define LEN   ( 128*4 )
 
 static wchar_t   str1[LEN];
 static wchar_t   str2[LEN];
@@ -118,7 +118,7 @@ printf("Test #%d:\n", ++testno);
 /* 3  Test for too large destination size              */
 	printf("Test #%d:\n", ++testno);
 
-	rc = wcsncpy_s(str1, (RSIZE_MAX_STR+1), str2, LEN);
+	rc = wcsncpy_s(str1, (RSIZE_MAX_STR/sizeof(wchar_t))+1, str2, LEN);
 	if (rc != ESLEMAX) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
@@ -177,7 +177,7 @@ printf("Test #%d:\n", ++testno);
 /* 6  Test for too large source size              */
 	printf("Test #%d:\n", ++testno);
 
-	rc = wcsncpy_s(str1, LEN, str2, (RSIZE_MAX_STR+1));
+	rc = wcsncpy_s(str1, LEN, str2, (RSIZE_MAX_STR/sizeof(wchar_t))+1);
 	if (rc != ESLEMAX) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );

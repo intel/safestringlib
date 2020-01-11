@@ -53,8 +53,8 @@
 #include "test_private.h"
 #include "safe_str_lib.h"
 
+#define LEN   128
 #define MAX   ( 128*4 )
-#define LEN   ( 128*4 )
 
 static wchar_t   str1[LEN];
 

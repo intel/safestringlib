@@ -14,7 +14,7 @@
 int test_strispassword_s()
 {
     bool rc;
-    uint32_t len;
+    rsize_t len;
     char   str[LEN];
 
 /*--------------------------------------------------*/
