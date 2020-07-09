@@ -1,8 +1,8 @@
 IDIR = include
 MKDIR_P = mkdir -p
 CC=gcc
-CFLAGS=-I$(IDIR) -fstack-protector-strong -fPIE -fPIC -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security
-LDFLAGS=-z noexecstack -z relo -z now
+CFLAGS+=-I$(IDIR) -fstack-protector-strong -fPIE -fPIC -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security
+LDFLAGS+=-z noexecstack -z relo -z now
 
 ODIR=obj
 OTDIR=objtest
@@ -30,7 +30,7 @@ CLIB =$(addprefix $(SRCDIR)/,$(_CLIB))
 
 
 $(ODIR)/%.o: $(SRCDIR)/%.c $(DEPS) $(ODEPS)
-	$(CC) $(LDFLAGS) -c -o $@ $< $(CFLAGS)
+	$(CC) $(CPPFLAGS) $(LDFLAGS) -c -o $@ $< $(CFLAGS)
 
 libsafestring.a: $(OBJ)
 	ar rcs $@ $^
@@ -44,7 +44,7 @@ TCLIB =$(addprefix $(TESTDIR)/,$(_TESTFUNCS))
 
 
 $(OTDIR)/%.o: $(TESTDIR)/%.c $(TESTDIR)/test_private.h
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) $(CPPFLAGS) -c -o $@ $< $(CFLAGS)
 
 
 safestringtest: directories libsafestring.a $(TOBJ)
