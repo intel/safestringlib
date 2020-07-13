@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.1)
-project(safestring)
+project(safestring VERSION 1.0)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 
 option(BUILD_UNITTESTS "Build also project unit-tests" OFF)
 
@@ -137,8 +142,16 @@ set(SOURCES
     $<$<BOOL:${BUILD_WMEMSET}>:safeclib/wmemset_s.c>
     )
 
+set(HEADER_FILES include/safe_lib_errno.h
+	include/safe_lib.h
+	include/safe_str_lib.h
+	include/safe_mem_lib.h
+	include/safe_types.h
+	include/snprintf_s.h)
+
 include_directories(include)
 
+# conains all the objects individual files *.o
 add_library(${PROJECT_NAME}_objlib OBJECT ${SOURCES})
 set_target_properties(${PROJECT_NAME}_objlib
                       PROPERTIES POSITION_INDEPENDENT_CODE ON)
@@ -176,10 +189,17 @@ endif()
 
 target_compile_options(${PROJECT_NAME}_objlib PRIVATE $<$<CONFIG:RELEASE>:-s>)
 
-add_library(${PROJECT_NAME}_shared SHARED $<TARGET_OBJECTS:${PROJECT_NAME}_objlib>)
-add_library(${PROJECT_NAME}_static STATIC $<TARGET_OBJECTS:${PROJECT_NAME}_objlib>)
-target_include_directories(${PROJECT_NAME}_shared PUBLIC include)
-target_include_directories(${PROJECT_NAME}_static PUBLIC include)
+#add_library(${PROJECT_NAME} SHARED $<TARGET_OBJECTS:${PROJECT_NAME}_objlib>)
+#add_library(${PROJECT_NAME} STATIC $<TARGET_OBJECTS:${PROJECT_NAME}_objlib>)
+add_library(${PROJECT_NAME} ${SOURCES})
+#set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER ${HEADER_FILES})
+#target_include_directories(${PROJECT_NAME}_shared PUBLIC include)
+#target_include_directories(${PROJECT_NAME}_static PUBLIC include)
+#target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+install(TARGETS ${PROJECT_NAME} 
+	LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+install(FILES ${HEADER_FILES} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${PROJECT_NAME})
 
 if(BUILD_UNITTESTS)
   add_subdirectory(unittests)
