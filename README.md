@@ -1,4 +1,9 @@
 # safestringlib
+Simply update the cmake file so that we can make install to a
+particular prefix. My main use of this library is for BWA-MEM2.
+After update, BWM-MEM2 build would be more smooth.
+
+
 The Secure Development Lifecycle (SDL) recommends banning certain C Library functions because they directly contribute 
 to security vulnerabilities such as buffer overflows. However routines for the manipulation of strings and memory buffers 
 are common in software and firmware, and are essential to accomplish certain programming tasks. Safer replacements for 
