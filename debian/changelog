@@ -1,0 +1,5 @@
+safestringlib (1.0.0-1) UNRELEASED; urgency=low
+
+  * Initial release as Debian package.
+
+ -- Francois Dugast <francois.dugast@intel.com>  Fri, 05 Mar 2021 12:19:50 +0000
