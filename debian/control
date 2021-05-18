@@ -1,0 +1,25 @@
+Source: safestringlib
+Section: libs
+Priority: optional
+Maintainer: Francois Dugast <francois.dugast@intel.com>
+Build-Depends: cmake, debhelper (>=11~)
+Standards-Version: 4.1.4
+Homepage: https://01.org/safestring-library
+Vcs-Git: https://github.com/intel/safestringlib
+
+Package: safestringlib
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: The Safe String Library is a C Library
+ providing string and memory buffer routines that
+ protect against buffer overflows.
+
+Package: safestringlib-dev
+Architecture: any
+Multi-Arch: foreign
+Depends: safestringlib ${misc:Depends}, ${shlibs:Depends}
+Description: The Safe String Library is a C Library
+ providing string and memory buffer routines that
+ protect against buffer overflows. This package contains
+ the development files.
