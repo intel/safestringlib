@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Francois Dugast <francois.dugast@intel.com>
 Build-Depends: cmake, debhelper (>=11~)
 Standards-Version: 4.1.4
-Homepage: https://01.org/safestring-library/overview
+Homepage: https://01.org/safestring-library
 Vcs-Git: https://github.com/intel/safestringlib
 
 Package: safestringlib
