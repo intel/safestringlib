@@ -53,6 +53,9 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
+/libsafestring.a
+/objtest
+/safestringtest
 
 # MSTest test Results
 [Tt]est[Rr]esult*/

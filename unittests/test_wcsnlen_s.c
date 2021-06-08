@@ -64,6 +64,7 @@ extern errno_t wmemset_s (wchar_t *dest, wchar_t value, rsize_t len);
 int test_wcsnlen_s (void)
 {
     errno_t rc;
+    int errs = 0;
     unsigned int testno = 0;
 
 
@@ -76,6 +77,7 @@ printf("Test #%d:\n", ++testno);
     if (rc != 0) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -86,6 +88,7 @@ printf("Test #%d:\n", ++testno);
 	if (rc != 0) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
+		++errs;
 	}
 
 /*--------------------------------------------------*/
@@ -98,6 +101,7 @@ printf("Test #%d:\n", ++testno);
     if (rc != 40) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -110,6 +114,7 @@ printf("Test #%d:\n", ++testno);
 	if (rc != 20) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
+		++errs;
 	}
 
 /*--------------------------------------------------*/
@@ -122,6 +127,7 @@ printf("Test #%d:\n", ++testno);
 	if (rc != 0) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
+		++errs;
 	}
 
 
@@ -136,6 +142,7 @@ printf("Test #%d:\n", ++testno);
     if (rc != 1) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -148,9 +155,10 @@ printf("Test #%d:\n", ++testno);
     if (rc != 2) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 
-    return (0);
+    return errs;
 }
 

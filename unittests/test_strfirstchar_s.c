@@ -11,9 +11,10 @@
 #define LEN   ( 128 )
 #define SHORT_LEN  ( 5 )
 
-int test_strfirstchar_s()
+int test_strfirstchar_s(void)
 {
     errno_t rc;
+    int errs = 0;
     rsize_t  len;
 
     char *first;
@@ -25,11 +26,13 @@ int test_strfirstchar_s()
     if (rc != ESNULLP) {
         printf("%s %u  Error  str1=%p  first=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, first, rc);
+        ++errs;
     }
 
     if (first) {
         printf("%s %u  Error  str1=%p  first=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, first, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -38,6 +41,7 @@ int test_strfirstchar_s()
     if (rc != ESNULLP) {
         printf("%s %u  Error  str1=%p  first=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, first, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -46,11 +50,13 @@ int test_strfirstchar_s()
     if (rc != ESZEROL) {
         printf("%s %u  Error  str1=%p  first=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, first, rc);
+        ++errs;
     }
 
     if (first) {
         printf("%s %u  Error  str1=%p  first=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, first, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -59,11 +65,13 @@ int test_strfirstchar_s()
     if (rc != ESLEMAX) {
         printf("%s %u  Error  str1=%p  first=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, first, rc);
+        ++errs;
     }
 
     if (first) {
         printf("%s %u  Error  str1=%p  first=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, first, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -74,11 +82,13 @@ int test_strfirstchar_s()
     if (rc != ESNOTFND) {
         printf("%s %u  Error  str1=%p  first=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, first, rc);
+        ++errs;
     }
 
     if (first) {
         printf("%s %u  Error  str1=%p  first=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, first, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -89,11 +99,13 @@ int test_strfirstchar_s()
     if (rc != ESNOTFND) {
         printf("%s %u  Error  str1=%p  first=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, first, rc);
+        ++errs;
     }
 
     if (first) {
         printf("%s %u  Error  str1=%p  first=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, first, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -104,11 +116,13 @@ int test_strfirstchar_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (first != &str1[1]) {
         printf("%s %u  Error  str1=%p  first=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, first, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -120,11 +134,13 @@ int test_strfirstchar_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (first != &str1[14]) {
         printf("%s %u  Error  str1=%p  first=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, first, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -135,14 +151,16 @@ int test_strfirstchar_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (first != &str1[14]) {
         printf("%s %u  Error  str1=%p  first=%p  rc=%d \n",
                      __FUNCTION__, __LINE__,  str1, first, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }

@@ -17,6 +17,7 @@ static char   str2[LEN];
 int test_strcmp_s (void)
 {
     errno_t rc;
+    int errs = 0;
     int ind;
     int std_ind;
 
@@ -26,11 +27,13 @@ int test_strcmp_s (void)
     if (rc != ESNULLP) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%d rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -39,11 +42,13 @@ int test_strcmp_s (void)
     if (rc != ESNULLP) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%d rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -52,6 +57,7 @@ int test_strcmp_s (void)
     if (rc != ESNULLP) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -60,11 +66,13 @@ int test_strcmp_s (void)
     if (rc != ESZEROL) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%d rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -73,11 +81,13 @@ int test_strcmp_s (void)
     if (rc != ESLEMAX) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%d rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -89,17 +99,20 @@ int test_strcmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%d rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
     std_ind = strcmp(str1, str2);
     if (ind != std_ind) {
         printf("%s %u  ind=%d  std_ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, std_ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -111,11 +124,13 @@ int test_strcmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -128,17 +143,20 @@ int test_strcmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != (-32)) {
         printf("%s %u  Error ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     std_ind = strcmp(str1, str2);
     if (ind != std_ind) {
         printf("%s %u  ind=%d  std_ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, std_ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -151,17 +169,20 @@ int test_strcmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 32) {
         printf("%s %u  Error ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     std_ind = strcmp(str1, str2);
     if (ind != std_ind) {
         printf("%s %u  ind=%d  std_ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, std_ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -172,11 +193,13 @@ int test_strcmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     /* be sure the results are the same as strcmp */
@@ -184,6 +207,7 @@ int test_strcmp_s (void)
     if (ind != std_ind) {
         printf("%s %u  ind=%d  std_ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, std_ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -195,11 +219,13 @@ int test_strcmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind <= 0) {
         printf("%s %u  Error ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     /* be sure the results are the same as strcmp */
@@ -207,6 +233,7 @@ int test_strcmp_s (void)
     if (ind != std_ind) {
         printf("%s %u  ind=%d  std_ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, std_ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -218,11 +245,13 @@ int test_strcmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind >= 0) {
         printf("%s %u  Error ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     /* be sure the results are the same as strcmp */
@@ -230,11 +259,12 @@ int test_strcmp_s (void)
     if (ind != std_ind) {
         printf("%s %u  ind=%d  std_ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, std_ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }
 
 

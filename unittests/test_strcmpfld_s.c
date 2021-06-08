@@ -11,9 +11,10 @@
 #define MAX   ( 128 )
 #define LEN   ( 128 )
 
-int test_strcmpfld_s()
+int test_strcmpfld_s(void)
 {
     errno_t rc;
+    int errs = 0;
     uint32_t i;
     rsize_t len;
     int ind;
@@ -26,8 +27,9 @@ int test_strcmpfld_s()
 
     rc = strcmpfld_s(NULL, LEN, str2, &ind);
     if (rc != ESNULLP) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -35,8 +37,9 @@ int test_strcmpfld_s()
     len = 5;
     rc = strcmpfld_s(str1, len, NULL, &ind);
     if (rc != ESNULLP) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -44,24 +47,27 @@ int test_strcmpfld_s()
     len = 5;
     rc = strcmpfld_s(str1, len, str2, NULL);
     if (rc != ESNULLP) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
     rc = strcmpfld_s(str1, 0, str2, &ind);
     if (rc != ESZEROL) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
     rc = strcmpfld_s(str1, (RSIZE_MAX_STR+1), str2, &ind);
     if (rc != ESLEMAX) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -73,14 +79,16 @@ int test_strcmpfld_s()
     len = 1;
     rc = strcmpfld_s(str1, len, str2, &ind);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<len; i++) {
         if (str1[i] != str2[i]) {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
+               __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+            ++errs;
         }
     }
 
@@ -92,14 +100,16 @@ int test_strcmpfld_s()
     len = 2;
     rc = strcmpfld_s(str1, len, str2, &ind);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<len; i++) {
         if (str1[i] != str2[i]) {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
+               __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+            ++errs;
         }
     }
 
@@ -111,14 +121,16 @@ int test_strcmpfld_s()
     len = 3;
     rc = strcmpfld_s(str1, len, str2, &ind);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<len; i++) {
         if (str1[i] != str2[i]) {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
+                   __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+	    ++errs;
         }
     }
 
@@ -130,14 +142,16 @@ int test_strcmpfld_s()
     len = strlen(str1);
     rc = strcmpfld_s(str1, len, str2, &ind);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<len; i++) {
         if (str1[i] != str2[i]) {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
+                   __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+	    ++errs;
         }
     }
 
@@ -153,14 +167,16 @@ int test_strcmpfld_s()
     len = strlen(str1);
     rc = strcmpfld_s(str1, len, str2, &ind);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<len; i++) {
         if (str1[i] != str2[i]) {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
+                   __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+	    ++errs;
         }
     }
 
@@ -177,14 +193,16 @@ int test_strcmpfld_s()
 
     rc = strcmpfld_s(str1, len, str2, &ind);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<len; i++) {
         if (str1[i] != str2[i]) {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
+                   __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+	    ++errs;
         }
     }
 
@@ -199,14 +217,16 @@ int test_strcmpfld_s()
 
     rc = strcmpfld_s(str1, len, str2, &ind);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<len; i++) {
         if (str1[i] != str2[i]) {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
+                   __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+	    ++errs;
         }
     }
 
@@ -223,18 +243,20 @@ int test_strcmpfld_s()
 
     rc = strcmpfld_s(str1, len, str2, &ind);
     if (rc != EOK) {
-        debug_printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     for (i=0; i<len; i++) {
         if (str1[i] != str2[i]) {
-            debug_printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
-                     __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+            printf("%s %u  diff s1[%d]=%d  s2[%d]=%d  ind=%d  rc=%u \n",
+                   __FUNCTION__, __LINE__, i, str1[i], i, str2[i],  ind, rc );
+	    ++errs;
         }
     }
 
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }

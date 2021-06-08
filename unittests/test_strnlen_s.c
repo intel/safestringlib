@@ -13,6 +13,7 @@
 int test_strnlen_s (void)
 {
     rsize_t len;
+    int errs = 0;
     rsize_t std_len;
     rsize_t max_len;
 
@@ -23,6 +24,7 @@ int test_strnlen_s (void)
     if (len != 0) {
         printf("%s %u   Len=%zu \n",
                      __FUNCTION__, __LINE__,  len);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -32,6 +34,7 @@ int test_strnlen_s (void)
     if (len != 0) {
         printf("%s %u   Len=%zu \n",
                      __FUNCTION__, __LINE__,  len);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -41,6 +44,7 @@ int test_strnlen_s (void)
     if (len != 0) {
         printf("%s %u   Len=%zu \n",
                      __FUNCTION__, __LINE__,  len);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -53,6 +57,7 @@ int test_strnlen_s (void)
     if (std_len != len) {
         printf("%s %u   std_len=%zu  len=%zu  \n",
                      __FUNCTION__, __LINE__,  std_len, len);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -65,6 +70,7 @@ int test_strnlen_s (void)
     if (std_len != len) {
         printf("%s %u   std_len=%zu  len=%zu  \n",
                      __FUNCTION__, __LINE__,  std_len, len);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -77,6 +83,7 @@ int test_strnlen_s (void)
     if (std_len != len) {
         printf("%s %u   std_len=%zu  len=%zu  \n",
                      __FUNCTION__, __LINE__,  std_len, len);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -89,6 +96,7 @@ int test_strnlen_s (void)
     if (std_len != len) {
         printf("%s %u   std_len=%zu  len=%zu  \n",
                      __FUNCTION__, __LINE__,  std_len, len);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -99,6 +107,7 @@ int test_strnlen_s (void)
     if (len != max_len) {
         printf("%s %u   len=%zu  \n",
                      __FUNCTION__, __LINE__, len);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -109,6 +118,7 @@ int test_strnlen_s (void)
     if (len != max_len) {
         printf("%s %u   len=%zu  \n",
                      __FUNCTION__, __LINE__, len);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -119,11 +129,12 @@ int test_strnlen_s (void)
     if (len != max_len) {
         printf("%s %u   len=%zu  \n",
                      __FUNCTION__, __LINE__, len);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }
 
 

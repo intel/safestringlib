@@ -78,6 +78,7 @@ extern errno_t wmemmove_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, size_
 int test_wmemmove_s (void)
 {
     errno_t rc;
+    int errs = 0;
     uint32_t i;
     rsize_t len;
     unsigned int testno = 0;
@@ -92,6 +93,7 @@ int test_wmemmove_s (void)
     if (rc != ESNULLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -103,6 +105,7 @@ int test_wmemmove_s (void)
     if (rc != ESZEROL) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -113,6 +116,7 @@ int test_wmemmove_s (void)
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -123,6 +127,7 @@ int test_wmemmove_s (void)
     if (rc != ESNULLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -133,6 +138,7 @@ int test_wmemmove_s (void)
     if (rc != ESZEROL) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -143,6 +149,7 @@ int test_wmemmove_s (void)
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -153,6 +160,7 @@ int test_wmemmove_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -163,6 +171,7 @@ int test_wmemmove_s (void)
 	if (rc != EOK) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc);
+		++errs;
 	}
 
 
@@ -178,16 +187,19 @@ int test_wmemmove_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     } else {
 
     	if ( mem1[0] != 40 && mem1[10] != 40) {
             printf("%d - %d m1[0]=%d  m1[10]=%d should be 40  \n",
                  __LINE__, i, mem1[0], mem1[10]);
+            ++errs;
     	}
 		for (i=1; i<10; i++) {
 			if (mem1[i] != 44) {
 				printf("%d - %d m1=%d  should be 44  \n",
 					 __LINE__, i, mem1[i]);
+				++errs;
 			}
 		}
     }
@@ -204,19 +216,21 @@ int test_wmemmove_s (void)
     if (rc == EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
-
+        ++errs;
     } else {
 
 		for (i=0; i<len; i++) {
 			if (mem1[i] != 0) {
 				printf("%d - %d m1=%d  m2=%d  \n",
 					 __LINE__, i, mem1[i], mem2[i]);
+				++errs;
 			}
 		}
 
 		if (mem1[i] != 33) {
 			printf("%d - %lu m1=%d  m2=%d  \n",
 					 __LINE__, len, mem1[len], mem2[len]);
+			++errs;
 		}
 
     }
@@ -233,19 +247,21 @@ int test_wmemmove_s (void)
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
-
+        ++errs;
     } else {
 
 		for (i=0; i<len; i++) {
 			if (mem1[i] != 0) {
 				printf("%d - %d m1=%d  m2=%d  \n",
 					 __LINE__, i, mem1[i], mem2[i]);
+				++errs;
 			}
 		}
 
 		if (mem1[len] != 33) {
 				printf("%d - %lu m1=%d  m2=%d  \n",
 					 __LINE__, len, mem1[len], mem2[len]);
+				++errs;
 		}
     }
 
@@ -261,7 +277,7 @@ int test_wmemmove_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
-
+        ++errs;
     } else {
 
 		/* verify mem1 was copied */
@@ -269,12 +285,14 @@ int test_wmemmove_s (void)
 			if (mem1[i] != mem2[i]) {
 				printf("%d - %d m1=%d <> m2=%d  \n",
 					 __LINE__, i, mem1[i], mem2[i]);
+				++errs;
 			}
 		}
 
 		if (mem1[len] != 33 && mem1[len+1] != 33) {
 				printf("%d - %lu m1[len]=%d  m1[len+1]=%d  \n",
 					 __LINE__, len, mem1[len], mem1[len+1]);
+				++errs;
 		}
 
     }
@@ -291,6 +309,7 @@ int test_wmemmove_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     } else {
 
 		/* verify mem1 was copied properly */
@@ -298,6 +317,7 @@ int test_wmemmove_s (void)
 			if (mem1[i] != 44) {
 				printf("%d - %d m1=%d  m2=%d  \n",
 					 __LINE__, i, mem1[i], mem2[i]);
+				++errs;
 			}
 		}
 
@@ -315,25 +335,29 @@ int test_wmemmove_s (void)
 	if (rc != EOK) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__, rc);
+		++errs;
 	} else {
 
 		/* verify mem1 was copied properly */
 		for (i=0; i<10; i++) {
-			if (mem1[i] != i) {
+			if ((uint32_t)mem1[i] != i) {
 				printf("%d - %d m1=%d  m2=%d  \n",
 					 __LINE__, i, mem1[i], mem2[i]);
+				++errs;
 			}
 		}
 		for (i=10; i<LEN; i++) {
-			if (mem1[i] != i-10) {
+			if ((uint32_t)mem1[i] != i-10) {
 				printf("%d - %d m1=%d  should=%d  \n",
 					 __LINE__, i, mem1[i], i-10);
+				++errs;
 			}
 		}
 
 		if ( mem1[LEN] != LEN && mem1[LEN+1] != LEN+1) {
 			printf("%d - %d m1[LEN]=%d  mem1[LEN+1]=%d should be 1024 & 1025  \n",
 				 __LINE__, i, mem1[LEN], mem1[LEN+1]);
+			++errs;
 		}
 
 	}
@@ -349,6 +373,7 @@ int test_wmemmove_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     }
 
 
@@ -364,12 +389,14 @@ int test_wmemmove_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     } else {
 
 		for (i=0; i<len; i++) {
 			if (mem1[i] != 55) {
 				printf("%d - %d m1=%d\n",
 					 __LINE__, i, mem1[i]);
+				++errs;
 			}
 		}
 
@@ -386,12 +413,14 @@ int test_wmemmove_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc);
+        ++errs;
     } else {
 
 		for (i=0; i<LEN/2; i++) {
 			if (mem1[i] != 55) {
 				printf("%d - %d m1=%d  m2=%d  \n",
 					 __LINE__, i, mem1[i], mem2[i]);
+				++errs;
 			}
 		}
     }
@@ -404,20 +433,23 @@ int test_wmemmove_s (void)
 	for (i=0; i<LEN; i++) { mem1[i] = 35; }
 	for (i=0; i<LEN; i++) { mem2[i] = 55; }
 
-	rc = wmemmove_s((wchar_t)(((char *)mem1)+1), LEN, mem2, 10);
+	rc = wmemmove_s((wchar_t *)(((char *)mem1)+1), LEN, mem2, 10);
 	if (rc != EOK) {
 		printf("%s %u  Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc);
+		++errs;
 	} else {
 
 		if ( mem1[0] != 0x00003723 ) {
 			printf("%d - %d first char memory incorrect m1=%04x  \n",
 				 __LINE__, i, mem1[i]);
+			++errs;
 		}
 		for (i=1; i<10; i++) {
 			if (mem1[i] != 0x00003700) {
 				printf("%d - %d m1=%04x  \n",
 					 __LINE__, i, mem1[i]);
+				++errs;
 			}
 		}
 	}
@@ -430,20 +462,23 @@ int test_wmemmove_s (void)
 	for (i=0; i<LEN; i++) { mem1[i] = 35; }
 	for (i=0; i<LEN; i++) { mem2[i] = 55; }
 
-	rc = wmemmove_s((wchar_t)(((char *)mem1)+2), LEN, mem2, 10);
+	rc = wmemmove_s((wchar_t *)(((char *)mem1)+2), LEN, mem2, 10);
 	if (rc != EOK) {
 		printf("%s %u  Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc);
+		++errs;
 	} else {
 
 		if ( mem1[0] != 0x00370023 ) {
 			printf("%d - %d first char memory incorrect m1=%04x  \n",
 				 __LINE__, i, mem1[i]);
+			++errs;
 		}
 		for (i=1; i<10; i++) {
 			if (mem1[i] != 0x00370000) {
 				printf("%d - %d m1=%04x  \n",
 					 __LINE__, i, mem1[i]);
+				++errs;
 			}
 		}
 	}
@@ -451,6 +486,6 @@ int test_wmemmove_s (void)
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }
 

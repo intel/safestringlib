@@ -17,6 +17,7 @@ static char   str2[LEN];
 int test_strcasecmp_s (void)
 {
     errno_t rc;
+    int errs = 0;
 
     int ind;
     int std_ind;
@@ -27,11 +28,13 @@ int test_strcasecmp_s (void)
     if (rc != ESNULLP) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%d rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -40,11 +43,13 @@ int test_strcasecmp_s (void)
     if (rc != ESNULLP) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%d rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -53,6 +58,7 @@ int test_strcasecmp_s (void)
     if (rc != ESNULLP) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -61,11 +67,13 @@ int test_strcasecmp_s (void)
     if (rc != ESZEROL) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%d rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -74,11 +82,13 @@ int test_strcasecmp_s (void)
     if (rc != ESLEMAX) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%d rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -90,17 +100,20 @@ int test_strcasecmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%d rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
     std_ind = strcasecmp(str1, str2);
     if (ind != std_ind) {
         printf("%s %u  ind=%d  std_ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, std_ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -112,11 +125,13 @@ int test_strcasecmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%d rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 /*--------------------------------------------------*/
 
@@ -127,11 +142,13 @@ int test_strcasecmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%d rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -143,11 +160,13 @@ int test_strcasecmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error  ind=%d rc=%d \n",
                      __FUNCTION__, __LINE__, ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -159,17 +178,20 @@ int test_strcasecmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
     std_ind = strcasecmp(str1, str2);
     if (ind != std_ind) {
         printf("%s %u  ind=%d  std_ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, std_ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -181,11 +203,13 @@ int test_strcasecmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -196,11 +220,13 @@ int test_strcasecmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Error ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -212,11 +238,13 @@ int test_strcasecmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != ('I' - 'E')) {
         printf("%s %u  Error ind=%d  rc=%d \n",
                      __FUNCTION__, __LINE__,  ind, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -228,15 +256,17 @@ int test_strcasecmp_s (void)
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (ind != ('1' - 'I')) {
         printf("%s %u  Error ind=%d  rc=%d  %d \n",
                      __FUNCTION__, __LINE__,  ind, rc, ('1' - 'I'));
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }
 

@@ -13,8 +13,9 @@
 
 extern errno_t strcasestr_s (char *dest, rsize_t dmax, const char *src, rsize_t slen, char **substring);
 
-int test_strcasestr_s()
+int test_strcasestr_s(void)
 {
+    int errs = 0;
     errno_t rc;
     char *sub;
     char *std_sub;
@@ -32,11 +33,13 @@ int test_strcasestr_s()
     if (rc != ESNULLP) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -45,11 +48,13 @@ int test_strcasestr_s()
     if (rc != ESNULLP) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -58,6 +63,7 @@ int test_strcasestr_s()
     if (rc != ESNULLP) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -66,11 +72,13 @@ int test_strcasestr_s()
     if (rc != ESZEROL) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -79,11 +87,13 @@ int test_strcasestr_s()
     if (rc != ESLEMAX) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -92,11 +102,13 @@ int test_strcasestr_s()
     if (rc != ESZEROL) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -105,11 +117,13 @@ int test_strcasestr_s()
     if (rc != ESLEMAX) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -121,22 +135,25 @@ int test_strcasestr_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != str1) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     /* compare to legacy */
     std_sub = strcasestr(str1, str2);
-    if ((int)sub != (int)std_sub) { // comparison to handle 32-bit library return and 64-bit library return
+    if (sub != std_sub) {
         printf("%s %u  Error strcasestr_s() does not have same return as strcasestr() when str1 & str2 are zero length strings. rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
         printf("str1:[%s]\n", str1);
         printf("str2:[%s]\n", str2);
         printf("strcasestr_s returns:[%p]\n", sub);
         printf("strcasestr   returns:[%p]\n\n", std_sub);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -148,22 +165,25 @@ int test_strcasestr_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != str1) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     /* compare to legacy */
     std_sub = strcasestr(str1, str2);
-    if ((int)sub != (int)std_sub) { // comparison to handle 32-bit library return and 64-bit library return
+    if (sub != std_sub) {
         printf("%s %u  Error strcasestr_s() does not have same return value as strcasestr() when str2 is zero length string. rc=%u \n",
                              __FUNCTION__, __LINE__, rc);
         printf("str1:[%s]\n", str1);
         printf("str2:[%s]\n", str2);
         printf("strcasestr_s returns:[%p]\n", sub);
         printf("strcasestr   returns:[%p]\n\n", std_sub);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -176,22 +196,25 @@ int test_strcasestr_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != str1) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     /* compare to legacy */
     std_sub = strcasestr(str1, str2);
-    if ((int)sub != (int)std_sub) { // comparison to handle 32-bit library return and 64-bit library return
+    if (sub != std_sub) {
         printf("%s %u  Error strcasestr_s() does not have same return value as strcasestr() when str2 is zero length string. rc=%u \n",
                                      __FUNCTION__, __LINE__, rc);
         printf("str1:[%s]\n", str1);
         printf("str2:[%s]\n", str2);
         printf("strcasestr_s returns:[%p]\n", sub);
         printf("strcasestr   returns:[%p]\n\n", std_sub);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -204,11 +227,13 @@ int test_strcasestr_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != &str1[0]) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -221,11 +246,13 @@ int test_strcasestr_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != &str1[1]) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -238,11 +265,13 @@ int test_strcasestr_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != &str1[15]) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -258,22 +287,25 @@ int test_strcasestr_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != &str1[18]) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     /* compare to legacy */
     std_sub = strcasestr(str1, str2);
-    if ((int)sub != (int)std_sub) { // comparison to handle 32-bit library return and 64-bit library return
+    if (sub != std_sub) {
         printf("%s %u  Error strcasestr_s() does not have same return value as strcasestr() when str2 is substring of the end of str1. rc=%u \n",
                                      __FUNCTION__, __LINE__, rc);
         printf("str1:[%s]\n", str1);
         printf("str2:[%s]\n", str2);
         printf("strcasestr_s returns:[%p]\n", sub);
         printf("strcasestr   returns:[%p]\n\n", std_sub);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -289,22 +321,25 @@ int test_strcasestr_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != &str1[18]) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     /* compare to legacy */
     std_sub = strcasestr(str1, str2);
-    if ((int)sub != (int)std_sub) { // comparison to handle 32-bit library return and 64-bit library return
+    if (sub != std_sub) {
         printf("%s %u  Error strcasestr_s() does not have same return value as strcasestr() when str2 is substring of middle of str1. rc=%u \n",
                                      __FUNCTION__, __LINE__, rc);
         printf("str1:[%s]\n", str1);
         printf("str2:[%s]\n", str2);
         printf("strcasestr_s returns:[%p]\n", sub);
         printf("strcasestr   returns:[%p]\n\n", std_sub);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -316,11 +351,13 @@ int test_strcasestr_s()
     if (rc != ESNOTFND) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != NULL) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -332,11 +369,13 @@ int test_strcasestr_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != &str1[5]) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -348,11 +387,13 @@ int test_strcasestr_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != &str1[5]) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -364,11 +405,13 @@ int test_strcasestr_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != &str1[5]) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -381,11 +424,13 @@ int test_strcasestr_s()
     if (rc != ESNOTFND) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != NULL) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -397,11 +442,13 @@ int test_strcasestr_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != &str1[5]) {
         printf("%s %u  Error rc=%d \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -414,21 +461,24 @@ int test_strcasestr_s()
     if (rc != EOK) {
         printf("%s %u  Error rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if (sub != &str1[1]) {
         printf("%s %u  Error rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     /* compare to legacy */
     std_sub = strcasestr(str1, str2);
-    if ((int)sub != (int)std_sub) { // comparison to handle 32-bit library return and 64-bit library return
+    if (sub != std_sub) {
         printf("%s %u  Error rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }

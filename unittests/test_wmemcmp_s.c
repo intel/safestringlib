@@ -70,9 +70,10 @@
 extern errno_t wmemcmp_s (const wchar_t *dest, rsize_t dmax,
                           const wchar_t *src,  rsize_t smax, int *diff);
 
-int test_wmemcmp_s()
+int test_wmemcmp_s(void)
 {
     errno_t rc;
+    int errs = 0;
     uint32_t len;
     int32_t  ind;
     uint32_t i;
@@ -91,6 +92,7 @@ int test_wmemcmp_s()
     if (rc != ESNULLP) {
         printf("%s %u  Ind=%d  Error rc=%u \n",
                      __FUNCTION__, __LINE__, ind, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -101,6 +103,7 @@ int test_wmemcmp_s()
     if (rc != ESNULLP) {
         printf("%s %u  Ind=%d  Error rc=%u \n",
                      __FUNCTION__, __LINE__, ind, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -111,6 +114,7 @@ int test_wmemcmp_s()
     if (rc != ESNULLP) {
         printf("%s %u  Ind=%d  Error rc=%u \n",
                      __FUNCTION__, __LINE__, ind, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -121,6 +125,7 @@ int test_wmemcmp_s()
     if (rc != ESZEROL) {
         printf("%s %u  Ind=%d  Error rc=%u \n",
                      __FUNCTION__, __LINE__, ind, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -131,6 +136,7 @@ int test_wmemcmp_s()
     if (rc != ESZEROL) {
         printf("%s %u  Ind=%d  Error rc=%u \n",
                      __FUNCTION__, __LINE__, ind, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -141,6 +147,7 @@ int test_wmemcmp_s()
     if (rc != ESLEMAX) {
         printf("%s %u  Ind=%d  Error rc=%u \n",
                      __FUNCTION__, __LINE__, ind, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -151,6 +158,7 @@ int test_wmemcmp_s()
     if (rc != ESLEMAX) {
         printf("%s %u  Ind=%d  Error rc=%u \n",
                      __FUNCTION__, __LINE__, ind, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -165,17 +173,20 @@ int test_wmemcmp_s()
     if (rc != EOK) {
         printf("%s %u  Ind=%d  Error rc=%u \n",
                      __FUNCTION__, __LINE__, ind, rc );
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Ind=%d  rc=%u \n",
                      __FUNCTION__, __LINE__,  ind, rc );
+        ++errs;
     }
 
     ind = memcmp(mem1, mem2, len*4);
     if (ind != 0) {
         printf("%s %u  Ind=%d  rc=%u \n",
                      __FUNCTION__, __LINE__,  ind, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -190,17 +201,20 @@ int test_wmemcmp_s()
     if (rc != EOK) {
         printf("%s %u  Ind=%d  Error rc=%u \n",
                      __FUNCTION__, __LINE__, ind, rc );
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Ind=%d  rc=%u \n",
                      __FUNCTION__, __LINE__,  ind, rc );
+        ++errs;
     }
 
     ind = memcmp(mem1, mem2, len*4);
     if (ind != 0) {
         printf("%s %u  Ind=%d  rc=%u \n",
                      __FUNCTION__, __LINE__,  ind, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -214,17 +228,20 @@ int test_wmemcmp_s()
     if (rc != EOK) {
         printf("%s %u  Ind=%d  Error rc=%u \n",
                      __FUNCTION__, __LINE__, ind, rc );
+        ++errs;
     }
 
     if (ind != 0) {
         printf("%s %u  Ind=%d  rc=%u \n",
                      __FUNCTION__, __LINE__,  ind, rc );
+        ++errs;
     }
 
     ind = memcmp(mem1, mem2, LEN*4);
     if (ind != 0) {
         printf("%s %u  Ind=%d  rc=%u \n",
                      __FUNCTION__, __LINE__,  ind, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -240,11 +257,13 @@ int test_wmemcmp_s()
     if (rc != EOK) {
         printf("%s %u  Ind=%d  Error rc=%u \n",
                      __FUNCTION__, __LINE__, ind, rc );
+        ++errs;
     }
 
     if (ind <= 0) {
         printf("%s %u  Ind=%d  rc=%u \n",
                      __FUNCTION__, __LINE__,  ind, rc );
+        ++errs;
     }
 
 
@@ -261,11 +280,13 @@ int test_wmemcmp_s()
 	if (rc != EOK) {
 		printf("%s %u  Ind=%d  Error rc=%u \n",
 					 __FUNCTION__, __LINE__, ind, rc );
+	    ++errs;
 	}
 
 	if (ind >= 0) {
 		printf("%s %u  Ind=%d  rc=%u \n",
 					 __FUNCTION__, __LINE__,  ind, rc );
+	    ++errs;
 	}
 
 /*--------------------------------------------------*/
@@ -281,11 +302,13 @@ int test_wmemcmp_s()
 	if (rc != EOK) {
 		printf("%s %u  Ind=%d  Error rc=%u \n",
 					 __FUNCTION__, __LINE__, ind, rc );
+	    ++errs;
 	}
 
 	if (ind >= 0) {
 		printf("%s %u  Ind=%d  rc=%u \n",
 					 __FUNCTION__, __LINE__,  ind, rc );
+	    ++errs;
 	}
 
 /*--------------------------------------------------*/
@@ -301,11 +324,13 @@ int test_wmemcmp_s()
 	if (rc != EOK) {
 		printf("%s %u  Ind=%d  Error rc=%u \n",
 					 __FUNCTION__, __LINE__, ind, rc );
+	    ++errs;
 	}
 
 	if (ind <= 0) {
 		printf("%s %u  Ind=%d  rc=%u \n",
 					 __FUNCTION__, __LINE__,  ind, rc );
+	    ++errs;
 	}
 
 /*--------------------------------------------------*/
@@ -321,11 +346,13 @@ int test_wmemcmp_s()
 	if (rc != EOK) {
 		printf("%s %u  Ind=%d  Error rc=%u \n",
 					 __FUNCTION__, __LINE__, ind, rc );
+	    ++errs;
 	}
 
 	if (ind >= 0) {
 		printf("%s %u  Ind=%d  rc=%u \n",
 					 __FUNCTION__, __LINE__,  ind, rc );
+	    ++errs;
 	}
 
 /*--------------------------------------------------*/
@@ -341,15 +368,17 @@ int test_wmemcmp_s()
 	if (rc != EOK) {
 		printf("%s %u  Ind=%d  Error rc=%u \n",
 					 __FUNCTION__, __LINE__, ind, rc );
+	    ++errs;
 	}
 
 	if (ind <= 0) {
 		printf("%s %u  Ind=%d  rc=%u \n",
 					 __FUNCTION__, __LINE__,  ind, rc );
+	    ++errs;
 	}
 
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }

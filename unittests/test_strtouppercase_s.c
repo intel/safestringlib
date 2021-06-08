@@ -11,9 +11,10 @@
 #define LEN   ( 128 )
 
 
-int test_strtouppercase_s()
+int test_strtouppercase_s(void)
 {
     errno_t rc;
+    int errs = 0;
     rsize_t len;
     char str[LEN];
 
@@ -25,6 +26,7 @@ int test_strtouppercase_s()
     if (rc != ESNULLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -35,6 +37,7 @@ int test_strtouppercase_s()
     if (rc != ESZEROL) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -46,6 +49,7 @@ int test_strtouppercase_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -58,6 +62,7 @@ int test_strtouppercase_s()
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -70,12 +75,14 @@ int test_strtouppercase_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 	//printf("debug - 06\n");
 
     if (strcmp(str, "N") ) {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -88,12 +95,14 @@ int test_strtouppercase_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 	//printf("debug - 08\n");
     if (strcmp(str, "N") ) {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -106,12 +115,14 @@ int test_strtouppercase_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 	//printf("debug - 10\n");
     if (strcmp(str, "NOWISTHETIME") ) {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -124,12 +135,14 @@ int test_strtouppercase_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 	//printf("debug - 12\n");
     if (strcmp(str, "QQERO") ) {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -142,9 +155,10 @@ int test_strtouppercase_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }

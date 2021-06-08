@@ -66,6 +66,7 @@ extern errno_t wmemset_s (wchar_t *dest, wchar_t value, rsize_t len);
 int test_wmemset_s (void)
 {
     errno_t rc;
+    int errs = 0;
     uint32_t len;
     uint32_t i;
     unsigned int testno = 0;
@@ -82,6 +83,7 @@ int test_wmemset_s (void)
     if (rc != ESNULLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -93,6 +95,7 @@ int test_wmemset_s (void)
     if (rc != ESZEROL) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -105,6 +108,7 @@ int test_wmemset_s (void)
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -120,16 +124,19 @@ int test_wmemset_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if ( mem1[0] != value ) {
         printf("%d - m1[0]=%d \n",
              __LINE__, mem1[0]);
+        ++errs;
     }
     for (i=1; i<LEN; i++) {
         if (mem1[i] != 99) {
             printf("%d - %d m1=%d \n",
                  __LINE__, i, mem1[i]);
+	    ++errs;
         }
     }
 
@@ -146,16 +153,19 @@ int test_wmemset_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     if ( mem1[0] != value || mem1[1] != value ) {
         printf("%d - m1[0]=%d m1[1]=%d \n",
              __LINE__, mem1[0], mem1[1]);
+        ++errs;
     }
     for (i=2; i<LEN; i++) {
         if (mem1[i] != 99) {
             printf("%d - %d m1=%d \n",
                  __LINE__, i, mem1[i]);
+	    ++errs;
         }
     }
 
@@ -173,18 +183,21 @@ int test_wmemset_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     for (i=0; i<len; i++) {
         if (mem1[i] != value) {
             printf("%d - %d m1=%d \n",
                  __LINE__, i, mem1[i]);
+	    ++errs;
         }
     }
     for (i=len; i<LEN; i++) {
         if (mem1[i] != 99) {
             printf("%d - %d m1=%d \n",
                  __LINE__, i, mem1[i]);
+	    ++errs;
         }
     }
 
@@ -201,12 +214,14 @@ int test_wmemset_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     for (i=0; i<len; i++) {
         if (mem1[i] != value) {
             printf("%d - %d m1=%d \n",
                  __LINE__, i, mem1[i]);
+	    ++errs;
         }
     }
 
@@ -223,18 +238,20 @@ int test_wmemset_s (void)
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__, rc);
+        ++errs;
     }
 
     for (i=0; i<len; i++) {
         if (mem1[i] != value) {
             printf("%d - %d m1=%d \n",
                  __LINE__, i, mem1[i]);
+	    ++errs;
         }
     }
 
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }
 

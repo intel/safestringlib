@@ -55,7 +55,7 @@
 #define CHK_FORMAT(X,Y)   (((X)==(Y))?1:0)
 
 
-unsigned int
+static unsigned int
 parse_format(const char *format, char pformatList[], unsigned int maxFormats)
 {
 	unsigned int  numFormats = 0;
@@ -202,7 +202,7 @@ parse_format(const char *format, char pformatList[], unsigned int maxFormats)
 	return numFormats;
 }
 
-unsigned int
+static unsigned int
 check_integer_format(const char format)
 {
 	unsigned int  retValue = 0; // default failure

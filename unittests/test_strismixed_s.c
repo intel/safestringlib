@@ -11,9 +11,10 @@
 #define LEN   ( 128 )
 
 
-int test_strismixed_s()
+int test_strismixed_s(void)
 {
     bool rc;
+    int errs = 0;
     rsize_t len;
     char   str[LEN];
 
@@ -24,6 +25,7 @@ int test_strismixed_s()
     if (rc != false) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -33,6 +35,7 @@ int test_strismixed_s()
     if (rc != false) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -42,6 +45,7 @@ int test_strismixed_s()
     if (rc != false) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -51,6 +55,7 @@ int test_strismixed_s()
     if (rc != false) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -62,6 +67,7 @@ int test_strismixed_s()
     if (rc != true) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -73,6 +79,7 @@ int test_strismixed_s()
     if (rc != true) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -84,6 +91,7 @@ int test_strismixed_s()
     if (rc != true) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -95,6 +103,7 @@ int test_strismixed_s()
     if (rc != false) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -106,9 +115,10 @@ int test_strismixed_s()
     if (rc != false) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }

@@ -31,6 +31,12 @@
 
 #include "safeclib_private.h"
 
+#ifdef DEBUG
+#define _DUNUSED
+#else
+#define _DUNUSED _UNUSED
+#endif /* DEBUG */
+
 /**
  * NAME
  *    ignore_handler_s
@@ -62,7 +68,8 @@
  *
  */
 
-void ignore_handler_s(const char *msg, void *ptr, errno_t error)
+void ignore_handler_s(_DUNUSED const char *msg, _UNUSED void *ptr,
+		      _DUNUSED errno_t error)
 {
 
 	sldebug_printf("IGNORE CONSTRAINT HANDLER: (%u) %s\n", error,

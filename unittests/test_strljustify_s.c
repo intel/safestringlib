@@ -11,9 +11,10 @@
 #define LEN   ( 128 )
 
 
-int test_strljustify_s()
+int test_strljustify_s(void)
 {
     errno_t rc;
+    int errs = 0;
     int ind;
     uint32_t len;
     char   str[LEN];
@@ -25,6 +26,7 @@ int test_strljustify_s()
     if (rc != ESNULLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -34,6 +36,7 @@ int test_strljustify_s()
     if (rc != ESZEROL) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -43,6 +46,7 @@ int test_strljustify_s()
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -52,6 +56,7 @@ int test_strljustify_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 
@@ -66,11 +71,13 @@ int test_strljustify_s()
     if (rc != ESUNTERM) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (str[0] != '\0') {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -84,11 +91,13 @@ int test_strljustify_s()
     if (rc != ESUNTERM) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (str[0] != '\0') {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -102,11 +111,13 @@ int test_strljustify_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (str[0] != '\0') {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -120,11 +131,13 @@ int test_strljustify_s()
     if (rc != ESUNTERM) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (str[0] != '\0') {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -138,12 +151,14 @@ int test_strljustify_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     ind = strcmp(str, "ABC");
     if (ind != 0) {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -156,12 +171,14 @@ int test_strljustify_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     ind = strcmp(str, "B ");
     if (ind != 0) {
         printf("%s %u   Error -%s-  ind=%d \n",
                      __FUNCTION__, __LINE__,  str, ind);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -174,12 +191,14 @@ int test_strljustify_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     ind = strcmp(str, "B ");
     if (ind != 0) {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -192,12 +211,14 @@ int test_strljustify_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     ind = strcmp(str, "C ");
     if (ind != 0) {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -210,12 +231,14 @@ int test_strljustify_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     ind = strcmp(str, "NowISTHETimE       ");
     if (ind != 0) {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -228,6 +251,7 @@ int test_strljustify_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -240,9 +264,10 @@ int test_strljustify_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }

@@ -46,10 +46,14 @@
  * DESCRIPTION
  *    The stpcpy_s function copies the string pointed to by src
  *    (including the terminating null character) into the array
+#ifdef SAFECLIB_STR_NULL_SLACK
  *    pointed to by dest. All elements following the terminating
  *    null character (if any) written by stpcpy_s in the array
  *    of dmax characters pointed to by dest are nulled when
  *    strcpy_s returns. The function returns a pointer to the
+#else
+ *    pointed to by dest. The function returns a pointer to the
+#endif // SAFECLIB_STR_NULL_SLACK
  *    end of the string in dest - that is to the null terminator
  *    of dest - upon return. If an error occurs, NULL is returned
  *    and err is set to the error encountered.
@@ -88,7 +92,12 @@
  *    Copying shall not take place between objects that overlap.
  *    If there is a runtime-constraint violation, then if dest
  *       is not a null pointer and destmax is greater than zero and
+#ifdef SAFECLIB_STR_NULL_SLACK
  *       not greater than RSIZE_MAX_STR, then stpcpy_s nulls dest.
+#else
+ *       not greater than RSIZE_MAX_STR, then stpcpy_s stores a 0
+ *       terminator in dest.
+#endif // SAFECLIB_STR_NULL_SLACK
  *
  * RETURN VALUE
  *   a char pointer to the terminating null at the end of dest
@@ -148,7 +157,9 @@ stpcpy_s(char *dest, rsize_t dmax, const char *src, errno_t *err)
     		if (*dest == '\0') {
 #ifdef SAFECLIB_STR_NULL_SLACK
                 /* null slack to clear any data */
-    		    while (dmax) { *dest = '\0'; dmax--; dest++; }
+		    char *filler = dest;
+
+    		    while (dmax) { *filler = '\0'; dmax--; filler++; }
 #endif
     		    *err = RCNEGATE(EOK);
     		    return dest;
@@ -182,7 +193,9 @@ stpcpy_s(char *dest, rsize_t dmax, const char *src, errno_t *err)
             if (*dest == '\0') {
 #ifdef SAFECLIB_STR_NULL_SLACK
                 /* null slack to clear any data */
-                while (dmax) { *dest = '\0'; dmax--; dest++; }
+                char *filler = dest;
+
+                while (dmax) { *filler = '\0'; dmax--; filler++; }
 #endif
                 *err = RCNEGATE(EOK);
                 return dest;
@@ -210,7 +223,9 @@ stpcpy_s(char *dest, rsize_t dmax, const char *src, errno_t *err)
             if (*dest == '\0') {
 #ifdef SAFECLIB_STR_NULL_SLACK
                 /* null slack to clear any data */
-                while (dmax) { *dest = '\0'; dmax--; dest++; }
+                char *filler = dest;
+
+                while (dmax) { *filler = '\0'; dmax--; filler++; }
 #endif
                 *err = RCNEGATE(EOK);
                 return dest;
