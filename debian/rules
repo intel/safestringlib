@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE = 1
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+override_dh_install:
+	install -d usr/lib
+	install -m 0644 obj-$(DEB_HOST_MULTIARCH)/libsafestring_shared.so usr/lib
+	install -d usr/lib/$(DEB_HOST_MULTIARCH)
+	install -m 0644 obj-$(DEB_HOST_MULTIARCH)/libsafestring_static.a usr/lib/$(DEB_HOST_MULTIARCH)
+	install -d usr/include/safestring
+	install -m 0644 include/* usr/include/safestring/
+	dh_install
+
+%:
+	dh $@ --buildsystem=cmake --parallel
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		-DCMAKE_LIBRARY_ARCHITECTURE="$(DEB_TARGET_MULTIARCH)"
