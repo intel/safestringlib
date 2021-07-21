@@ -4,7 +4,7 @@ project(safestring)
 option(BUILD_UNITTESTS "Build also project unit-tests" OFF)
 
 if (NOT DEFINED BUILD_OPT_DEFAULT)
-  set (BUILD_OPT_DEFAULT YES CACHE PATH "Build option default")
+  set (BUILD_OPT_DEFAULT YES CACHE BOOL "Build option default")
 endif (NOT DEFINED BUILD_OPT_DEFAULT)
 
 option(BUILD_MEMCMP "Build memcmp* functions" ${BUILD_OPT_DEFAULT})
