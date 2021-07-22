@@ -3,7 +3,7 @@
  *
  * August 2014, D Wheeler
  *
- * Copyright (c) 2014 Intel Corp
+ * Copyright (c) 2014-2021 Intel Corp
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person
@@ -98,8 +98,16 @@ wmemset_s (wchar_t *dest, wchar_t value, rsize_t len)
         return (RCNEGATE(ESLEMAX));
     }
 
-    mem_prim_set32((uint32_t *)dest, len, value);
+    if (sizeof(wchar_t) == sizeof(uint32_t)) {
+        mem_prim_set32((uint32_t *)dest, len, value);
+        return (RCNEGATE(EOK));
+    }
 
-    return (RCNEGATE(EOK));
+    if (sizeof(wchar_t) == sizeof(uint16_t)) {
+        mem_prim_set16((uint16_t *)dest, len, value);
+        return (RCNEGATE(EOK));
+    }
+
+    return (RCNEGATE(ESNOSPC));
 }
 EXPORT_SYMBOL(wmemset_s)
