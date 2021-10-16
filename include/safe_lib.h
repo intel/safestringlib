@@ -5,6 +5,7 @@
  * Modified 2012, Jonathan Toppins <jtoppins@users.sourceforge.net>
  *
  * Copyright (c) 2008-2013 by Cisco Systems, Inc
+ * Copyright (c) 2021 by Intel Corp
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person
@@ -36,6 +37,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+/* Define safe_lib version number */
+#define SAFEC_VERSION_MAJOR 1
+#define SAFEC_VERSION_MINOR 1
+#define SAFEC_VERSION_PATCH 0
+#define SAFEC_VERSION_STRING "1.1.0"
+
+#define SAFEC_VERSION_NUM(a,b,c) (((a) << 16L) | ((b) << 8) | (c))
+#define SAFEC_VERSION \
+  SAFEC_VERSION_NUM(SAFEC_VERSION_MAJOR, \
+                    SAFEC_VERSION_MINOR, \
+                    SAFEC_VERSION_PATCH)
 
 #include "safe_types.h"
 #include "safe_lib_errno.h"
