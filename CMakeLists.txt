@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.1)
 project(safestring)
 
+include(version.cmake)
+
 option(BUILD_UNITTESTS "Build also project unit-tests" OFF)
 
 if (NOT DEFINED BUILD_OPT_DEFAULT)
@@ -163,7 +165,9 @@ target_compile_options(${PROJECT_NAME}_objlib
                        PRIVATE --param ssp-buffer-size=4 -ftrapv)
 target_compile_options(${PROJECT_NAME}_objlib PRIVATE -fPIE -fPIC)
 
-if(CMAKE_COMPILER_IS_GNUCC AND CMAKE_C_COMPILER_VERSION VERSION_GREATER 6)
+if(CMAKE_COMPILER_IS_GNUCC AND
+   CMAKE_C_COMPILER_VERSION VERSION_GREATER 6 AND
+   CMAKE_C_COMPILER_VERSION VERSION_LESS 9)
     target_compile_options(${PROJECT_NAME}_objlib PRIVATE -mmitigate-rop)
 endif()
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -z noexecstack -z relro -z now")
@@ -180,6 +184,9 @@ add_library(${PROJECT_NAME}_shared SHARED $<TARGET_OBJECTS:${PROJECT_NAME}_objli
 add_library(${PROJECT_NAME}_static STATIC $<TARGET_OBJECTS:${PROJECT_NAME}_objlib>)
 target_include_directories(${PROJECT_NAME}_shared PUBLIC include)
 target_include_directories(${PROJECT_NAME}_static PUBLIC include)
+
+set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${SAFEC_VERSION_STRING})
+set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${SAFEC_VERSION_STRING})
 
 if(BUILD_UNITTESTS)
   add_subdirectory(unittests)
