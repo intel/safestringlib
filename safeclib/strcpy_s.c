@@ -46,10 +46,14 @@
  * DESCRIPTION
  *    The strcpy_s function copies the string pointed to by src
  *    (including the terminating null character) into the array
+#ifdef SAFECLIB_STR_NULL_SLACK
  *    pointed to by dest. All elements following the terminating
  *    null character (if any) written by strcpy_s in the array
  *    of dmax characters pointed to by dest are nulled when
  *    strcpy_s returns.
+#else
+ *    pointed to by dest.
+#endif // SAFECLIB_STR_NULL_SLACK
  *
  * SPECIFIED IN
  *    ISO/IEC TR 24731, Programming languages, environments
@@ -75,7 +79,12 @@
  *    Copying shall not take place between objects that overlap.
  *    If there is a runtime-constraint violation, then if dest
  *       is not a null pointer and destmax is greater than zero and
+#ifdef SAFECLIB_STR_NULL_SLACK
  *       not greater than RSIZE_MAX_STR, then strcpy_s nulls dest.
+#else
+ *       not greater than RSIZE_MAX_STR, then strcpy_s writes a
+ *       terminator to dest.
+#endif // SAFECLIB_STR_NULL_SLACK
  *
  * RETURN VALUE
  *    EOK        successful operation, the characters in src were

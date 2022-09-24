@@ -48,6 +48,7 @@
  *    (characters that follow a null character are not copied) from the
  *    array pointed to by src to the array pointed to by dest. If no null
  *    character was copied from src, then dest[slen] is set to a null character.
+#ifdef SAFECLIB_STR_NULL_SLACK
  *
  *    All elements following the terminating null character (if any)
  *    written by wcsncpy_s in the array of dmax characters pointed to
@@ -60,6 +61,7 @@
  *    array is used multiple times to string manipulation routines in this
  *    library. If this extra security is not required, ensure that the
  *    library is compiled without #DEFINE SAFECLIB_STR_NULL_SLACK.
+#endif // SAFECLIB_STR_NULL_SLACK
  *
  * Specicified in:
  *    ISO/IEC TR 24731-1, Programming languages, environments
@@ -90,7 +92,11 @@
  *    Copying shall not take place between objects that overlap.
  *    If there is a runtime-constraint violation, then if dest
  *       is not a null pointer and dmax greater than RSIZE_MAX_STR,
+#ifdef SAFECLIB_STR_NULL_SLACK
  *       then strncpy_s nulls dest.
+#else
+ *       then strncpy_s stores a terminator at dest.
+#endif // SAFECLIB_STR_NULL_SLACK
  *
  * RETURN VALUE
  *    EOK        successful operation, the characters in src were copied

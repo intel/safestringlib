@@ -43,6 +43,7 @@
 
 #else
 
+#define _GNU_SOURCE 1 /* needed to define strcasestr */
 #include <stdio.h>
 #include <string.h>
 
@@ -57,5 +58,71 @@
 #else
 #define debug_printf(...)
 #endif
+
+int test_memcmp_s(void);
+int test_memcmp16_s(void);
+int test_memcmp32_s(void);
+int test_memcpy_s(void);
+int test_memcpy16_s(void);
+int test_memcpy32_s(void);
+int test_memmove_s(void);
+int test_memmove16_s(void);
+int test_memmove32_s(void);
+int test_memset_s(void);
+int test_memset16_s(void);
+int test_memset32_s(void);
+int test_memzero_s(void);
+int test_memzero16_s(void);
+int test_memzero32_s(void);
+int test_strcasecmp_s(void);
+int test_strcasestr_s(void);
+int test_strcat_s(void);
+int test_strcmp_s(void);
+int test_strcmpfld_s(void);
+int test_strcpy_s(void);
+int test_strcpyfld_s(void);
+int test_strcpyfldin_s(void);
+int test_strcpyfldout_s(void);
+int test_strcspn_s(void);
+int test_strfirstchar_s(void);
+int test_strfirstdiff_s(void);
+int test_strfirstsame_s(void);
+int test_strisalphanumeric_s(void);
+int test_strisascii_s(void);
+int test_strisdigit_s(void);
+int test_strishex_s(void);
+int test_strislowercase_s(void);
+int test_strismixed_s(void);
+int test_strispassword_s(void);
+int test_strisuppercase_s(void);
+int test_strlastchar_s(void);
+int test_strlastdiff_s(void);
+int test_strlastsame_s(void);
+int test_strljustify_s(void);
+int test_strncat_s(void);
+int test_strncpy_s(void);
+int test_strnlen_s(void);
+int test_strnterminate_s(void);
+int test_strpbrk_s(void);
+int test_strprefix_s(void);
+int test_strremovews_s(void);
+int test_strspn_s(void);
+int test_strstr_s(void);
+int test_strtok_s(void);
+int test_strtolowercase_s(void);
+int test_strtouppercase_s(void);
+int test_strzero_s(void);
+int test_stpncpy_s(void);
+int test_stpcpy_s(void);
+int test_wcpcpy_s(void);
+int test_wcscat_s(void);
+int test_wcscpy_s(void);
+int test_wcsncat_s(void);
+int test_wcsncpy_s(void);
+int test_wcsnlen_s(void);
+int test_wmemcpy_s(void);
+int test_wmemmove_s(void);
+int test_wmemset_s(void);
+int test_wmemcmp_s(void);
 
 #endif /* __TEST_PRIVATE_H__ */

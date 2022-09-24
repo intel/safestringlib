@@ -84,6 +84,7 @@ extern errno_t wcscpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src);
 int test_wcscpy_s (void)
 {
     errno_t rc;
+    int errs = 0;
 #ifdef SAFE_LIB_STR_NULL_SLACK
     uint32_t i;
 #endif /*SAFE_LIB_STR_NULL_SLACK*/
@@ -102,6 +103,7 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESNULLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -112,6 +114,7 @@ printf("Test #%d:\n", ++testno);
 	if (rc != ESZEROL) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
+		++errs;
 	}
 
 /*--------------------------------------------------*/
@@ -122,6 +125,7 @@ printf("Test #%d:\n", ++testno);
 	if (rc != ESLEMAX) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
+		++errs;
 	}
 
 /*--------------------------------------------------*/
@@ -134,6 +138,7 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESNULLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 #ifdef SAFE_LIB_STR_NULL_SLACK
@@ -141,12 +146,14 @@ printf("Test #%d:\n", ++testno);
         if (str1[i] != L'\0') {
             printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+	    ++errs;
         }
     }
 #else
     if (str1[0] != L'\0') {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 #endif
 
@@ -161,6 +168,7 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -173,6 +181,7 @@ printf("Test #%d:\n", ++testno);
 	if (rc != EOK) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
+		++errs;
 	}
 
 /*--------------------------------------------------*/
@@ -188,6 +197,7 @@ printf("Test #%d:\n", ++testno);
 	if (rc != ESOVRLP) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
+		++errs;
 	}
 
 #ifdef SAFE_LIB_STR_NULL_SLACK
@@ -195,12 +205,14 @@ printf("Test #%d:\n", ++testno);
 		if (str1[i] != L'\0') {
 			printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
+			++errs;
 		}
 	}
 #else
 	if (str1[0] != L'\0') {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
+		++errs;
 	}
 #endif
 
@@ -218,6 +230,7 @@ printf("Test #%d:\n", ++testno);
 	if (rc != ESOVRLP) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
+		++errs;
 	}
 
 #ifdef SAFE_LIB_STR_NULL_SLACK
@@ -225,12 +238,14 @@ printf("Test #%d:\n", ++testno);
 		if (str1[i] != L'\0') {
 			printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
+			++errs;
 		}
 	}
 #else
 	if (str1[8] != L'\0') {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
+		++errs;
 	}
 #endif
 
@@ -248,6 +263,7 @@ printf("Test #%d:\n", ++testno);
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 #ifdef SAFE_LIB_STR_NULL_SLACK
@@ -255,12 +271,14 @@ printf("Test #%d:\n", ++testno);
         if (str1[i] != L'\0') {
             printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+	    ++errs;
         }
     }
 #else
     if (str1[0] != L'\0') {
         printf("%s %u   Error - string should be NULL rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 #endif
 
@@ -277,12 +295,14 @@ printf("Test #%d:\n", ++testno);
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     rc = memcmp_s(str2, LEN, str1, (sz+1)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u   Error -%ls- <> -%ls-\n",
                      __FUNCTION__, __LINE__,  str2, str1);
+        ++errs;
     }
 
 
@@ -298,12 +318,14 @@ printf("Test #%d:\n", ++testno);
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     rc = memcmp_s(str1, LEN, str2, (sz)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls- <> -%ls-  (smax=%lu) Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, str2, sz, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -318,17 +340,20 @@ printf("Test #%d:\n", ++testno);
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     sz = wcsnlen_s(str1, LEN);
     if (sz != sz_orig && sz == 14) {
             printf("%s %u (sz=%lu <> 5) Error rc=%u \n",
                          __FUNCTION__, __LINE__,  sz, rc );
+            ++errs;
     }
     rc = memcmp_s(str1, LEN, str2, (sz)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls- <> -%ls-  (size=%lu) Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, str2, sz, rc );
+        ++errs;
     }
 
 
@@ -344,11 +369,13 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESNOSPC) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (*str1 != L'\0') {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -362,11 +389,13 @@ printf("Test #%d:\n", ++testno);
     if (rc != ESNOSPC) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (*str2 != L'\0') {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -381,12 +410,14 @@ printf("Test #%d:\n", ++testno);
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     rc = memcmp_s(str1, LEN, str2, (3)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -402,12 +433,14 @@ printf("Test #%d:\n", ++testno);
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     rc = memcmp_s(str1, LEN, str2, (3)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );
+        ++errs;
     }
 
 
@@ -424,14 +457,16 @@ printf("Test #%d:\n", ++testno);
 	if (rc != ESNOSPC) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
+		++errs;
 	}
 
     if (*str2 != L'\0') {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );
+        ++errs;
     }
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }
 

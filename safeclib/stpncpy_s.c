@@ -47,8 +47,10 @@
  *    The stpncpy_s function copies at most smax characters from the string
  *    pointed to by src, including the terminating null byte ('\0'), to the
  *    array pointed to by dest. Exactly smax characters are written at dest.
+#ifdef SAFECLIB_STR_NULL_SLACK
  *    If the length strlen_s(src) is smaller than smax, the remaining smax
  *    characters in the array pointed to by dest are filled with null bytes.
+#endif // SAFECLIB_STR_NULL_SLACK
  *    If the length strlen_s(src) is greater than or equal to smax, the string
  *    pointed to by dest will contain smax characters from src plus a null
  *    characters (dest will be null-terminated).
@@ -97,8 +99,13 @@
  *    If src and dest overlap, copying shall be stopped; destruction of src may have occurred.
  *    If there is a runtime-constraint violation, then:
  *       if dest is not a null pointer and dmax is greater than zero and
+#ifdef SAFECLIB_STR_NULL_SLACK
  *       not greater than RSIZE_MAX_STR, then stpncpy_s shall fill dest with nulls,
  *       if library was compiled with SAFECLIB_STR_NULL_SLACK.
+#else
+ *       not greater than RSIZE_MAX_STR, then stpncpy_s shall write a terminator
+ *       to the dest buffer.
+#endif // SAFECLIB_STR_NULL_SLACK
  *
  * RETURN VALUE
  *   a char pointer to the terminating null at the end of dest
@@ -178,7 +185,7 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
 
 #ifdef SAFECLIB_STR_NULL_SLACK
     /* dmwheel1: Add check to prevent destruction of overlap into destination */
-    if ((src < dest) && ((src+dmax) >= dest)) {
+    if ((src < dest) && ((src + smax) > dest)) {
         invoke_safe_str_constraint_handler("stpncpy_s: src+dmax overlaps into dest",
                    NULL, ESOVRLP);
         *err = RCNEGATE(ESOVRLP);
@@ -186,7 +193,7 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
     }
 
     /* dmwheel1: Add check to prevent destruction of overlap into source */
-    if ((dest < src) && ((dest+dmax) >= src)) {
+    if ((dest < src) && ((dest + dmax) > src)) {
         invoke_safe_str_constraint_handler("stpncpy_s: dest+dmax overlaps into src",
                    NULL, ESOVRLP);
         *err = RCNEGATE(ESOVRLP);

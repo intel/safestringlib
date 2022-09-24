@@ -62,8 +62,10 @@
  * INPUT PARAMETERS
  *    dest      pointer to string that will be extended by src
  *              if dmax allows. The string is null terminated.
+#ifdef SAFECLIB_STR_NULL_SLACK
  *              If the resulting concatenated string is less
  *              than dmax, the remaining slack space is nulled.
+#endif // SAFECLIB_STR_NULL_SLACK
  *
  *    dmax      restricted maximum length of the resulting dest,
  *              including the null
@@ -82,7 +84,12 @@
  *    Copying shall not takeplace between objects that overlap
  *    If there is a runtime-constraint violation, then if dest is
  *       not a null pointer and dmax is greater than zero and not
+#ifdef SAFECLIB_STR_NULL_SLACK
  *       greater than RSIZE_MAX_STR, then strcat_s nulls dest.
+#else
+ *       greater than RSIZE_MAX_STR, then strcat_s writes a terminator
+ *       to dest.
+#endif // SAFECLIB_STR_NULL_SLACK
  *
  * RETURN VALUE
  *    EOK        successful operation, all the characters from src

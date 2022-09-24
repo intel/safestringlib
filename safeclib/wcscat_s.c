@@ -48,11 +48,13 @@
  *    to by src (including the terminating null character) to the
  *    end of the string pointed to by dest. The initial wide character
  *    from src overwrites the null character at the end of dest.
+#ifdef SAFECLIB_STR_NULL_SLACK
  *
  *    All elements following the terminating null character (if
  *    any) written by strcat_s in the array of dmax characters
  *    pointed to by dest take unspecified values when strcat_s
  *    returns.
+#endif // SAFECLIB_STR_NULL_SLACK
  *
  * SPECIFIED IN
  *    ISO/IEC TR 24731, Programming languages, environments
@@ -82,7 +84,12 @@
  *    Copying shall not takeplace between objects that overlap
  *    If there is a runtime-constraint violation, then if dest is
  *       not a null pointer and dmax is greater than zero and not
+#ifdef SAFECLIB_STR_NULL_SLACK
  *       greater than RSIZE_MAX_STR, then strcat_s nulls dest.
+#else
+ *       greater than RSIZE_MAX_STR, then strcat_s stores a
+ *       terminator at dest.
+#endif // SAFECLIB_STR_NULL_SLACK
  *
  * RETURN VALUE
  *    EOK        successful operation, all the characters from src

@@ -11,9 +11,10 @@
 #define LEN   ( 128 )
 
 
-int test_strremovews_s()
+int test_strremovews_s(void)
 {
     errno_t rc;
+    int errs = 0;
     int ind;
 
     uint32_t len;
@@ -26,6 +27,7 @@ int test_strremovews_s()
     if (rc != ESNULLP) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -35,6 +37,7 @@ int test_strremovews_s()
     if (rc != ESZEROL) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -44,6 +47,7 @@ int test_strremovews_s()
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -55,11 +59,13 @@ int test_strremovews_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (str[0] != '\0') {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -72,6 +78,7 @@ int test_strremovews_s()
     if (rc != ESUNTERM) {
         printf("%s %u   Error rc=%u --%s--\n",
                      __FUNCTION__, __LINE__,  rc, str );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -84,11 +91,13 @@ int test_strremovews_s()
     if (rc != ESUNTERM) {
         printf("%s %u   Error rc=%u --%s--\n",
                      __FUNCTION__, __LINE__,  rc, str );
+        ++errs;
     }
 
     if (str[0] != '\0') {
         printf("%s %u   Error rc=%u --%s--\n",
                      __FUNCTION__, __LINE__,  rc, str );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -101,6 +110,7 @@ int test_strremovews_s()
     if (rc != ESUNTERM) {
         printf("%s %u   Error rc=%u --%s--\n",
                      __FUNCTION__, __LINE__,  rc, str );
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -114,11 +124,13 @@ int test_strremovews_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (str[0] != '\0') {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -131,11 +143,13 @@ int test_strremovews_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (str[0] != 'A') {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -148,11 +162,13 @@ int test_strremovews_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     if (str[0] != 'B') {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -165,12 +181,14 @@ int test_strremovews_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     ind = strcmp(str, "C");
     if (ind != 0) {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -183,12 +201,14 @@ int test_strremovews_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     ind = strcmp(str, "NowISTHETimE 1 2");
     if (ind != 0) {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -201,12 +221,14 @@ int test_strremovews_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     ind = strcmp(str, "q q21ego");
     if (ind != 0) {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
@@ -219,15 +241,17 @@ int test_strremovews_s()
     if (rc != EOK) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );
+        ++errs;
     }
 
     ind = strcmp(str, "1 2 3 4");
     if (ind != 0) {
         printf("%s %u   Error -%s- \n",
                      __FUNCTION__, __LINE__,  str);
+        ++errs;
     }
 
 /*--------------------------------------------------*/
 
-    return (0);
+    return errs;
 }
