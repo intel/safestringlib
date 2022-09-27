@@ -5,6 +5,7 @@
  *------------------------------------------------------------------
  */
 
+#define _GNU_SOURCE
 #include "test_private.h"
 #include "safe_str_lib.h"
 
