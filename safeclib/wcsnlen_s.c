@@ -76,7 +76,7 @@ wcsnlen_s (const wchar_t *dest, rsize_t dmax)
     }
 
     count = 0;
-    while (*dest && dmax) {
+    while (dmax && *dest) {
         count++;
         dmax--;
         dest++;

@@ -111,7 +111,7 @@ strspn_s (const char *dest, rsize_t dmax,
         return RCNEGATE(ESLEMAX);
     }
 
-    while (*dest && dmax) {
+    while (dmax && *dest) {
 
         /*
          * Scan the entire src string for each dest character, counting

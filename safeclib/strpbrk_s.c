@@ -115,7 +115,7 @@ strpbrk_s (char *dest, rsize_t dmax,
     /*
      * look for a matching char in the substring src
      */
-    while (*dest && dmax) {
+    while (dmax && *dest) {
 
         ps = src;
         len = slen;

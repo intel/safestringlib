@@ -76,7 +76,7 @@ strtolowercase_s (char *dest, rsize_t dmax)
         return (ESLEMAX);
     }
 
-    while (*dest && dmax) {
+    while (dmax && *dest) {
 
         if ( (*dest >= 'A') && (*dest <= 'Z')) {
               *dest = (char)(*dest + (char)32);

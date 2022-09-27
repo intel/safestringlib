@@ -121,7 +121,7 @@ strcasestr_s (char *dest, rsize_t dmax,
         return (EOK);
     }
 
-    while (*dest && dmax) {
+    while (dmax && *dest) {
         i = 0;
         len = slen;
         dlen = dmax;

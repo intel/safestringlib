@@ -76,7 +76,7 @@ strnlen_s (const char *dest, rsize_t dmax)
     }
 
     count = 0;
-    while (*dest && dmax) {
+    while (dmax && *dest) {
         count++;
         dmax--;
         dest++;

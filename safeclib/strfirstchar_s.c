@@ -88,7 +88,7 @@ strfirstchar_s (char *dest, rsize_t dmax, char c, char **first)
         return (ESLEMAX);
     }
 
-    while (*dest && dmax) {
+    while (dmax && *dest) {
 
         if (*dest == c) {
             *first = dest;

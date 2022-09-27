@@ -113,7 +113,7 @@ strcspn_s (const char *dest, rsize_t dmax,
         return RCNEGATE(ESLEMAX);
     }
 
-    while (*dest && dmax) {
+    while (dmax && *dest) {
 
         /*
          * Scanning for exclusions, so if there is a match,

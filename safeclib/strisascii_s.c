@@ -73,7 +73,7 @@ strisascii_s (const char *dest, rsize_t dmax)
         return (false);
     }
 
-    while (*dest && dmax) {
+    while (dmax && *dest) {
         if ((unsigned char)*dest > 127) {
             return (false);
         }

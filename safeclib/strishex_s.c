@@ -76,7 +76,7 @@ strishex_s (const char *dest, rsize_t dmax)
         return (false);
     }
 
-    while (*dest && dmax) {
+    while (dmax && *dest) {
 
         if (((*dest >= '0') && (*dest <= '9')) ||
             ((*dest >= 'a') && (*dest <= 'f')) ||
