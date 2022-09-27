@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (C) 2017 Intel Corporation
+
 IDIR = include
 MKDIR_P = mkdir -p
 CC=gcc
