@@ -124,13 +124,13 @@ int test_wmemcpy_s (void)
 
 /*--------------------------------------------------*/
 /* 8 Test for source overlaps into dest buffer */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	rc = wmemcpy_s(&mem1[25], LEN, mem1, 26);
-	if (rc != ESOVRLP) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc);
-	}
+    rc = wmemcpy_s(&mem1[25], LEN, mem1, 26);
+    if (rc != ESOVRLP) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc);
+    }
 
 
 /*--------------------------------------------------*/
@@ -147,16 +147,16 @@ int test_wmemcpy_s (void)
                      __FUNCTION__, __LINE__,  rc);
     } else {
 
-    	if ( mem1[0] != 40 && mem1[10] != 40) {
+        if ( mem1[0] != 40 && mem1[10] != 40) {
             printf("%d - %d m1[0]=%d  m1[10]=%d should be 40  \n",
                  __LINE__, i, mem1[0], mem1[10]);
-    	}
-		for (i=1; i<10; i++) {
-			if (mem1[i] != 44) {
-				printf("%d - %d m1=%d  should be 44  \n",
-					 __LINE__, i, mem1[i]);
-			}
-		}
+        }
+        for (i=1; i<10; i++) {
+            if (mem1[i] != 44) {
+                printf("%d - %d m1=%d  should be 44  \n",
+                     __LINE__, i, mem1[i]);
+            }
+        }
     }
 
 /*--------------------------------------------------*/
@@ -260,18 +260,18 @@ int test_wmemcpy_s (void)
                      __FUNCTION__, __LINE__, rc);
     } else {
 
-		/* verify mem1 was zeroed */
-		for (i=0; i<len; i++) {
-			if (mem1[i] != 0) {
-				printf("%d - %d m1=%d  m2=%d  \n",
-					 __LINE__, i, mem1[i], mem2[i]);
-			}
-		}
+        /* verify mem1 was zeroed */
+        for (i=0; i<len; i++) {
+            if (mem1[i] != 0) {
+                printf("%d - %d m1=%d  m2=%d  \n",
+                     __LINE__, i, mem1[i], mem2[i]);
+            }
+        }
 
-		if (mem1[len] == 0) {
-				printf("%d - %d m1=%d  m2=%d  \n",
-					 __LINE__, i, mem1[i], mem2[i]);
-		}
+        if (mem1[len] == 0) {
+                printf("%d - %d m1=%d  m2=%d  \n",
+                     __LINE__, i, mem1[i], mem2[i]);
+        }
 
     }
 
@@ -332,12 +332,12 @@ int test_wmemcpy_s (void)
                      __FUNCTION__, __LINE__,  rc);
     } else {
 
-		for (i=10; i<len+10; i++) {
-			if (mem1[i] != 0) {
-				printf("%d - %d m1=%d  m2=%d  \n",
-					 __LINE__, i, mem1[i], mem2[i]);
-			}
-		}
+        for (i=10; i<len+10; i++) {
+            if (mem1[i] != 0) {
+                printf("%d - %d m1=%d  m2=%d  \n",
+                     __LINE__, i, mem1[i], mem2[i]);
+            }
+        }
 
     }
 

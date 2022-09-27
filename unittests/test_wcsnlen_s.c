@@ -35,7 +35,7 @@
 static wchar_t   str1[LEN];
 
 extern rsize_t wcsnlen_s(const wchar_t *dest, rsize_t dmax);
-extern errno_t wmemset_s (wchar_t *dest, wchar_t value, rsize_t len);
+extern errno_t wmemset_s(wchar_t *dest, wchar_t value, rsize_t len);
 
 int test_wcsnlen_s (void)
 {
@@ -56,13 +56,13 @@ printf("Test #%d:\n", ++testno);
 
 /*--------------------------------------------------*/
 /* 2  Test for too large maximum size              */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	rc = wcsnlen_s(str1, (RSIZE_MAX_STR+1));
-	if (rc != 0) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    rc = wcsnlen_s(str1, (RSIZE_MAX_STR+1));
+    if (rc != 0) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc );
+    }
 
 /*--------------------------------------------------*/
 /* 3  Test for length is equal to maximum */
@@ -73,20 +73,20 @@ printf("Test #%d:\n", ++testno);
     rc = wcsnlen_s(str1, 41);
     if (rc != 40) {
         printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+               __FUNCTION__, __LINE__,  rc );
     }
 
 /*--------------------------------------------------*/
 /* 4  Test for return length is equal to dmax */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
 
-	rc = wcsnlen_s(str1, 20);
-	if (rc != 20) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    rc = wcsnlen_s(str1, 20);
+    if (rc != 20) {
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+    }
 
 /*--------------------------------------------------*/
 /* 5  Test for zero length string            */
@@ -94,11 +94,11 @@ printf("Test #%d:\n", ++testno);
 
     wmemset_s(str1, L'\0', 42);
 
-	rc = wcsnlen_s(str1, LEN);
-	if (rc != 0) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc );
-	}
+    rc = wcsnlen_s(str1, LEN);
+    if (rc != 0) {
+        printf("%s %u   Error rc=%u \n",
+               __FUNCTION__, __LINE__,  rc );
+    }
 
 
 /*--------------------------------------------------*/
@@ -106,24 +106,24 @@ printf("Test #%d:\n", ++testno);
     printf("Test #%d:\n", ++testno);
 
     memset_s(str1, '\0', 50);
-	str1[0] = L'A';
+    str1[0] = L'A';
 
-	rc = wcsnlen_s(str1, LEN);
+    rc = wcsnlen_s(str1, LEN);
     if (rc != 1) {
         printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+               __FUNCTION__, __LINE__,  rc );
     }
 
 /*--------------------------------------------------*/
 /* 7  Test for two char string */
     printf("Test #%d:\n", ++testno);
 
-	wmemcpy_s(str1, LEN, L"12", 3);
+    wmemcpy_s(str1, LEN, L"12", 3);
 
-	rc = wcsnlen_s(str1, LEN);
+    rc = wcsnlen_s(str1, LEN);
     if (rc != 2) {
         printf("%s %u   Error rc=%u \n",
-                     __FUNCTION__, __LINE__,  rc );
+               __FUNCTION__, __LINE__,  rc );
     }
 
 

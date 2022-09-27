@@ -69,20 +69,20 @@ int test_wcscat_s (void)
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 /* 5   Test overlapping destination string into the beginning of the src */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	wcscpy_s(str1, LEN, L"12345678901234567890");
+    wcscpy_s(str1, LEN, L"12345678901234567890");
 
-	rc = wcscat_s(str1, 8, &str1[7]);
-	if (rc != ESOVRLP) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc);
-	}
+    rc = wcscat_s(str1, 8, &str1[7]);
+    if (rc != ESOVRLP) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc);
+    }
 
-	if (str1[0] != L'\0') {
-		printf("%s %u  Expected null  \n",
-					 __FUNCTION__, __LINE__);
-	}
+    if (str1[0] != L'\0') {
+        printf("%s %u  Expected null  \n",
+                     __FUNCTION__, __LINE__);
+    }
 
 /*--------------------------------------------------*/
 /* 6   Test too small size - destination appears unterminated */
@@ -122,21 +122,21 @@ int test_wcscat_s (void)
 
 /*--------------------------------------------------*/
 /* 8   Test overlap of destination buffer into source after copying begins */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	wcscpy_s(str1, LEN, L"keep it simple");
-	wcscpy_s(&str1[20], LEN, L"aaaaaaaaaaaaaaaaaaaa");
+    wcscpy_s(str1, LEN, L"keep it simple");
+    wcscpy_s(&str1[20], LEN, L"aaaaaaaaaaaaaaaaaaaa");
 
-	rc = wcscat_s(str1, 30, &str1[20]);
-	if (rc != ESOVRLP) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc);
-	}
+    rc = wcscat_s(str1, 30, &str1[20]);
+    if (rc != ESOVRLP) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc);
+    }
 
-	if (str1[0] != L'\0') {
-		printf("%s %u  Expected null  \n",
-					 __FUNCTION__, __LINE__);
-	}
+    if (str1[0] != L'\0') {
+        printf("%s %u  Expected null  \n",
+                     __FUNCTION__, __LINE__);
+    }
 
 /*--------------------------------------------------*/
 /* 9   Test Verify proper size of concatenated strings */
@@ -365,16 +365,16 @@ int test_wcscat_s (void)
 
 /*--------------------------------------------------*/
 /* 21   Test normal string concat - not enough room for NULL */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	wcscpy_s(str2, LEN, L"1234");
-	wcscpy_s(str1, LEN, L"56789");
+    wcscpy_s(str2, LEN, L"1234");
+    wcscpy_s(str1, LEN, L"56789");
 
-	rc = wcscat_s(str2, 9, str1);
-	if (rc != ESNOSPC) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc);
-	}
+    rc = wcscat_s(str2, 9, str1);
+    if (rc != ESNOSPC) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc);
+    }
 
     if (str2[0] != L'\0') {
         printf("%s %u  Expected null  \n",
