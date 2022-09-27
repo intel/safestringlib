@@ -5,9 +5,9 @@ include(version.cmake)
 
 option(BUILD_UNITTESTS "Build also project unit-tests" OFF)
 
-if (NOT DEFINED BUILD_OPT_DEFAULT)
-  set (BUILD_OPT_DEFAULT YES CACHE PATH "Build option default")
-endif (NOT DEFINED BUILD_OPT_DEFAULT)
+if(NOT DEFINED BUILD_OPT_DEFAULT)
+  option(BUILD_OPT_DEFAULT "Build option default" ON)
+endif()
 
 option(BUILD_MEMCMP "Build memcmp* functions" ${BUILD_OPT_DEFAULT})
 option(BUILD_MEMCPY "Build memcpy* functions" ${BUILD_OPT_DEFAULT})
