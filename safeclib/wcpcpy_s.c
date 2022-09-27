@@ -44,13 +44,13 @@
  * OUTPUT PARAMETERS
  *    dest      updated
  *    err       updated as follows:
- *    			  EOK        successful operation, the characters in src were
- *               		     copied into dest and the result is null terminated.
- *    			  ESNULLP    NULL pointer
- *    			  ESZEROL    zero length
- *    			  ESLEMAX    length exceeds max limit
- *    			  ESOVRLP    strings overlap
- *    			  ESNOSPC    not enough space to copy src
+ *                  EOK        successful operation, the characters in src were
+ *                            copied into dest and the result is null terminated.
+ *                  ESNULLP    NULL pointer
+ *                  ESZEROL    zero length
+ *                  ESLEMAX    length exceeds max limit
+ *                  ESOVRLP    strings overlap
+ *                  ESNOSPC    not enough space to copy src
  *
  * RUNTIME CONSTRAINTS
  *    Neither dest nor src shall be a null pointer.
@@ -112,16 +112,16 @@ wcpcpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, errno_t *err)
     }
 
     if (dest == src) {
-    	/* move dest to the end of the string */
-    	while (dmax && (*dest != L'\0')) { dmax--; dest++; }
-    	if ( *dest != L'\0' ) {
-    		invoke_safe_str_constraint_handler("wcpcpy_s: no null terminator in dest",
-    		                   NULL, ESLEMAX);
-			*err = RCNEGATE(ESLEMAX);
-			return NULL;
-    	}
-    	*err = RCNEGATE(EOK);
-    	return dest;
+        /* move dest to the end of the string */
+        while (dmax && (*dest != L'\0')) { dmax--; dest++; }
+        if ( *dest != L'\0' ) {
+            invoke_safe_str_constraint_handler("wcpcpy_s: no null terminator in dest",
+                               NULL, ESLEMAX);
+            *err = RCNEGATE(ESLEMAX);
+            return NULL;
+        }
+        *err = RCNEGATE(EOK);
+        return dest;
     }
 
     /* hold base of dest in case src was not copied */
@@ -135,8 +135,8 @@ wcpcpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, errno_t *err)
             if (dest == overlap_bumper) {
                 handle_wc_error(orig_dest, orig_dmax, "wcpcpy_s: overlapping objects",
                              ESOVRLP);
-    			*err = RCNEGATE(ESOVRLP);
-    			return NULL;
+                *err = RCNEGATE(ESOVRLP);
+                return NULL;
             }
 
             *dest = *src;
@@ -161,8 +161,8 @@ wcpcpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, errno_t *err)
             if (src == overlap_bumper) {
                 handle_wc_error(orig_dest, orig_dmax, "wcpcpy_s: overlapping objects",
                       ESOVRLP);
-    			*err = RCNEGATE(ESOVRLP);
-    			return NULL;
+                *err = RCNEGATE(ESOVRLP);
+                return NULL;
             }
 
             *dest = *src;

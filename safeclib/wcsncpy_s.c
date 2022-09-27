@@ -138,7 +138,7 @@ wcsncpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, rsize_t slen)
                 return RCNEGATE(ESOVRLP);
             }
 
-	    if (slen == 0) {
+        if (slen == 0) {
                 /*
                  * Copying truncated to slen chars.  Note that the TR says to
                  * copy slen chars plus the null char.  We null the slack.
@@ -176,7 +176,7 @@ wcsncpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, rsize_t slen)
                 return RCNEGATE(ESOVRLP);
             }
 
-	    if (slen == 0) {
+        if (slen == 0) {
                 /*
                  * Copying truncated to slen chars.  Note that the TR says to
                  * copy slen chars plus the null char.  We null the slack.

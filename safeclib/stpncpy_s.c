@@ -53,15 +53,15 @@
  * OUTPUT PARAMETERS
  *    dest      updated
  *    err       updated as follows:
- *    			  EOK        successful operation, the characters in src were
- *               		     copied into dest and the result is null terminated,
- *               		     and dest is returned to point to the first null at end of dest.
+ *                  EOK        successful operation, the characters in src were
+ *                            copied into dest and the result is null terminated,
+ *                            and dest is returned to point to the first null at end of dest.
  *              On error, NULL is returned and err is set to one of hte following:
- *    			  ESNULLP    NULL pointer
- *    			  ESZEROL    zero length
- *    			  ESLEMAX    length exceeds max limit
- *    			  ESOVRLP    strings overlap
- *    			  ESNOSPC    not enough space to copy src
+ *                  ESNULLP    NULL pointer
+ *                  ESZEROL    zero length
+ *                  ESLEMAX    length exceeds max limit
+ *                  ESOVRLP    strings overlap
+ *                  ESNOSPC    not enough space to copy src
  *
  * RUNTIME CONSTRAINTS
  *    Neither dest nor src shall be a null pointer.
@@ -187,64 +187,64 @@ stpncpy_s(char *dest, rsize_t dmax, const char *src, rsize_t smax, errno_t *err)
     orig_dest = dest;
 
     if (dest == src) {
-    	/* look for the terminating null character, or return err if not found in dmax bytes */
-    	while (dmax > 0) {
-    		if (*dest == '\0') {
-    			/* add nulls to complete smax */
-    			char *filler = dest; /* don't change dest, because we need to return it */
-    			while (smax) { *filler = '\0'; dmax--; smax--; filler++; }
+        /* look for the terminating null character, or return err if not found in dmax bytes */
+        while (dmax > 0) {
+            if (*dest == '\0') {
+                /* add nulls to complete smax */
+                char *filler = dest; /* don't change dest, because we need to return it */
+                while (smax) { *filler = '\0'; dmax--; smax--; filler++; }
 #ifdef SAFECLIB_STR_NULL_SLACK
                 /* null dmax slack to clear any data */
-    		    while (dmax) { *filler = '\0'; dmax--; filler++; }
+                while (dmax) { *filler = '\0'; dmax--; filler++; }
 #endif
-    		    *err = RCNEGATE(EOK);
-    		    return dest;
-    		}
-    		dmax--;
-    		dest++;
-    		if (--smax == 0) {
-    			/* we have copied smax characters, add null terminator */
-    			*dest = '\0';
-    		}
-    	}
-    	/* null terminator not found in src before end of dmax */
-    	handle_error(orig_dest, orig_dmax, "stpncpy_s: not enough space for src",
-    	                 ESNOSPC);
-    	*err = RCNEGATE(ESNOSPC);
-    	return NULL;
+                *err = RCNEGATE(EOK);
+                return dest;
+            }
+            dmax--;
+            dest++;
+            if (--smax == 0) {
+                /* we have copied smax characters, add null terminator */
+                *dest = '\0';
+            }
+        }
+        /* null terminator not found in src before end of dmax */
+        handle_error(orig_dest, orig_dmax, "stpncpy_s: not enough space for src",
+                         ESNOSPC);
+        *err = RCNEGATE(ESNOSPC);
+        return NULL;
     }
 
 
     /* All checks for buffer overlaps were made, just do the copies */
     while (dmax > 0) {
 
-		*dest = *src; /* Copy the data into the destination */
+        *dest = *src; /* Copy the data into the destination */
 
-		/* Check for maximum copy from source */
-		if (smax == 0) {
-			/* we have copied smax characters, add null terminator */
-			*dest = '\0';
-		}
+        /* Check for maximum copy from source */
+        if (smax == 0) {
+            /* we have copied smax characters, add null terminator */
+            *dest = '\0';
+        }
 
-		/* Check for end of copying */
-		if (*dest == '\0') {
-			/* add nulls to complete smax, if fewer than smax characters
-			 * were in src when the NULL was encountered */
-			char *filler = dest; /* don't change dest, because we need to return it */
-			while (smax) { *filler = '\0'; dmax--; smax--; filler++; }
+        /* Check for end of copying */
+        if (*dest == '\0') {
+            /* add nulls to complete smax, if fewer than smax characters
+             * were in src when the NULL was encountered */
+            char *filler = dest; /* don't change dest, because we need to return it */
+            while (smax) { *filler = '\0'; dmax--; smax--; filler++; }
 #ifdef SAFECLIB_STR_NULL_SLACK
-			/* null dmax slack to clear any data */
-			while (dmax) { *filler = '\0'; dmax--; filler++; }
+            /* null dmax slack to clear any data */
+            while (dmax) { *filler = '\0'; dmax--; filler++; }
 #endif
-			*err = RCNEGATE(EOK);
-			return dest;
-		}
-		dmax--;
-		smax--;
-		dest++;
-		src++;
+            *err = RCNEGATE(EOK);
+            return dest;
+        }
+        dmax--;
+        smax--;
+        dest++;
+        src++;
 
-	}
+    }
     /*
      * Ran out of space in dest, and did not find the null terminator in src
      */

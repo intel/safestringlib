@@ -134,7 +134,7 @@ strncpy_s (char *dest, rsize_t dmax, const char *src, rsize_t slen)
                 return RCNEGATE(ESOVRLP);
             }
 
-	    if (slen == 0) {
+        if (slen == 0) {
                 /*
                  * Copying truncated to slen chars.  Note that the TR says to
                  * copy slen chars plus the null char.  We null the slack.
@@ -173,7 +173,7 @@ strncpy_s (char *dest, rsize_t dmax, const char *src, rsize_t slen)
                 return RCNEGATE(ESOVRLP);
             }
 
-	    if (slen == 0) {
+        if (slen == 0) {
                 /*
                  * Copying truncated to slen chars.  Note that the TR says to
                  * copy slen chars plus the null char.  We null the slack.
