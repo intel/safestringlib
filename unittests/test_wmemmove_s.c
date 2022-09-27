@@ -133,13 +133,13 @@ int test_wmemmove_s (void)
 
 /*--------------------------------------------------*/
 /* 8 Test for source overlaps into dest buffer */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	rc = wmemmove_s(&mem1[25], LEN, mem1, 26);
-	if (rc != EOK) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc);
-	}
+    rc = wmemmove_s(&mem1[25], LEN, mem1, 26);
+    if (rc != EOK) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc);
+    }
 
 
 /*--------------------------------------------------*/
@@ -156,16 +156,16 @@ int test_wmemmove_s (void)
                      __FUNCTION__, __LINE__,  rc);
     } else {
 
-    	if ( mem1[0] != 40 && mem1[10] != 40) {
+        if ( mem1[0] != 40 && mem1[10] != 40) {
             printf("%d - %d m1[0]=%d  m1[10]=%d should be 40  \n",
                  __LINE__, i, mem1[0], mem1[10]);
-    	}
-		for (i=1; i<10; i++) {
-			if (mem1[i] != 44) {
-				printf("%d - %d m1=%d  should be 44  \n",
-					 __LINE__, i, mem1[i]);
-			}
-		}
+        }
+        for (i=1; i<10; i++) {
+            if (mem1[i] != 44) {
+                printf("%d - %d m1=%d  should be 44  \n",
+                     __LINE__, i, mem1[i]);
+            }
+        }
     }
 
 /*--------------------------------------------------*/
@@ -183,17 +183,17 @@ int test_wmemmove_s (void)
 
     } else {
 
-		for (i=0; i<len; i++) {
-			if (mem1[i] != 0) {
-				printf("%d - %d m1=%d  m2=%d  \n",
-					 __LINE__, i, mem1[i], mem2[i]);
-			}
-		}
+        for (i=0; i<len; i++) {
+            if (mem1[i] != 0) {
+                printf("%d - %d m1=%d  m2=%d  \n",
+                     __LINE__, i, mem1[i], mem2[i]);
+            }
+        }
 
-		if (mem1[i] != 33) {
-			printf("%d - %lu m1=%d  m2=%d  \n",
-					 __LINE__, len, mem1[len], mem2[len]);
-		}
+        if (mem1[i] != 33) {
+            printf("%d - %lu m1=%d  m2=%d  \n",
+                     __LINE__, len, mem1[len], mem2[len]);
+        }
 
     }
 
@@ -212,17 +212,17 @@ int test_wmemmove_s (void)
 
     } else {
 
-		for (i=0; i<len; i++) {
-			if (mem1[i] != 0) {
-				printf("%d - %d m1=%d  m2=%d  \n",
-					 __LINE__, i, mem1[i], mem2[i]);
-			}
-		}
+        for (i=0; i<len; i++) {
+            if (mem1[i] != 0) {
+                printf("%d - %d m1=%d  m2=%d  \n",
+                     __LINE__, i, mem1[i], mem2[i]);
+            }
+        }
 
-		if (mem1[len] != 33) {
-				printf("%d - %lu m1=%d  m2=%d  \n",
-					 __LINE__, len, mem1[len], mem2[len]);
-		}
+        if (mem1[len] != 33) {
+                printf("%d - %lu m1=%d  m2=%d  \n",
+                     __LINE__, len, mem1[len], mem2[len]);
+        }
     }
 
 /*--------------------------------------------------*/
@@ -240,18 +240,18 @@ int test_wmemmove_s (void)
 
     } else {
 
-		/* verify mem1 was copied */
-		for (i=0; i<len; i++) {
-			if (mem1[i] != mem2[i]) {
-				printf("%d - %d m1=%d <> m2=%d  \n",
-					 __LINE__, i, mem1[i], mem2[i]);
-			}
-		}
+        /* verify mem1 was copied */
+        for (i=0; i<len; i++) {
+            if (mem1[i] != mem2[i]) {
+                printf("%d - %d m1=%d <> m2=%d  \n",
+                     __LINE__, i, mem1[i], mem2[i]);
+            }
+        }
 
-		if (mem1[len] != 33 && mem1[len+1] != 33) {
-				printf("%d - %lu m1[len]=%d  m1[len+1]=%d  \n",
-					 __LINE__, len, mem1[len], mem1[len+1]);
-		}
+        if (mem1[len] != 33 && mem1[len+1] != 33) {
+                printf("%d - %lu m1[len]=%d  m1[len+1]=%d  \n",
+                     __LINE__, len, mem1[len], mem1[len+1]);
+        }
 
     }
 
@@ -269,50 +269,50 @@ int test_wmemmove_s (void)
                      __FUNCTION__, __LINE__, rc);
     } else {
 
-		/* verify mem1 was copied properly */
-		for (i=0; i<len; i++) {
-			if (mem1[i] != 44) {
-				printf("%d - %d m1=%d  m2=%d  \n",
-					 __LINE__, i, mem1[i], mem2[i]);
-			}
-		}
+        /* verify mem1 was copied properly */
+        for (i=0; i<len; i++) {
+            if (mem1[i] != 44) {
+                printf("%d - %d m1=%d  m2=%d  \n",
+                     __LINE__, i, mem1[i], mem2[i]);
+            }
+        }
 
     }
 
 
 /*--------------------------------------------------*/
 /* 14 Test copying when src buffer overlaps beginning of destination buffer  */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	for (i=0; i<LEN+2; i++) { mem1[i] = i; }
+    for (i=0; i<LEN+2; i++) { mem1[i] = i; }
 
-	len = LEN-10;
-	rc = wmemmove_s(&mem1[10], len, mem1, len);
-	if (rc != EOK) {
-		printf("%s %u   Error rc=%u \n",
-					 __FUNCTION__, __LINE__, rc);
-	} else {
+    len = LEN-10;
+    rc = wmemmove_s(&mem1[10], len, mem1, len);
+    if (rc != EOK) {
+        printf("%s %u   Error rc=%u \n",
+                     __FUNCTION__, __LINE__, rc);
+    } else {
 
-		/* verify mem1 was copied properly */
-		for (i=0; i<10; i++) {
-			if (mem1[i] != i) {
-				printf("%d - %d m1=%d  m2=%d  \n",
-					 __LINE__, i, mem1[i], mem2[i]);
-			}
-		}
-		for (i=10; i<LEN; i++) {
-			if (mem1[i] != i-10) {
-				printf("%d - %d m1=%d  should=%d  \n",
-					 __LINE__, i, mem1[i], i-10);
-			}
-		}
+        /* verify mem1 was copied properly */
+        for (i=0; i<10; i++) {
+            if (mem1[i] != i) {
+                printf("%d - %d m1=%d  m2=%d  \n",
+                     __LINE__, i, mem1[i], mem2[i]);
+            }
+        }
+        for (i=10; i<LEN; i++) {
+            if (mem1[i] != i-10) {
+                printf("%d - %d m1=%d  should=%d  \n",
+                     __LINE__, i, mem1[i], i-10);
+            }
+        }
 
-		if ( mem1[LEN] != LEN && mem1[LEN+1] != LEN+1) {
-			printf("%d - %d m1[LEN]=%d  mem1[LEN+1]=%d should be 1024 & 1025  \n",
-				 __LINE__, i, mem1[LEN], mem1[LEN+1]);
-		}
+        if ( mem1[LEN] != LEN && mem1[LEN+1] != LEN+1) {
+            printf("%d - %d m1[LEN]=%d  mem1[LEN+1]=%d should be 1024 & 1025  \n",
+                 __LINE__, i, mem1[LEN], mem1[LEN+1]);
+        }
 
-	}
+    }
 
 /*--------------------------------------------------*/
 /* 15 Test moving pointer onto itself  */
@@ -342,12 +342,12 @@ int test_wmemmove_s (void)
                      __FUNCTION__, __LINE__,  rc);
     } else {
 
-		for (i=0; i<len; i++) {
-			if (mem1[i] != 55) {
-				printf("%d - %d m1=%d\n",
-					 __LINE__, i, mem1[i]);
-			}
-		}
+        for (i=0; i<len; i++) {
+            if (mem1[i] != 55) {
+                printf("%d - %d m1=%d\n",
+                     __LINE__, i, mem1[i]);
+            }
+        }
 
     }
 
@@ -364,65 +364,65 @@ int test_wmemmove_s (void)
                      __FUNCTION__, __LINE__,  rc);
     } else {
 
-		for (i=0; i<LEN/2; i++) {
-			if (mem1[i] != 55) {
-				printf("%d - %d m1=%d  m2=%d  \n",
-					 __LINE__, i, mem1[i], mem2[i]);
-			}
-		}
+        for (i=0; i<LEN/2; i++) {
+            if (mem1[i] != 55) {
+                printf("%d - %d m1=%d  m2=%d  \n",
+                     __LINE__, i, mem1[i], mem2[i]);
+            }
+        }
     }
 
 
 /*--------------------------------------------------*/
 /* 17  Test offset buffer one byte for move between buffers */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	for (i=0; i<LEN; i++) { mem1[i] = 35; }
-	for (i=0; i<LEN; i++) { mem2[i] = 55; }
+    for (i=0; i<LEN; i++) { mem1[i] = 35; }
+    for (i=0; i<LEN; i++) { mem2[i] = 55; }
 
-	rc = wmemmove_s((wchar_t *)(((char *)mem1)+1), LEN, mem2, 10);
-	if (rc != EOK) {
-		printf("%s %u  Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc);
-	} else {
+    rc = wmemmove_s((wchar_t *)(((char *)mem1)+1), LEN, mem2, 10);
+    if (rc != EOK) {
+        printf("%s %u  Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc);
+    } else {
 
-		if ( mem1[0] != 0x00003723 ) {
-			printf("%d - %d first char memory incorrect m1=%04x  \n",
-				 __LINE__, i, mem1[i]);
-		}
-		for (i=1; i<10; i++) {
-			if (mem1[i] != 0x00003700) {
-				printf("%d - %d m1=%04x  \n",
-					 __LINE__, i, mem1[i]);
-			}
-		}
-	}
+        if ( mem1[0] != 0x00003723 ) {
+            printf("%d - %d first char memory incorrect m1=%04x  \n",
+                 __LINE__, i, mem1[i]);
+        }
+        for (i=1; i<10; i++) {
+            if (mem1[i] != 0x00003700) {
+                printf("%d - %d m1=%04x  \n",
+                     __LINE__, i, mem1[i]);
+            }
+        }
+    }
 
 
 /*--------------------------------------------------*/
 /* 18  Test offset buffer two byte for move between buffers */
-	printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
-	for (i=0; i<LEN; i++) { mem1[i] = 35; }
-	for (i=0; i<LEN; i++) { mem2[i] = 55; }
+    for (i=0; i<LEN; i++) { mem1[i] = 35; }
+    for (i=0; i<LEN; i++) { mem2[i] = 55; }
 
-	rc = wmemmove_s((wchar_t *)(((char *)mem1)+2), LEN, mem2, 10);
-	if (rc != EOK) {
-		printf("%s %u  Error rc=%u \n",
-					 __FUNCTION__, __LINE__,  rc);
-	} else {
+    rc = wmemmove_s((wchar_t *)(((char *)mem1)+2), LEN, mem2, 10);
+    if (rc != EOK) {
+        printf("%s %u  Error rc=%u \n",
+                     __FUNCTION__, __LINE__,  rc);
+    } else {
 
-		if ( mem1[0] != 0x00370023 ) {
-			printf("%d - %d first char memory incorrect m1=%04x  \n",
-				 __LINE__, i, mem1[i]);
-		}
-		for (i=1; i<10; i++) {
-			if (mem1[i] != 0x00370000) {
-				printf("%d - %d m1=%04x  \n",
-					 __LINE__, i, mem1[i]);
-			}
-		}
-	}
+        if ( mem1[0] != 0x00370023 ) {
+            printf("%d - %d first char memory incorrect m1=%04x  \n",
+                 __LINE__, i, mem1[i]);
+        }
+        for (i=1; i<10; i++) {
+            if (mem1[i] != 0x00370000) {
+                printf("%d - %d m1=%04x  \n",
+                     __LINE__, i, mem1[i]);
+            }
+        }
+    }
 
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
