@@ -1,3 +1,8 @@
+/*  SPDX-License-Identifier: MIT */
+/*
+ *  Copyright (c) 2014 by Intel Corp
+ */
+
 /*------------------------------------------------------------------
  * test_memcmp_s
  *

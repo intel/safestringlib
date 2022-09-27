@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (C) 2019 Intel Corporation
 cmake_minimum_required(VERSION 3.1)
 project(safestring_test)
 

@@ -1,11 +1,6 @@
+/*  SPDX-License-Identifier: MIT */
 /*
- ============================================================================
- Name        : Safe_String_Extensions.c
- Author      : David M. Wheeler
- Version     :
- Copyright   : (C) Intel Corp 2014
- Description : Safe String Test Suite
- ============================================================================
+ *  Copyright (c) 2014 by Intel Corp
  */
 
 #include <stdio.h>
