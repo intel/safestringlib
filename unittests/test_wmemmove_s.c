@@ -404,7 +404,7 @@ int test_wmemmove_s (void)
 	for (i=0; i<LEN; i++) { mem1[i] = 35; }
 	for (i=0; i<LEN; i++) { mem2[i] = 55; }
 
-	rc = wmemmove_s((wchar_t)(((char *)mem1)+1), LEN, mem2, 10);
+	rc = wmemmove_s((wchar_t *)(((char *)mem1)+1), LEN, mem2, 10);
 	if (rc != EOK) {
 		printf("%s %u  Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc);
@@ -430,7 +430,7 @@ int test_wmemmove_s (void)
 	for (i=0; i<LEN; i++) { mem1[i] = 35; }
 	for (i=0; i<LEN; i++) { mem2[i] = 55; }
 
-	rc = wmemmove_s((wchar_t)(((char *)mem1)+2), LEN, mem2, 10);
+	rc = wmemmove_s((wchar_t *)(((char *)mem1)+2), LEN, mem2, 10);
 	if (rc != EOK) {
 		printf("%s %u  Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc);
