@@ -1,3 +1,6 @@
+/*  SPDX-License-Identifier: MIT */
+/*
+*  Copyright (c) 2014 by Intel Corp
 /*------------------------------------------------------------------
  * test_memzero_s
  *
