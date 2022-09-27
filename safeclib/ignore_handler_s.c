@@ -41,8 +41,8 @@
 void ignore_handler_s(const char *msg, void *ptr, errno_t error)
 {
 
-	sldebug_printf("IGNORE CONSTRAINT HANDLER: (%u) %s\n", error,
-		       (msg) ? msg : "Null message");
-	return;
+    sldebug_printf("IGNORE CONSTRAINT HANDLER: (%u) %s\n", error,
+               (msg) ? msg : "Null message");
+    return;
 }
 EXPORT_SYMBOL(ignore_handler_s)

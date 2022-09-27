@@ -104,13 +104,13 @@ wcscpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src)
 
     /* Verify proper length according to dmax if src = dest */
     if (dest == src) {
-    	/* Ensure that src is not longer than dmax */
-    	while (*src != L'\0' && (dmax != 0)) { src++; dmax--; }
-    	if ( *src != L'\0' ) {
+        /* Ensure that src is not longer than dmax */
+        while (*src != L'\0' && (dmax != 0)) { src++; dmax--; }
+        if ( *src != L'\0' ) {
             invoke_safe_str_constraint_handler("wcscpy_s: src exceeds dmax",
                        NULL, ESLEMAX);
             return RCNEGATE(ESLEMAX);
-    	}
+        }
         return RCNEGATE(EOK);
     }
 
