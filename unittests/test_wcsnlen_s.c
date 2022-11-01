@@ -1,6 +1,6 @@
 /*  SPDX-License-Identifier: MIT */
 /*
- *  Copyright (c) 2014 by Intel Corp
+ *  Copyright (c) 2014-2022 by Intel Corp
  */
 
 /*------------------------------------------------------------------
@@ -68,9 +68,9 @@ printf("Test #%d:\n", ++testno);
 /* 3  Test for length is equal to maximum */
     printf("Test #%d:\n", ++testno);
 
-    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 40);
 
-    rc = wcsnlen_s(str1, 41);
+    rc = wcsnlen_s(str1, 40);
     if (rc != 40) {
         printf("%s %u   Error rc=%u \n",
                __FUNCTION__, __LINE__,  rc );
@@ -80,7 +80,7 @@ printf("Test #%d:\n", ++testno);
 /* 4  Test for return length is equal to dmax */
     printf("Test #%d:\n", ++testno);
 
-    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 40);
 
     rc = wcsnlen_s(str1, 20);
     if (rc != 20) {
