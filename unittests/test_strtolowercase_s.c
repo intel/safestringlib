@@ -37,7 +37,7 @@ int test_strtolowercase_s()
 
 /*--------------------------------------------------*/
 
-    len = 99999;
+    len = RSIZE_MAX_STR+1;
     rc = strtolowercase_s("test", len);
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",

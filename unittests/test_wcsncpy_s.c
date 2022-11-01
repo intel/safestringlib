@@ -70,8 +70,8 @@
 #include "test_private.h"
 #include "safe_str_lib.h"
 
+#define LEN   128
 #define MAX   ( 128*4 )
-#define LEN   ( 128*4 )
 
 static wchar_t   str1[LEN];
 static wchar_t   str2[LEN];
@@ -118,7 +118,7 @@ printf("Test #%d:\n", ++testno);
 /* 3  Test for too large destination size              */
 	printf("Test #%d:\n", ++testno);
 
-	rc = wcsncpy_s(str1, (RSIZE_MAX_STR+1), str2, LEN);
+	rc = wcsncpy_s(str1, (RSIZE_MAX_STR/sizeof(wchar_t))+1, str2, LEN);
 	if (rc != ESLEMAX) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
@@ -177,7 +177,7 @@ printf("Test #%d:\n", ++testno);
 /* 6  Test for too large source size              */
 	printf("Test #%d:\n", ++testno);
 
-	rc = wcsncpy_s(str1, LEN, str2, (RSIZE_MAX_STR+1));
+	rc = wcsncpy_s(str1, LEN, str2, (RSIZE_MAX_STR/sizeof(wchar_t))+1);
 	if (rc != ESLEMAX) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
@@ -200,7 +200,7 @@ printf("Test #%d:\n", ++testno);
 /* 7  Test for Src is same as dest, overlapping buffers not allowed */
     printf("Test #%d:\n", ++testno);
 
-    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 41);
 
     rc = wcsncpy_s(str1, 5, str1, LEN);
     if (rc != ESOVRLP) {
@@ -225,7 +225,7 @@ printf("Test #%d:\n", ++testno);
 /* 8  Test overlapping buffers fails            */
     printf("Test #%d:\n", ++testno);
 
-    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 41);
 
 	rc = wcsncpy_s(str1, LEN, &str1[5], 30);
     if (rc != ESOVRLP) {
@@ -265,7 +265,7 @@ printf("Test #%d:\n", ++testno);
 					 __FUNCTION__, __LINE__,  rc );
 	}
 
-    rc = memcmp_s(str1, LEN, str2, (10)*sizeof(wchar_t), &ind );
+    rc = memcmp_s(str1, MAX, str2, (10)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u   Error -%ls- <> -%ls-\n",
                      __FUNCTION__, __LINE__,  str1, str2);
@@ -291,7 +291,7 @@ printf("Test #%d:\n", ++testno);
 					 __FUNCTION__, __LINE__,  rc );
 	}
 
-	rc = memcmp_s(str1, LEN, str2, (sz+1)*sizeof(wchar_t), &ind );
+	rc = memcmp_s(str1, MAX, str2, (sz+1)*sizeof(wchar_t), &ind );
 	if (ind != 0) {
 		printf("%s %u   Error -%ls- <> -%ls-\n",
 					 __FUNCTION__, __LINE__,  str1, str2);
@@ -329,7 +329,7 @@ printf("Test #%d:\n", ++testno);
 /* 12  Test overlapping buffers fails (dest > src )   */
 	printf("Test #%d:\n", ++testno);
 
-	wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+	wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 41);
 
 	rc = wcsncpy_s(&str1[5], LEN, str1, 30);
 	if (rc != ESOVRLP) {
@@ -369,7 +369,7 @@ printf("Test #%d:\n", ++testno);
 					 __FUNCTION__, __LINE__,  rc );
 	}
 
-	rc = memcmp_s(str1, LEN, str2, (17)*sizeof(wchar_t), &ind );
+	rc = memcmp_s(str1, MAX, str2, (17)*sizeof(wchar_t), &ind );
 	if (ind != 0) {
 		printf("%s %u   Error -%ls- <> -%ls-\n",
 					 __FUNCTION__, __LINE__,  str1, str2);
@@ -395,7 +395,7 @@ printf("Test #%d:\n", ++testno);
 					 __FUNCTION__, __LINE__,  rc );
 	}
 
-	rc = memcmp_s(str2, LEN, str1, (sz+1)*sizeof(wchar_t), &ind );
+	rc = memcmp_s(str2, MAX, str1, (sz+1)*sizeof(wchar_t), &ind );
 	if (ind != 0) {
 		printf("%s %u   Error -%ls- <> -%ls-\n",
 					 __FUNCTION__, __LINE__,  str2, str1);
@@ -449,7 +449,7 @@ printf("Test #%d:\n", ++testno);
             printf("%s %u (sz=%lu <> 5) Error rc=%u \n",
                          __FUNCTION__, __LINE__,  sz, rc );
     }
-    rc = memcmp_s(str1, LEN, str2, (sz)*sizeof(wchar_t), &ind );
+    rc = memcmp_s(str1, MAX, str2, (sz)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls- <> -%ls-  (size=%lu) Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, str2, sz, rc );
@@ -471,7 +471,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
 
-    rc = memcmp_s(str1, LEN, str2, (3)*sizeof(wchar_t), &ind );
+    rc = memcmp_s(str1, MAX, str2, (3)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );

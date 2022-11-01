@@ -72,8 +72,8 @@
 #include "test_private.h"
 #include "safe_str_lib.h"
 
+#define LEN   128
 #define MAX   ( 128*4 )
-#define LEN   ( 128*4 )
 
 static wchar_t   str1[LEN];
 static wchar_t   str2[LEN];
@@ -118,7 +118,7 @@ printf("Test #%d:\n", ++testno);
 /* 3  Test for too large destination size              */
 	printf("Test #%d:\n", ++testno);
 
-	rc = wcscpy_s(str1, (RSIZE_MAX_STR+1), str2);
+	rc = wcscpy_s(str1, (RSIZE_MAX_STR/sizeof(wchar_t))+1, str2);
 	if (rc != ESLEMAX) {
 		printf("%s %u   Error rc=%u \n",
 					 __FUNCTION__, __LINE__,  rc );
@@ -155,7 +155,7 @@ printf("Test #%d:\n", ++testno);
 /* 5  Test for Src is same as dest, but source too long */
     printf("Test #%d:\n", ++testno);
 
-    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 41);
 
     rc = wcscpy_s(str1, 5, str1);
     if (rc != ESLEMAX) {
@@ -167,7 +167,7 @@ printf("Test #%d:\n", ++testno);
 /* 6  Test copy the same string onto itself            */
     printf("Test #%d:\n", ++testno);
 
-    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 41);
 
 	rc = wcscpy_s(str1, LEN, str1);
 	if (rc != EOK) {
@@ -279,7 +279,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
 
-    rc = memcmp_s(str2, LEN, str1, (sz+1)*sizeof(wchar_t), &ind );
+    rc = memcmp_s(str2, MAX, str1, (sz+1)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u   Error -%ls- <> -%ls-\n",
                      __FUNCTION__, __LINE__,  str2, str1);
@@ -300,7 +300,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
 
-    rc = memcmp_s(str1, LEN, str2, (sz)*sizeof(wchar_t), &ind );
+    rc = memcmp_s(str1, MAX, str2, (sz)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls- <> -%ls-  (smax=%lu) Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, str2, sz, rc );
@@ -325,7 +325,7 @@ printf("Test #%d:\n", ++testno);
             printf("%s %u (sz=%lu <> 5) Error rc=%u \n",
                          __FUNCTION__, __LINE__,  sz, rc );
     }
-    rc = memcmp_s(str1, LEN, str2, (sz)*sizeof(wchar_t), &ind );
+    rc = memcmp_s(str1, MAX, str2, (sz)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls- <> -%ls-  (size=%lu) Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, str2, sz, rc );
@@ -383,7 +383,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
 
-    rc = memcmp_s(str1, LEN, str2, (3)*sizeof(wchar_t), &ind );
+    rc = memcmp_s(str1, MAX, str2, (3)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );
@@ -404,7 +404,7 @@ printf("Test #%d:\n", ++testno);
                      __FUNCTION__, __LINE__,  rc );
     }
 
-    rc = memcmp_s(str1, LEN, str2, (3)*sizeof(wchar_t), &ind );
+    rc = memcmp_s(str1, MAX, str2, (3)*sizeof(wchar_t), &ind );
     if (ind != 0) {
         printf("%s %u -%ls-  Error rc=%u \n",
                      __FUNCTION__, __LINE__,  str1, rc );
