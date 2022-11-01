@@ -1,6 +1,6 @@
 /*  SPDX-License-Identifier: MIT */
 /*
- *  Copyright (c) 2014 by Intel Corp
+ *  Copyright (c) 2014-2022 by Intel Corp
  */
 
 /*------------------------------------------------------------------
@@ -72,7 +72,7 @@ int test_wcscpy_s (void)
     printf("\nTesting wcscpy_s:\n");
 /*--------------------------------------------------*/
 /* 1  Test for NULL destination check                  */
-printf("Test #%d:\n", ++testno);
+    printf("Test #%d:\n", ++testno);
 
     rc = wcscpy_s(NULL, LEN, str2);
     if (rc != ESNULLP) {
@@ -102,7 +102,7 @@ printf("Test #%d:\n", ++testno);
 
 /*--------------------------------------------------*/
 /* 4  Test for NULL source check                       */
-    printf("Test #%d:\n", ++testno);
+   printf("Test #%d:\n", ++testno);
 
    wmemcpy_s(str1, LEN, L"aaaaa", 5);
 
@@ -131,7 +131,7 @@ printf("Test #%d:\n", ++testno);
 /* 5  Test for Src is same as dest, but source too long */
     printf("Test #%d:\n", ++testno);
 
-    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 40);
 
     rc = wcscpy_s(str1, 5, str1);
     if (rc != ESLEMAX) {
@@ -143,7 +143,7 @@ printf("Test #%d:\n", ++testno);
 /* 6  Test copy the same string onto itself            */
     printf("Test #%d:\n", ++testno);
 
-    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 42);
+    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 40);
 
     rc = wcscpy_s(str1, LEN, str1);
     if (rc != EOK) {
@@ -217,7 +217,7 @@ printf("Test #%d:\n", ++testno);
  * it's contents                                    */
     printf("Test #%d:\n", ++testno);
 
-    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 41);
+    wmemcpy_s(str1, LEN, L"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 40);
     str2[0] = L'\0';
 
     rc = wcscpy_s(str1, LEN/2, str2);
