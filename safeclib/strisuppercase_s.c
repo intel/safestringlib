@@ -2,6 +2,7 @@
 /*
  *  Copyright (c) 2008 Bo Berry
  *  Copyright (c) 2008-2011, 2013 Cisco Systems
+ *  Copyright (c) 2022 Intel Corp
  */
 
 #include "safeclib_private.h"
@@ -79,7 +80,7 @@ strisuppercase_s (const char *dest, rsize_t dmax)
         return (false);
     }
 
-    while (*dest) {
+    while (dmax && *dest) {
 
         if ((*dest < 'A') || (*dest > 'Z')) {
             return (false);
