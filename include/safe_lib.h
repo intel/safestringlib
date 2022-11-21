@@ -3,7 +3,7 @@
  *  Copyright (c) 2008 Bo Berry
  *  Copyright (c) 2012 Jonathan Toppins <jtoppins@users.sourceforge.net>
  *  Copyright (c) 2008-2013 by Cisco Systems, Inc
- *  Copyright (c) 2021 by Intel Corp
+ *  Copyright (c) 2021-2022 by Intel Corp
  */
 
 #ifndef __SAFE_LIB_H__
@@ -15,9 +15,9 @@ extern "C" {
 
 /* Define safe_lib version number */
 #define SAFEC_VERSION_MAJOR 1
-#define SAFEC_VERSION_MINOR 1
+#define SAFEC_VERSION_MINOR 2
 #define SAFEC_VERSION_PATCH 0
-#define SAFEC_VERSION_STRING "1.1.0"
+#define SAFEC_VERSION_STRING "1.2.0"
 
 #define SAFEC_VERSION_NUM(a,b,c) (((a) << 16L) | ((b) << 8) | (c))
 #define SAFEC_VERSION \
