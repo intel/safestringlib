@@ -1,9 +1,13 @@
 # SPDX-License-Identifier: MIT
 # Copyright (C) 2019-2023 Intel Corporation
 cmake_minimum_required(VERSION 3.5)
-project(safestring)
 
 include(version.cmake)
+
+project(safestring
+  VERSION ${SAFEC_VERSION_STRING}
+  DESCRIPTION "Safe C string library"
+)
 
 option(BUILD_UNITTESTS "Build also project unit-tests" OFF)
 
@@ -184,7 +188,11 @@ target_compile_options(${PROJECT_NAME}_objlib PRIVATE $<$<CONFIG:RELEASE>:-s>)
 
 add_library(${PROJECT_NAME}_shared SHARED $<TARGET_OBJECTS:${PROJECT_NAME}_objlib>)
 add_library(${PROJECT_NAME}_static STATIC $<TARGET_OBJECTS:${PROJECT_NAME}_objlib>)
-target_include_directories(${PROJECT_NAME}_shared PUBLIC include)
+
+target_include_directories(${PROJECT_NAME}_shared PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
 target_include_directories(${PROJECT_NAME}_static PUBLIC include)
 
 set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${SAFEC_VERSION_STRING})
@@ -193,3 +201,41 @@ set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${SAFEC_VERSION_
 if(BUILD_UNITTESTS)
   add_subdirectory(unittests)
 endif()
+
+# Install targets
+set(PUBLIC_HEADERS
+  include/safe_lib_errno.h
+  include/safe_lib.h
+  include/safe_mem_lib.h
+  include/safe_str_lib.h
+  include/safe_types.h
+  include/snprintf_s.h
+)
+
+set_target_properties(${PROJECT_NAME}_shared PROPERTIES
+  PUBLIC_HEADER "${PUBLIC_HEADERS}"
+)
+
+install(TARGETS ${PROJECT_NAME}_shared EXPORT ${PROJECT_NAME}Config
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+
+install(EXPORT ${PROJECT_NAME}Config DESTINATION share/${PROJECT_NAME}/cmake)
+
+export(TARGETS ${PROJECT_NAME}_shared FILE ${PROJECT_NAME}Config.cmake)
+
+# Debian package information for CPack
+set(CPACK_GENERATOR "DEB")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Intel")
+set(CPACK_PACKAGE_VERSION_MAJOR "${SAFEC_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${SAFEC_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${SAFEC_VERSION_PATCH}")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "SafeStringLib is an Intel enhanced version of the Safe C Library by Cisco.")
+set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+set(CPACK_DEBIAN_PACKAGE_NAME "lib${PROJECT_NAME}")
+set(CPACK_DISPLAY_NAME "lib${PROJECT_NAME} run-time library")
+set(CPACK_PACKAGE_NAME "lib${PROJECT_NAME}")
+set(CPACK_DESCRIPTION "Safe String library and header files.")
+include(GNUInstallDirs)
+include(CPack)

@@ -84,3 +84,31 @@ PLANNED ENHANCEMENTS:
 ----------------------
 - Add full sprintf_s() support
 - Add full sscanf_s() support
+
+
+# Compile and create Debian package (Ubuntu)
+On Ubuntu (probably also works on other Linux distributions), use the following commands to compile a library and create a Debian package for distribution.
+```
+cmake -S . -B build
+cd build
+make -j
+cpack
+```
+
+The generated package can be installed and removed using the following commands:
+```
+sudo dpkg -i libsafestring_<version>_amd64.deb
+
+sudo dpkg --purge libsafestring
+```
+
+When compiling other projects against the safestring library installed via the Debian package, in the source files:
+```
+#include <safe_lib.h>
+#include <other relevant safestringlib headers>
+```
+
+In the CMakeLists.txt, add:
+```
+target_link_libraries(<target name> safestring_shared <other possible library dependencies>)
+```
