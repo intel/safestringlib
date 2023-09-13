@@ -60,6 +60,8 @@
 
 #endif /* __KERNEL__ */
 
+#define UNUSED(x) (void)(x)
+
 #ifndef sldebug_printf
 #define sldebug_printf(...)
 #endif
