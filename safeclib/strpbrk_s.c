@@ -67,7 +67,6 @@ strpbrk_s (char *dest, rsize_t dmax,
            char *src,  rsize_t slen, char **first)
 {
     char *ps;
-    rsize_t len;
 
     if (first == NULL) {
         invoke_safe_str_constraint_handler("strpbrk_s: count is null",
@@ -117,10 +116,9 @@ strpbrk_s (char *dest, rsize_t dmax,
      */
     while (dmax && *dest) {
 
+        rsize_t len = slen;
         ps = src;
-        len = slen;
-        while (*ps) {
-
+        while (*ps && len > 0) {
             /* check for a match with the substring */
             if (*dest == *ps) {
                 *first = dest;
