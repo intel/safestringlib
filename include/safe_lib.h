@@ -32,11 +32,15 @@ extern "C" {
 typedef size_t  rsize_t;
 
 /*
+ * This is the original library decision:
  * We depart from the standard and allow memory and string operations to
  * have different max sizes. See the respective safe_mem_lib.h or
  * safe_str_lib.h files.
  */
 /* #define RSIZE_MAX (~(rsize_t)0)  - leave here for completeness */
+
+/* Bring back the standard */
+#define RSIZE_MAX        ( 256UL << 20 )     /* 256MB */
 
 typedef void (*constraint_handler_t) (const char * /* msg */,
                                       void *       /* ptr */,
