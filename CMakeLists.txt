@@ -1,16 +1,18 @@
 # SPDX-License-Identifier: MIT
 # Copyright (C) 2019-2023 Intel Corporation
 cmake_minimum_required(VERSION 3.5)
-
 include(version.cmake)
 
-project(safestring
-  VERSION ${SAFEC_VERSION_STRING}
-  DESCRIPTION "Safe C string library"
-)
+project(safestring VERSION ${SAFEC_VERSION_STRING} 
+   LANGUAGES C
+   DESCRIPTION "Safe C string library")
 
+#set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+
+option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 option(BUILD_UNITTESTS "Build also project unit-tests" OFF)
-
 if(NOT DEFINED BUILD_OPT_DEFAULT)
   option(BUILD_OPT_DEFAULT "Build option default" ON)
 endif()
@@ -145,14 +147,18 @@ set(SOURCES
     $<$<BOOL:${BUILD_WMEMSET}>:safeclib/wmemset_s.c>
     )
 
-include_directories(include)
+set(HEADER_FILES include/safe_lib_errno.h
+	include/safe_lib.h
+	include/safe_str_lib.h
+	include/safe_mem_lib.h
+	include/safe_types.h
+	include/snprintf_s.h)
 
+include_directories(include)
 add_library(${PROJECT_NAME}_objlib OBJECT ${SOURCES})
 set_target_properties(${PROJECT_NAME}_objlib
                       PROPERTIES POSITION_INDEPENDENT_CODE ON)
-
 target_compile_definitions(${PROJECT_NAME}_objlib PRIVATE -DSTDC_HEADERS)
-
 target_compile_options(${PROJECT_NAME}_objlib
                        PRIVATE -Wno-unknown-pragmas -Wno-unused-parameter)
 if(CMAKE_COMPILER_IS_GNUCC AND CMAKE_C_COMPILER_VERSION VERSION_GREATER 7)
@@ -177,7 +183,6 @@ if(CMAKE_COMPILER_IS_GNUCC AND
     target_compile_options(${PROJECT_NAME}_objlib PRIVATE -mmitigate-rop)
 endif()
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -z noexecstack -z relro -z now")
-
 option(BUILD_ERROR_ON_WARNING "Fail compilation on warning" OFF)
 
 if(BUILD_ERROR_ON_WARNING)
@@ -187,16 +192,29 @@ endif()
 target_compile_options(${PROJECT_NAME}_objlib PRIVATE $<$<CONFIG:RELEASE>:-s>)
 
 add_library(${PROJECT_NAME}_shared SHARED $<TARGET_OBJECTS:${PROJECT_NAME}_objlib>)
+set_target_properties(${PROJECT_NAME}_shared PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
+set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${SAFEC_VERSION_STRING} SOVERSION 1)
 add_library(${PROJECT_NAME}_static STATIC $<TARGET_OBJECTS:${PROJECT_NAME}_objlib>)
+set_target_properties(${PROJECT_NAME}_static PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 
-target_include_directories(${PROJECT_NAME}_shared PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>
-)
-target_include_directories(${PROJECT_NAME}_static PUBLIC include)
+#add_library(${PROJECT_NAME} SHARED $<TARGET_OBJECTS:${PROJECT_NAME}_objlib>)
+#add_library(${PROJECT_NAME} STATIC $<TARGET_OBJECTS:${PROJECT_NAME}_objlib>)
+#add_library(${PROJECT_NAME} ${SOURCES})
 
-set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${SAFEC_VERSION_STRING})
-set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${SAFEC_VERSION_STRING})
+#target_include_directories(${PROJECT_NAME} PUBLIC
+#  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+#  $<INSTALL_INTERFACE:include>
+#)
+#target_include_directories(${PROJECT_NAME}_static PUBLIC include)
+#target_include_directories(${PROJECT_NAME}_shared PUBLIC include)
+#target_include_directories(${PROJECT_NAME}_static PUBLIC include)
+#target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+#target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+#target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+#set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER ${HEADER_FILES})
+#set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${SAFEC_VERSION_STRING})
+#set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${SAFEC_VERSION_STRING})
+#set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${SAFEC_VERSION_STRING})
 
 if(BUILD_UNITTESTS)
   add_subdirectory(unittests)
@@ -211,18 +229,18 @@ set(PUBLIC_HEADERS
   include/safe_types.h
   include/snprintf_s.h
 )
+#set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${PUBLIC_HEADERS}")
 
-set_target_properties(${PROJECT_NAME}_shared PROPERTIES
-  PUBLIC_HEADER "${PUBLIC_HEADERS}"
-)
-
-install(TARGETS ${PROJECT_NAME}_shared EXPORT ${PROJECT_NAME}Config
+#install(TARGETS ${PROJECT_NAME} 
+#	LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+#install(FILES ${HEADER_FILES} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${PROJECT_NAME})
+install(TARGETS ${PROJECT_NAME}_shared ${PROJECT_NAME}_static 
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-install(EXPORT ${PROJECT_NAME}Config DESTINATION share/${PROJECT_NAME}/cmake)
-
+#install(EXPORT ${PROJECT_NAME}Config DESTINATION share/${PROJECT_NAME}/cmake)
 export(TARGETS ${PROJECT_NAME}_shared FILE ${PROJECT_NAME}Config.cmake)
 
 # Debian package information for CPack
