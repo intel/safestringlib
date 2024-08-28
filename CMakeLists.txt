@@ -176,7 +176,12 @@ if(CMAKE_COMPILER_IS_GNUCC AND
    CMAKE_C_COMPILER_VERSION VERSION_LESS 9)
     target_compile_options(${PROJECT_NAME}_objlib PRIVATE -mmitigate-rop)
 endif()
-set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -z noexecstack -z relro -z now")
+
+if(UNIX AND NOT APPLE)
+    set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -z noexecstack -z relro -z now")
+elseif(APPLE)
+    # Left empty since macOS will handle linking appropriately with defaults.
+endif()
 
 option(BUILD_ERROR_ON_WARNING "Fail compilation on warning" OFF)
 
