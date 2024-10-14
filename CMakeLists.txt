@@ -7,6 +7,7 @@ include(version.cmake)
 project(safestring
   VERSION ${SAFEC_VERSION_STRING}
   DESCRIPTION "Safe C string library"
+  LANGUAGES C
 )
 
 option(BUILD_UNITTESTS "Build also project unit-tests" OFF)
