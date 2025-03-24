@@ -9,6 +9,7 @@ project(safestring
   DESCRIPTION "Safe C string library"
   LANGUAGES C
 )
+include(GNUInstallDirs)
 
 option(BUILD_UNITTESTS "Build also project unit-tests" OFF)
 
@@ -197,7 +198,7 @@ add_library(${PROJECT_NAME}_static STATIC $<TARGET_OBJECTS:${PROJECT_NAME}_objli
 
 target_include_directories(${PROJECT_NAME}_shared PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 target_include_directories(${PROJECT_NAME}_static PUBLIC include)
 
@@ -227,7 +228,7 @@ install(TARGETS ${PROJECT_NAME}_shared EXPORT ${PROJECT_NAME}Config
   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-install(EXPORT ${PROJECT_NAME}Config DESTINATION share/${PROJECT_NAME}/cmake)
+install(EXPORT ${PROJECT_NAME}Config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
 
 export(TARGETS ${PROJECT_NAME}_shared FILE ${PROJECT_NAME}Config.cmake)
 
@@ -243,5 +244,4 @@ set(CPACK_DEBIAN_PACKAGE_NAME "lib${PROJECT_NAME}")
 set(CPACK_DISPLAY_NAME "lib${PROJECT_NAME} run-time library")
 set(CPACK_PACKAGE_NAME "lib${PROJECT_NAME}")
 set(CPACK_DESCRIPTION "Safe String library and header files.")
-include(GNUInstallDirs)
 include(CPack)
