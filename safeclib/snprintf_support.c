@@ -55,13 +55,13 @@ parse_format(const char *format, char pformatList[], unsigned int maxFormats)
                 break;
             }
             // check for and skip the optional field width
-            while ( format[index] != '\0' && format[index] >= '0' && format[index] <= '9') {
+            while ( format[index] >= '0' && format[index] <= '9') {
                 index++;
             }
             // Check for an skip the optional precision
-            if ( format[index] != '\0' && format[index] == '.') {
+            if ( format[index] == '.') {
                 index++; // skip the period
-                while ( format[index] != '\0' && format[index] >= '0' && format[index] <= '9') {
+                while ( format[index] >= '0' && format[index] <= '9') {
                     index++;
                 }
             }
