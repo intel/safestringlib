@@ -12,7 +12,9 @@
 #ifdef __KERNEL__
 # include <linux/errno.h>
 #else
+#ifndef __LOCAL_ERRNO__
 #include <errno.h>
+#endif
 #endif /* __KERNEL__ */
 
 /*
