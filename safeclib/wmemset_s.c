@@ -66,7 +66,7 @@ wmemset_s (wchar_t *dest, wchar_t value, rsize_t len)
         return (RCNEGATE(ESZEROL));
     }
 
-    if (len*sizeof(wchar_t) > RSIZE_MAX_MEM) {
+    if (len > RSIZE_MAX_MEM / sizeof(wchar_t)) {
         invoke_safe_mem_constraint_handler("wmemset_s: len exceeds max",
                    NULL, ESLEMAX);
         return (RCNEGATE(ESLEMAX));
