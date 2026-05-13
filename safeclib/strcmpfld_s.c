@@ -105,6 +105,7 @@ strcmpfld_s (const char *dest, rsize_t dmax,
     while (dmax) {
 
         if (*dest != *src) {
+            *indicator = *dest - *src;
             break;
         }
 
@@ -113,7 +114,6 @@ strcmpfld_s (const char *dest, rsize_t dmax,
         dmax--;
     }
 
-    *indicator = *dest - *src;
     return (EOK);
 }
 EXPORT_SYMBOL(strcmpfld_s)
