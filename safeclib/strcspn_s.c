@@ -121,7 +121,7 @@ strcspn_s (const char *dest, rsize_t dmax,
          */
         smax = slen;
         scan2 = src;
-        while (*scan2 && smax) {
+        while (smax && *scan2) {
 
              if (*dest == *scan2) {
                  return RCNEGATE(EOK);
