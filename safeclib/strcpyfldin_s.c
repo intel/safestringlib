@@ -126,7 +126,7 @@ strcpyfldin_s (char *dest, rsize_t dmax, const char *src, rsize_t slen)
     if (dest < src) {
         overlap_bumper = src;
 
-        while (dmax > 0 && *src) {
+        while (dmax > 0 && slen && *src) {
 
             if (dest == overlap_bumper) {
                 dmax = orig_dmax;
@@ -142,13 +142,14 @@ strcpyfldin_s (char *dest, rsize_t dmax, const char *src, rsize_t slen)
             }
 
             dmax--;
+            slen--;
             *dest++ = *src++;
         }
 
     } else {
         overlap_bumper = dest;
 
-        while (dmax > 0 && *src) {
+        while (dmax > 0 && slen && *src) {
 
             if (src == overlap_bumper) {
                 dmax = orig_dmax;
@@ -164,6 +165,7 @@ strcpyfldin_s (char *dest, rsize_t dmax, const char *src, rsize_t slen)
             }
 
             dmax--;
+            slen--;
             *dest++ = *src++;
         }
     }
