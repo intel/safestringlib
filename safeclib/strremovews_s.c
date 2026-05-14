@@ -129,7 +129,7 @@ strremovews_s (char *dest, rsize_t dmax)
      * strip trailing whitespace
      */
     dest = orig_end;
-    while ((*dest == ' ') || (*dest == '\t')) {
+    while ((dest >= orig_dest) && ((*dest == ' ') || (*dest == '\t'))) {
         *dest = '\0';
         dest--;
     }
