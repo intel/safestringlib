@@ -15,9 +15,9 @@ extern "C" {
 
 /* Define safe_lib version number */
 #define SAFEC_VERSION_MAJOR 1
-#define SAFEC_VERSION_MINOR 2
+#define SAFEC_VERSION_MINOR 3
 #define SAFEC_VERSION_PATCH 0
-#define SAFEC_VERSION_STRING "1.2.0"
+#define SAFEC_VERSION_STRING "1.3.0"
 
 #define SAFEC_VERSION_NUM(a,b,c) (((a) << 16L) | ((b) << 8) | (c))
 #define SAFEC_VERSION \
