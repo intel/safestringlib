@@ -1,3 +1,10 @@
+# Discontinuation of Intel Safe String Library
+Notice of discontinuation of project
+This project will no longer be maintained by Intel.
+Intel has ceased development and contributions including, but not limited to, maintenance, bug fixes, new releases, or updates, to this project.
+
+This project will be archived by 22 of July, 2026
+
 # safestringlib
 The Secure Development Lifecycle (SDL) recommends banning certain C Library functions because they directly contribute 
 to security vulnerabilities such as buffer overflows. However routines for the manipulation of strings and memory buffers 
