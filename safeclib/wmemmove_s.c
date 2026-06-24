@@ -87,7 +87,7 @@ wmemmove_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, size_t smax)
         return (RCNEGATE(ESZEROL));
     }
 
-    if (dmax*sizeof(wchar_t) > RSIZE_MAX_MEM) {
+    if (dmax > RSIZE_MAX_MEM / sizeof(wchar_t)) {
         invoke_safe_mem_constraint_handler("wmemmove_s: dmax exceeds max",
                    NULL, ESLEMAX);
         return (RCNEGATE(ESLEMAX));

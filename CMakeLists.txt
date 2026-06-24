@@ -1,13 +1,15 @@
 # SPDX-License-Identifier: MIT
 # Copyright (C) 2019-2023 Intel Corporation
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.15)
 
 include(version.cmake)
 
 project(safestring
   VERSION ${SAFEC_VERSION_STRING}
   DESCRIPTION "Safe C string library"
+  LANGUAGES C
 )
+include(GNUInstallDirs)
 
 option(BUILD_UNITTESTS "Build also project unit-tests" OFF)
 
@@ -176,7 +178,12 @@ if(CMAKE_COMPILER_IS_GNUCC AND
    CMAKE_C_COMPILER_VERSION VERSION_LESS 9)
     target_compile_options(${PROJECT_NAME}_objlib PRIVATE -mmitigate-rop)
 endif()
-set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -z noexecstack -z relro -z now")
+
+if(CMAKE_C_COMPILER_ID MATCHES "AppleClang")
+  # Left empty since macOS will handle linking appropriately with defaults.
+else()
+  set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -z noexecstack -z relro -z now")
+endif()
 
 option(BUILD_ERROR_ON_WARNING "Fail compilation on warning" OFF)
 
@@ -191,7 +198,7 @@ add_library(${PROJECT_NAME}_static STATIC $<TARGET_OBJECTS:${PROJECT_NAME}_objli
 
 target_include_directories(${PROJECT_NAME}_shared PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 target_include_directories(${PROJECT_NAME}_static PUBLIC include)
 
@@ -221,7 +228,7 @@ install(TARGETS ${PROJECT_NAME}_shared EXPORT ${PROJECT_NAME}Config
   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-install(EXPORT ${PROJECT_NAME}Config DESTINATION share/${PROJECT_NAME}/cmake)
+install(EXPORT ${PROJECT_NAME}Config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
 
 export(TARGETS ${PROJECT_NAME}_shared FILE ${PROJECT_NAME}Config.cmake)
 
@@ -237,5 +244,4 @@ set(CPACK_DEBIAN_PACKAGE_NAME "lib${PROJECT_NAME}")
 set(CPACK_DISPLAY_NAME "lib${PROJECT_NAME} run-time library")
 set(CPACK_PACKAGE_NAME "lib${PROJECT_NAME}")
 set(CPACK_DESCRIPTION "Safe String library and header files.")
-include(GNUInstallDirs)
 include(CPack)

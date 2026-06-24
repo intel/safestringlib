@@ -53,11 +53,11 @@ int test_strtouppercase_s()
 
 /*--------------------------------------------------*/
 
-/* FIXME: known bug: this test causes a bus error if the string max size is
-   not restricted via RSIZE_MAX_STR */
-    len = 99999;
+    len = RSIZE_MAX_STR + 1;
+    strcpy (str, "test");
+
     //printf("debug - 04\n");
-    rc = strtouppercase_s("test", len);
+    rc = strtouppercase_s(str, len);
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );

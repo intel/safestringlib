@@ -29,8 +29,10 @@
 
 #define CHK_FORMAT(X,Y)   (((X)==(Y))?1:0)
 
-
-unsigned int
+/*
+ * Partial parser for sanity checks
+ */
+static unsigned int
 parse_format(const char *format, char pformatList[], unsigned int maxFormats)
 {
     unsigned int  numFormats = 0;
@@ -167,7 +169,7 @@ parse_format(const char *format, char pformatList[], unsigned int maxFormats)
                 printf("failed to recognize format string [");
                 for (;start<index; start++) { printf("%c", format[start]); }
                 puts("]");
-                break;
+                return 0;
             }
         } else {
             index++; // move past this character

@@ -40,8 +40,10 @@ int test_strtolowercase_s()
 
 /*--------------------------------------------------*/
 
-    len = 99999;
-    rc = strtolowercase_s("test", len);
+    len = RSIZE_MAX_STR + 1;
+    strcpy(str, "TEST");
+
+    rc = strtolowercase_s(str, len);
     if (rc != ESLEMAX) {
         printf("%s %u   Error rc=%u \n",
                      __FUNCTION__, __LINE__,  rc );

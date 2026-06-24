@@ -91,7 +91,7 @@ wcpcpy_s(wchar_t* dest, rsize_t dmax, const wchar_t* src, errno_t *err)
         return NULL;
     }
 
-    if (dmax*sizeof(wchar_t) > RSIZE_MAX_STR) {
+    if (dmax > RSIZE_MAX_STR / sizeof(wchar_t)) {
         invoke_safe_str_constraint_handler("wcpcpy_s: dmax exceeds max",
                    NULL, ESLEMAX);
         *err = RCNEGATE(ESLEMAX);
